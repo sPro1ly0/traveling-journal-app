@@ -5,7 +5,7 @@ function LandingPage() {
     return (
         <>
         <section className="banner">
-            <h2>Journal the world around you</h2>
+            <h2>Journal wherever you go</h2>
             <button type='button'>Explore the Demo</button>
           </section>
           <section className="feature-sections">

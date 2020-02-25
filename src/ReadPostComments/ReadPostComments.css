@@ -1,0 +1,58 @@
+.journal-header {
+    background-color: rgb(236, 235, 235);
+    height: 290px;
+    padding: 45px 15px;
+    text-align: center;
+}
+  
+.journal-info {
+    margin-top: 30px;
+    padding-bottom: 10px; 
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.journal-info > p {
+    margin: 0;
+    line-height: 1.5em;
+}
+  
+.journal-content, .comments-section {
+    padding: 5px 10px;
+}
+
+.comment {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    border: 1px solid black;
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+  
+.comment-text {
+    width: 60%;
+}
+  
+.user {
+    text-align: right;
+    width: fit-content;
+}
+  
+#add-comment {
+    display: flex;
+    flex-direction: column;
+}
+  
+textarea {
+    text-align: left;
+}
+  
+.add-comment-button {
+    margin: 10px auto;
+    width: 50%;
+}

@@ -1,0 +1,59 @@
+header {
+    height: 150px;
+    padding: 45px 15px;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+#search-form {
+    width: 80%;
+    height: 250px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.search-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 300px;
+    margin: 10px auto;
+    line-height: 1.5em;
+}
+
+.search-field > label {
+    text-align: left;
+}
+  
+.add-entry {
+    text-align: center;
+    height: 50px;
+}
+  
+.comments-edit {
+    width: 100%;
+    text-align: right;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+.journals {
+    background-color: rgb(231, 231, 231);
+    padding-top: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+  
+.journal-post {
+    background-color: white;
+    border: 1px solid black;
+    width: 80%;
+    padding: 15px;
+    margin-bottom: 10px;
+}

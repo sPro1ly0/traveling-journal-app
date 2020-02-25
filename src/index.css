@@ -17,6 +17,14 @@ code {
     monospace;
 }
 
+.not-found {
+  margin: auto;
+  margin-top: 80px;
+  height: 78vh;
+  width: 60%;
+  text-align: center;
+}
+
 button:hover {
   cursor: pointer;
 }

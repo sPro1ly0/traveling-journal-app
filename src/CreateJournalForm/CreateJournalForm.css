@@ -1,0 +1,33 @@
+.add-entry {
+    height: 100vh;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.form-date {
+    display: flex;
+}
+
+.form-date > div {
+    padding-left: 10px;
+}
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 300px;
+    margin: 10px auto;
+    line-height: 1.5em;
+}
+
+.form-section > label {
+    text-align: left;
+}
+
+.add-edit-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 150px;
+    margin: 0 auto;
+}

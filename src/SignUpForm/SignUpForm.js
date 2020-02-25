@@ -5,7 +5,7 @@ class SignUpForm extends Component {
     render() {
         return (
             <section className="signup">
-                <header>
+                <header className="signup-header">
                     <h2>Sign Up Today</h2>
                 </header>
                 <form className="signup-form">
