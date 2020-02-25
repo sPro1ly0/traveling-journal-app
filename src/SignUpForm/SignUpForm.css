@@ -1,0 +1,19 @@
+.signup {
+    text-align: center;
+    height: 79vh;
+    margin-top: 80px;
+}
+
+.signup-field {
+    background-color: aquamarine;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 300px;
+    margin: 10px auto;
+    line-height: 1.5em;
+}
+
+.signup-field > label {
+    text-align: left;
+}

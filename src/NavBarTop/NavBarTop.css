@@ -1,0 +1,28 @@
+.nav-top {
+    background-color: gainsboro;
+    text-align: center;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.nav-top > a {
+    font-size: 1.2em;
+    text-decoration: none;
+}
+
+.nav-top-links {
+    min-width: 110px;
+    max-width: 140px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
