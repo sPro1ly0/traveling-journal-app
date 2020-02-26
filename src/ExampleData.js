@@ -98,7 +98,7 @@ const comments = [
         authorId: 3
     },
     {
-        id: 4,
+        id: 5,
         text: "Wonderful! Amazing place!",
         journalId: 3,
         authorId: 3

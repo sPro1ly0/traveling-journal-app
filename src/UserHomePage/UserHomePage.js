@@ -9,7 +9,7 @@ class UserHomePage extends Component {
     static contextType = JournalsContext;
 
     render() {
-        const { journals, comments } = this.context;
+        const { journals, comments, users } = this.context;
         const demoJournals = journals.filter(journal => journal.authorId === 1);
         const numberOfJournals = demoJournals.length;
         const journalPosts = demoJournals.map(journal => 
@@ -17,6 +17,7 @@ class UserHomePage extends Component {
                 key={journal.id}
                 journal={journal}
                 comments={comments}
+                users={users}
             />
         );
 

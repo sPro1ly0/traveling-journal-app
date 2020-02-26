@@ -17,3 +17,7 @@
 .signup-field > label {
     text-align: left;
 }
+
+.red-error {
+    color: red;
+}

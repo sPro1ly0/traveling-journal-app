@@ -41,7 +41,7 @@ class JournalPage extends Component {
                     <div className="journal-info">
                         <h2>{journal.location}</h2>
                         <p>{journal.date}</p>
-                        <p>{author}</p>
+                        <p>By: {author}</p>
                     </div>
                 </header>
                 <section>

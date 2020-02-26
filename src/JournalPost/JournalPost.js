@@ -8,11 +8,13 @@ import './JournalPost.css';
 
 class JournalPost extends Component {
 
+    
 
     render() {
         const { journal, comments } = this.props;
         const findComments = comments.filter(comment => comment.journalId === journal.id);
         const numberOfComments = findComments.length;
+        const renderEditButton = journal.authorId === 1 ? <button>Edit</button> : null;
         return (
             <Link to={`/journals/${journal.id}`} className='journal-link'>
                 <div className="journal-post">
@@ -22,7 +24,7 @@ class JournalPost extends Component {
 
                     <div className="comments-edit">
                         <p className="comments-count">Comments: {numberOfComments}</p>
-                        <button>Edit</button>
+                        {renderEditButton}
                     </div>
                 </div> 
             </Link>
