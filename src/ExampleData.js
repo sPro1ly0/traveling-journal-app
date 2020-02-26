@@ -1,23 +1,27 @@
 const users = [
-    {
+    {   
+        id: 1,
         firstName: "John",
         lastName: "Doe",
         email: "example@mail.com",
         password: "password"
     },
     {
+        id: 2,
         firstName: "Jane",
         lastName: "Lane",
         email: "jl3le@mail.com",
         password: "password1"
     },
     {
+        id: 3,
         firstName: "Bob",
         lastName: "Roe",
         email: "bos9i8e@mail.com",
         password: "password2"
     },
     {
+        id: 4,
         firstName: "Luke",
         lastName: "Sky",
         email: "skywalker2@mail.com",
@@ -27,63 +31,78 @@ const users = [
 
 const journals = [
     {
+        id: 1,
         title: "Spanish Delight",
         location: "Madrid, Spain",
         date: "June 2019",
         content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        author: "John Doe"
+        authorId: 1
     },
     {
+        id: 2,
         title: "Fun Day in Florida",
         location: "Miami, Florida",
         date: "January 2020",
         content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        author: "John Doe"
+        authorId: 1
     },
     {
+        id: 3,
         title: "Beauty of Italy",
         location: "Rome, Italy",
         date: "June 2018",
         content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        author: "Luke Sky"
+        authorId: 4
     },
     {
+        id: 4,
         title: "Disney World",
         location: "Orlando, Florida",
         date: "July 2019",
         content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        author: "Bob Roe"
+        authorId: 3
     },
     {
+        id: 5,
         title: "First day in Australia",
         location: "Brisbane, Australia",
         date: "April 2019",
         content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        author: "Jane Lane"
+        authorId: 2
     },
 ];
 
 const comments = [
-    {
-        comment: "Lorem ipsum dolor sit amet",
-        journalTitle: "Spanish Delight",
-        author: "Jane Lane"
+    {   
+        id: 1,
+        text: "Lorem ipsum dolor sit amet",
+        journalId: 1,
+        authorId: 2
     },
     {
-        comment: "Lorem ipsum dolor!",
-        journalTitle: "Spanish Delight",
-        author: "Luke Sky"
+        id: 2,
+        text: "Lorem ipsum dolor!",
+        journalId: 1,
+        authorId: 4
     },
     {
-        comment: "Lorem!",
-        journalTitle: "Disney World",
-        author: "John Doe"
+        id: 3,
+        text: "Lorem!",
+        journalId: 4,
+        authorId: 1
     },
     {
-        comment: "Lorem ipsum dolor sit amet, afsdfasdf",
-        journalTitle: "Beauty of Italy",
-        author: "Bob Roe"
+        id: 4,
+        text: "Lorem ipsum dolor sit amet, afsdfasdf",
+        journalId: 3,
+        authorId: 3
+    },
+    {
+        id: 4,
+        text: "Wonderful! Amazing place!",
+        journalId: 3,
+        authorId: 3
     },
 ];
 
-export default { users, journals, comments };
+export { users, journals, comments };

@@ -1,18 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-function Comment() {
-    return (
-        <>
-            <div class="comment">
-                <p class="comment-text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p class="user">Jane Doe</p>
-            </div>
-            <div class="comment">
-                <p class="comment-text">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p class="user">Luke Sky</p>
-            </div>
-        </>
-    );
+class Comment extends Component {
+
+    render() {
+        const { comment, users } = this.props;
+
+        const findAuthor = users.filter(user => user.id === comment.authorId);
+            //console.log(comments);
+        const author = `${findAuthor[0].firstName} ${findAuthor[0].lastName}`;
+
+        return (
+            <>
+                <div className="comment">
+                    <p className="comment-text">{comment.text}</p>
+                    <p className="user">{author}</p>
+                </div>
+            </>
+        );
+    };
+    
 };
 
 export default Comment;
