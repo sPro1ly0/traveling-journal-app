@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import NavBarTop from './NavBarTop/NavBarTop';
+import NavBarBottom from './NavBarBottom/NavBarBottom';
 import LandingPage from './LandingPage/LandingPage';
 import SignUpForm from './SignUpForm/SignUpForm';
 import LoginForm from './LoginForm/LoginForm';
@@ -55,6 +56,7 @@ class App extends Component {
           </Switch>
         </main>
         <Footer />
+        <NavBarBottom />
       </>
     );
   }

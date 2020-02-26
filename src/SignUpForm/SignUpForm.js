@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './SignUpForm.css';
 
 class SignUpForm extends Component {
@@ -27,7 +28,7 @@ class SignUpForm extends Component {
                     </div>
                     <button type="submit">Sign Up</button>
                     <p>OR</p>
-                    <button type="button">Explore the Demo</button>
+                    <Link to="/my-journals" type='button'>Explore the Demo</Link>
                 </form>
             </section>
         )

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './ReadPostComments.css';
+import Comment from '../Comment/Comment';
 
 class ReadPostComments extends Component {
     render() {
@@ -21,14 +22,7 @@ class ReadPostComments extends Component {
                 </section>
                 <section className="comments-section">
                     <h3>Comments</h3>
-                    <div class="comment">
-                        <p class="comment-text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        <p class="user">Jane Doe</p>
-                    </div>
-                    <div class="comment">
-                        <p class="comment-text">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        <p class="user">Luke Sky</p>
-                    </div>
+                    <Comment />
                     <form id="add-comment">
                         <label for="comment">Make A Comment</label>
                         <textarea id="comment" name="comment"

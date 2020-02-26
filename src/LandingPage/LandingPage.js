@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './LandingPage.css';
 
 function LandingPage() {
@@ -6,7 +7,7 @@ function LandingPage() {
         <>
         <section className="banner">
             <h2>Journal wherever you go</h2>
-            <button type='button'>Explore the Demo</button>
+            <Link to="/my-journals" type='button'>Explore the Demo</Link>
           </section>
           <section className="feature-sections">
             <h3>Tell your stories</h3>
