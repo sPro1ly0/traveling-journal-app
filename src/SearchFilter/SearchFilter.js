@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import JournalPost from '../JournalPost/JournalPost';
 import JournalsContext from '../JournalsContext';
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
+import { DateRangePicker } from 'react-dates';
+import moment from 'moment';
 
 class SearchFilter extends Component {
 
@@ -8,8 +12,8 @@ class SearchFilter extends Component {
         super(props);
         this.state = {
             searchPlace: "", // search by place
-            startDate: "",
-            endDate: ""
+            startDate: null,
+            endDate: null
         }
     }
 
@@ -29,13 +33,20 @@ class SearchFilter extends Component {
             : "";
 
         const { journals, comments } = this.context;
-        let filteredPlaces = journals.filter(
-            (journal) => {
-                return journal.location.toLowerCase().indexOf(this.state.searchPlace.toLowerCase())
-                        !== -1;
-            }
-        );
-        const journalPosts = filteredPlaces.map((journal) => {
+        let filteredPlaces = journals;
+        if(this.state.searchPlace) {
+            filteredPlaces = journals.filter(journal => {
+            return journal.location.toLowerCase().indexOf(this.state.searchPlace.toLowerCase()) !== -1; })
+        }
+        if(this.state.startDate && this.state.endDate) {
+            let start = moment(this.state.startDate._d);
+            let end = moment(this.state.endDate._d);
+            filteredPlaces = journals.filter(journal => {
+                return moment(journal.startDate).isBetween(start, end)
+            });
+        }
+
+        let journalPosts = filteredPlaces.map((journal) => {
            return <JournalPost 
                 key={journal.id}
                 journal={journal}
@@ -54,17 +65,23 @@ class SearchFilter extends Component {
                                 type="text" 
                                 name="location" 
                                 placeholder="Madrid, Spain"
+                                value={this.state.searchPlace}
                                 onChange={this.updateSearchPlace} />
                         </div> 
                         <div className="search-field">
-                            <label htmlFor="date" className="date">Start Date</label>
-                            <div>
-                                <input type="date" />
-                            </div>
-                            <label htmlFor="date" className="date">End Date</label>
-                            <div>
-                                <input type="date" />
-                            </div>
+                        <label htmlFor="startDate" className="date">Search by dates</label>
+                            <DateRangePicker                                
+                                startDate={this.state.startDate}
+                                startDateId="startDate"
+                                endDate={this.state.endDate}
+                                endDateId="endDate"
+                                onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })}
+                                focusedInput={this.state.focusedInput} 
+                                onFocusChange={focusedInput => this.setState({ focusedInput })} 
+                                numberOfMonths={1}
+                                isOutsideRange={() => false}
+                                showClearDates={true}
+                            />
                         </div>
                     </form>
                 </section>

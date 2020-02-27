@@ -16,9 +16,7 @@ class JournalPost extends Component {
         const findComments = comments.filter(comment => comment.journalId === journal.id);
         const numberOfComments = findComments.length;
         const renderEditButton = journal.authorId === 1 ? <Link to={`/edit-journal/${journal.id}`}>Edit</Link> : null;
-        // const checkSameDate = (journal.startDate === journal.endDate ? journal.startDate : `${journal.startDate} - ${journal.endDate}`);
         const modifyStartDate = moment(journal.startDate).format("MMMM YYYY");
-        // const modifyEndDate = moment(journal.endDate).format("MMMM YYYY");
         
         return (
             <>
