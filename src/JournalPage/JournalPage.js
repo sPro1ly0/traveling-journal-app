@@ -39,7 +39,8 @@ class JournalPage extends Component {
         );
         // console.log(journalId);
         // console.log(journal);
-        const modifyDate = moment(journal.date).format("MMMM Do YYYY");
+        const checkSameDate = (journal.startDate === journal.endDate ? moment(journal.startDate).format("MMMM Do YYYY") : `${moment(journal.startDate).format("MMMM Do YYYY")} - ${moment(journal.endDate).format("MMMM Do YYYY")}`);
+        
         const findAuthor = users.filter(user => user.id === journal.authorId);
         const findComments = comments.filter(comment => comment.journalId === journal.id);
         //console.log(comments);
@@ -58,7 +59,7 @@ class JournalPage extends Component {
                     <h1>{journal.title}</h1>
                     <div className="journal-info">
                         <h2>{journal.location}</h2>
-                        <p>{modifyDate}</p>
+                        <p>{checkSameDate}</p>
                         <p>By: {author}</p>
                     </div>
                 </header>
