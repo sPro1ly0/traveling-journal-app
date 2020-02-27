@@ -14,21 +14,24 @@ class JournalPost extends Component {
         const { journal, comments } = this.props;
         const findComments = comments.filter(comment => comment.journalId === journal.id);
         const numberOfComments = findComments.length;
-        const renderEditButton = journal.authorId === 1 ? <button>Edit</button> : null;
+        const renderEditButton = journal.authorId === 1 ? <Link to={`/edit-journal/${journal.id}`}>Edit</Link> : null;
         return (
-            <Link to={`/journals/${journal.id}`} className='journal-link'>
-                <div className="journal-post">
-                    <h2>{journal.title}</h2>
-                    <p>{journal.location}</p>
-                    <p>{journal.date}</p>
-
-                    <div className="comments-edit">
-                        <p className="comments-count">Comments: {numberOfComments}</p>
-                        {renderEditButton}
-                    </div>
-                </div> 
-            </Link>
+            <>
                
+                    <div className="journal-post">
+                        <Link to={`/journals/${journal.id}`} className='journal-link'>
+                            <h2>{journal.title}</h2>
+                        </Link>
+                        <p>{journal.location}</p>
+                        <p>{journal.date}</p>
+                
+                        <div className="comments-edit">
+                            <p className="comments-count">Comments: {numberOfComments}</p>
+                            {renderEditButton}
+                        </div>
+                    </div> 
+                
+            </>
             )
     }
     

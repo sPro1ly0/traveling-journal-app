@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 import JournalsContext from '../JournalsContext';
+// import SearchFilter from '../SearchFilter/SearchFilter';
 import JournalPost from '../JournalPost/JournalPost';
 import './UserHomePage.css';
 
@@ -27,29 +28,6 @@ class UserHomePage extends Component {
                     <h2>My Journals</h2>
                     <p>You have {numberOfJournals} journals.</p>
                 </header>
-                <section>
-                    
-                    <form id="search-form">
-                        <div className="search-field">
-                            <label htmlFor="journal-title">Search Journals by Title</label>
-                            <input type="text" name="title" placeholder="A Beautiful Day in Florida" />
-                        </div>
-                        <div className="search-field">
-                            <label htmlFor="journal-location">Place</label>
-                            <input type="text" name="location" placeholder="Miami, Florida" />
-                        </div> 
-                        <div className="search-field">
-                            <label htmlFor="date" className="date">Start Date</label>
-                            <div>
-                                <input type="date" />
-                            </div>
-                            <label htmlFor="date" className="date">End Date</label>
-                            <div>
-                                <input type="date" />
-                            </div>
-                        </div>
-                    </form>
-                </section>
                 <section className="journals">
                     {journalPosts}
                 </section>

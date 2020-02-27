@@ -6,7 +6,8 @@ import LandingPage from './LandingPage/LandingPage';
 import SignUpForm from './SignUpForm/SignUpForm';
 import LoginForm from './LoginForm/LoginForm';
 import UserHomePage from './UserHomePage/UserHomePage';
-import CreateJournalForm from './CreateJournalForm/CreateJournalForm';
+import AddJournalForm from './AddJournalForm/AddJournalForm';
+import EditJournalForm from './EditJournalForm';
 import AllJournals from './AllJournals/AllJournals';
 import JournalPage from './JournalPage/JournalPage';
 import Footer from './Footer/Footer';
@@ -16,6 +17,8 @@ import { journals, users, comments } from './ExampleData';
 
 class App extends Component {
 
+  static contextType = JournalsContext;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -24,14 +27,42 @@ class App extends Component {
       comments: comments
     }
   }
-  static contextType = JournalsContext;
+
+  addJournal = journal => {
+    this.setState({
+      journals: [journal, ...this.state.journals]
+    })
+  }
+
+  deleteJournal= journalId => {
+    const newJournals = this.state.journals.filter(journal => 
+      journal.id !== journalId
+      )
+      this.setState({
+        journals: newJournals
+      })
+  }
+
+  updateJournal = updatedJournal => {
+    const newJournals = this.state.journals.map(journal => 
+      (journal.id === updatedJournal.id)
+        ? updatedJournal
+        : journal
+    )
+    this.setState({
+      journals: newJournals
+    })
+  }
 
   render() {
 
     const contextValue = {
       journals: this.state.journals,
       users: this.state.users,
-      comments: this.state.comments
+      comments: this.state.comments,
+      addJournal: this.addJournal,
+      deleteJournal: this.deleteJournal,
+      updateJournal: this.updateJournal
     }
 
     return (
@@ -62,7 +93,11 @@ class App extends Component {
               />
               <Route 
                 exact path="/add-journal"
-                component={CreateJournalForm}
+                component={AddJournalForm}
+              />
+              <Route 
+                exact path="/edit-journal/:journalId"
+                component={EditJournalForm}
               />
               <Route 
                 exact path="/journals/:journalId"
