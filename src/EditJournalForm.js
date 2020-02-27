@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import './AddJournalForm/AddJournalForm.css';
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
+import { DateRangePicker } from 'react-dates';
+import moment from 'moment';
 import JournalsContext from './JournalsContext';
 
 class EditJournalForm extends Component {
@@ -13,8 +17,9 @@ class EditJournalForm extends Component {
             id: '',
             title: '',
             location: '',
-            date: '',
-            content: ''
+            startDate: null,
+            endDate: null,
+            content: '',
         }
     }
 
@@ -25,11 +30,23 @@ class EditJournalForm extends Component {
           j.id === Number(journalId)
         );
 
+        function convert(str) {
+            let date = new Date(str);
+            let mnth = ("0" + (date.getMonth() + 1)).slice(-2);
+            let day = ("0" + date.getDate()).slice(-2);
+            return [mnth, day, date.getFullYear()].join("/");
+          }
+
+        const startDateFormat = convert(journal.startDate);
+        const endDateFormat = convert(journal.endDate);
+        // console.log(startDateFormat);
+
         this.setState({
             id: journal.id,
             title: journal.title,
             location: journal.location,
-            date: journal.date,
+            startDate: moment(startDateFormat),
+            endDate: moment(endDateFormat),
             content: journal.content,
         })
     }
@@ -39,12 +56,13 @@ class EditJournalForm extends Component {
 
         //const { journalId } = this.props.match.params;
 
-        const { id, title, location, date, content  } = this.state;
+        const { id, title, location, startDate, endDate, content  } = this.state;
         const journal = {
             id,
             title,
             location,
-            date,
+            startDate,
+            endDate,
             content,
             authorId: 1
         };
@@ -84,13 +102,6 @@ class EditJournalForm extends Component {
         })
     }
 
-    handleDateChange = (e) => {
-        const date = e.target.value;
-        this.setState({
-            date
-        })
-    }
-
     handleContentChange = (e) => {
         const content = e.target.value;
         this.setState({
@@ -106,7 +117,7 @@ class EditJournalForm extends Component {
     }
 
     render() {
-        const { title, location, content, date, error } = this.state;
+        const { title, location, content, error } = this.state;
         return (
             <>
                 <header>
@@ -141,17 +152,19 @@ class EditJournalForm extends Component {
                                 onChange={this.handleLocationChange} 
                                 required />
                         </div> 
-                        <div className="form-date">
-                            <label htmlFor="date" className="date">Date</label>
-                            <div>
-                                <input 
-                                    id="date" 
-                                    type="date" 
-                                    name="date"
-                                    value={date}
-                                    onChange={this.handleDateChange} 
-                                    required />
-                            </div>
+                        <div className="form-section">
+                            <label htmlFor="startDate" className="date">Select your travel dates</label>
+                            <DateRangePicker                                
+                                startDate={this.state.startDate}
+                                startDateId="startDate"
+                                endDate={this.state.endDate}
+                                endDateId="endDate"
+                                onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })}
+                                focusedInput={this.state.focusedInput} 
+                                onFocusChange={focusedInput => this.setState({ focusedInput })} 
+                                numberOfMonths={1}
+                                isOutsideRange={() => false}
+                            />
                         </div>
                         <div className="form-section">
                             <label htmlFor="content">What did you do?</label>

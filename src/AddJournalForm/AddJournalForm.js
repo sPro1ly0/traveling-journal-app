@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import './AddJournalForm.css';
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
+import { DateRangePicker } from 'react-dates';
 import JournalsContext from '../JournalsContext';
 
 class AddJournalForm extends Component {
@@ -9,23 +12,25 @@ class AddJournalForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            error: null
+            error: null,
+            startDate: null,
+            endDate: null
         }
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
 
-        const { title, location, date, content  } = e.target;
+        const { title, location, content  } = e.target;
         const journal = {
             id: Math.random() * 5,
             title: title.value,
             location: location.value,
-            date: date.value,
+            startDate: this.state.startDate._d,
+            endDate: this.state.endDate._d,
             content: content.value,
             authorId: 1
         }
-        console.log(journal);
         this.context.addJournal(journal);
         this.props.history.push('/my-journals')
     }
@@ -67,19 +72,23 @@ class AddJournalForm extends Component {
                                 placeholder="Miami, Florida" 
                                 required />
                         </div> 
-                        <div className="form-date">
-                            <label htmlFor="date" className="date">Date</label>
-                            <div>
-                                <input 
-                                    id="date" 
-                                    type="date" 
-                                    name="date" 
-                                    required />
-                            </div>
+                        <div className="form-section">
+                            <label htmlFor="startDate" className="date">Select your travel dates</label>
+                            <DateRangePicker                                
+                                startDate={this.state.startDate}
+                                startDateId="startDate"
+                                endDate={this.state.endDate}
+                                endDateId="endDate"
+                                onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })}
+                                focusedInput={this.state.focusedInput} 
+                                onFocusChange={focusedInput => this.setState({ focusedInput })} 
+                                numberOfMonths={1}
+                                isOutsideRange={() => false}
+                            />
                         </div>
                         <div className="form-section">
                             <label htmlFor="content">What did you do?</label>
-                            <textarea name="content" rows="15"   
+                            <textarea id="content" name="content" rows="15"   
                             required></textarea>
                         </div>
                         <div className="add-edit-buttons">
