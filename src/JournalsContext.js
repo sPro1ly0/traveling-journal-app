@@ -6,7 +6,8 @@ const JournalsContext = React.createContext({
     comments: [],
     addJournal: () => {},
     deleteJournal: () => {},
-    updateJournal:() => {}
+    updateJournal:() => {},
+    addComments:() => {}
 });
 
 export default JournalsContext;

@@ -11,6 +11,23 @@ class JournalPage extends Component {
     }
 
     static contextType = JournalsContext;
+
+    handleSubmit = e => {
+        e.preventDefault();
+        const { journalId } = this.props.match.params;
+        const { comment } = e.target;
+        const newComment = {
+            id: Math.random() * 5,
+            text: comment.value,
+            journalId: Number(journalId),
+            authorId: 1
+        }
+        this.context.addComment(newComment);
+        comment.value = '';
+        console.log(newComment);
+    }
+
+
     render() {
         const { journals, users, comments} = this.context;
 
@@ -52,12 +69,17 @@ class JournalPage extends Component {
                 <section className="comments-section">
                     <h3>Comments</h3>
                     {addComments}
-                    <form id="add-comment">
+                    <form id="add-comment" onSubmit={this.handleSubmit}>
                         <label htmlFor="comment">Make A Comment</label>
-                        <textarea id="comment" name="comment" value="Enter your comment..."
-                            rows="5" cols="33">
+                        <textarea 
+                            id="comment" 
+                            name="comment" 
+                            aria-label='Type a comment.'
+                            defaultValue="Enter your comment..."
+                            cols="33"
+                            rows="5" >
                         </textarea>
-                        <button className="add-comment-button">Add Comment</button>
+                        <button type="submit" className="add-comment-button">Add Comment</button>
                     </form>
                 </section>
             </>

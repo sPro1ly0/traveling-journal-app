@@ -54,6 +54,12 @@ class App extends Component {
     })
   }
 
+  addComment = comment => {
+    this.setState({
+      comments: [...this.state.comments, comment]
+    })
+  }
+
   render() {
 
     const contextValue = {
@@ -62,7 +68,8 @@ class App extends Component {
       comments: this.state.comments,
       addJournal: this.addJournal,
       deleteJournal: this.deleteJournal,
-      updateJournal: this.updateJournal
+      updateJournal: this.updateJournal,
+      addComment: this.addComment
     }
 
     return (

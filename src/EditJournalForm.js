@@ -95,6 +95,13 @@ class EditJournalForm extends Component {
         })
     }
 
+    handleDelete = e => {
+        e.preventDefault();
+        const { journalId } = this.props.match.params;
+        this.context.deleteJournal(Number(journalId));
+        this.props.history.push('/my-journals')
+    }
+
     render() {
         const { title, location, content, error } = this.state;
         return (
@@ -155,6 +162,7 @@ class EditJournalForm extends Component {
                         </div>
                         <div className="add-edit-buttons">
                             <button type="submit">Save Changes</button>
+                            <button type="button" onClick={this.handleDelete}>Delete</button>
                             <button type="button" onClick={this.handleClickCancel}>Cancel</button>
                         </div>
                     </form>
