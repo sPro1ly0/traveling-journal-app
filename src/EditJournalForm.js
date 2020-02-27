@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './AddJournalForm/AddJournalForm.css';
 import JournalsContext from './JournalsContext';
+import moment from 'moment';
 
 class EditJournalForm extends Component {
 
@@ -13,6 +14,7 @@ class EditJournalForm extends Component {
             id: '',
             title: '',
             location: '',
+            date: '',
             content: ''
         }
     }
@@ -28,6 +30,7 @@ class EditJournalForm extends Component {
             id: journal.id,
             title: journal.title,
             location: journal.location,
+            date: journal.date,
             content: journal.content,
         })
     }
@@ -37,11 +40,12 @@ class EditJournalForm extends Component {
 
         //const { journalId } = this.props.match.params;
 
-        const { id, title, location, content  } = this.state;
+        const { id, title, location, date, content  } = this.state;
         const journal = {
             id,
             title,
             location,
+            date,
             content,
             authorId: 1
         };
@@ -103,7 +107,7 @@ class EditJournalForm extends Component {
     }
 
     render() {
-        const { title, location, content, error } = this.state;
+        const { title, location, content, date, error } = this.state;
         return (
             <>
                 <header>
@@ -145,7 +149,7 @@ class EditJournalForm extends Component {
                                     id="date" 
                                     type="date" 
                                     name="date"
-                                    // value={date}
+                                    value={date}
                                     onChange={this.handleDateChange} 
                                     required />
                             </div>

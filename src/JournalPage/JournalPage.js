@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './JournalPage.css';
 import Comment from '../Comment/Comment';
 import JournalsContext from '../JournalsContext';
+import moment from 'moment';
 
 
 class JournalPage extends Component {
@@ -38,7 +39,7 @@ class JournalPage extends Component {
         );
         // console.log(journalId);
         // console.log(journal);
-
+        const modifyDate = moment(journal.date).format("MMMM Do YYYY");
         const findAuthor = users.filter(user => user.id === journal.authorId);
         const findComments = comments.filter(comment => comment.journalId === journal.id);
         //console.log(comments);
@@ -57,7 +58,7 @@ class JournalPage extends Component {
                     <h1>{journal.title}</h1>
                     <div className="journal-info">
                         <h2>{journal.location}</h2>
-                        <p>{journal.date}</p>
+                        <p>{modifyDate}</p>
                         <p>By: {author}</p>
                     </div>
                 </header>

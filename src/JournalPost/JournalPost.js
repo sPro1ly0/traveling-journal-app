@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 // import JournalsContext from '../JournalsContext';
 import './JournalPost.css';
+import moment from 'moment';
 
 
 
@@ -15,6 +16,7 @@ class JournalPost extends Component {
         const findComments = comments.filter(comment => comment.journalId === journal.id);
         const numberOfComments = findComments.length;
         const renderEditButton = journal.authorId === 1 ? <Link to={`/edit-journal/${journal.id}`}>Edit</Link> : null;
+        const modifyDate = moment(journal.date).format("MMMM YYYY")
         return (
             <>
                
@@ -23,7 +25,7 @@ class JournalPost extends Component {
                             <h2>{journal.title}</h2>
                         </Link>
                         <p>{journal.location}</p>
-                        <p>{journal.date}</p>
+                        <p>{modifyDate}</p>
                 
                         <div className="comments-edit">
                             <p className="comments-count">Comments: {numberOfComments}</p>
