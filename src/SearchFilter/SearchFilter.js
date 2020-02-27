@@ -1,47 +1,47 @@
 import React, { Component } from 'react';
 import JournalPost from '../JournalPost/JournalPost';
+import JournalsContext from '../JournalsContext';
 
 class SearchFilter extends Component {
 
     constructor(props){
         super(props);
         this.state = {
-            title: "", // search by journal title
-            place: "", // search by place
-            date: ""
+            searchPlace: "", // search by place
+            startDate: "",
+            endDate: ""
         }
     }
 
     static contextType = JournalsContext;
 
-    handleTitleInput(text) {
+    updateSearchPlace = (event) => {
         this.setState({
-          title: text
-        })
+          searchPlace: event.target.value.substr(0, 20)
+        });
     }
 
-    handlePlaceInput(text) {
-        this.setState({
-          title: text
-        })
-    }
 
     render() {
+        
         const error = this.state.error
             ? <div className="error">{this.state.error}</div>
             : "";
 
-        const { journals, comments, users } = this.context;
-        const demoJournals = journals.filter(journal => journal.authorId === 1);
-        const numberOfJournals = demoJournals.length;
-        const journalPosts = demoJournals.map(journal => 
-            <JournalPost 
+        const { journals, comments } = this.context;
+        let filteredPlaces = journals.filter(
+            (journal) => {
+                return journal.location.toLowerCase().indexOf(this.state.searchPlace.toLowerCase())
+                        !== -1;
+            }
+        );
+        const journalPosts = filteredPlaces.map((journal) => {
+           return <JournalPost 
                 key={journal.id}
                 journal={journal}
                 comments={comments}
-                users={users}
             />
-        );
+        });
 
         return (
             <>
@@ -49,19 +49,12 @@ class SearchFilter extends Component {
                     {error}
                     <form id="search-form">
                         <div className="search-field">
-                            <label htmlFor="journal-title">Search Journals by Title</label>
-                            <input 
-                                type="text" 
-                                name="title" 
-                                placeholder="Beautiful Day in Florida"
-                                onChange={} />
-                        </div>
-                        <div className="search-field">
-                            <label htmlFor="journal-location">Place</label>
+                            <label htmlFor="journal-location">Search Journals by Place</label>
                             <input 
                                 type="text" 
                                 name="location" 
-                                placeholder="Miami, Florida" />
+                                placeholder="Madrid, Spain"
+                                onChange={this.updateSearchPlace} />
                         </div> 
                         <div className="search-field">
                             <label htmlFor="date" className="date">Start Date</label>

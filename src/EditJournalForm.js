@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './AddJournalForm/AddJournalForm.css';
 import JournalsContext from './JournalsContext';
-import moment from 'moment';
 
 class EditJournalForm extends Component {
 
