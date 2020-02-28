@@ -4,6 +4,7 @@ import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import { DateRangePicker } from 'react-dates';
 import JournalsContext from '../JournalsContext';
+import ValidationError from '../ValidationError';
 
 class AddJournalForm extends Component {
 
@@ -12,11 +13,69 @@ class AddJournalForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            error: null,
+            title: {
+                value: "",
+                touched: false
+            },
+            location: {
+                value: "",
+                touched: false
+            },
+            content: {
+                value: "",
+                touched: false
+            },
             startDate: null,
-            endDate: null
-        }
-    }
+            endDate: null,
+            error: null,
+        };
+    };
+
+    updateTitle = (e) => {
+        const title = e.target.value;
+        this.setState({
+            title: {value: title, touched: true}
+        });
+    };
+
+    updateLocation = (e) => {
+        const location = e.target.value;
+        this.setState({
+            location: {value: location, touched: true}
+        });
+    };
+
+    updateContent = (e) => {
+        const content = e.target.value;
+        this.setState({
+            content: {value: content, touched: true}
+        });
+    };
+
+    validateTitle() {
+        const title = this.state.title.value;
+        if (title.length === 0) {
+            return 'Title is required';
+        } else if (title.length > 100) {
+            return 'Title cannot be more than 100 characters long.';
+        };
+    };
+
+    validateLocation() {
+        const location = this.state.location.value;
+        if (location.length === 0) {
+            return 'Location is required';
+        } else if (location.length > 100) {
+            return 'Location cannot be more than 100 characters long.';
+        };
+    };
+
+    validateContent() {
+        const content = this.state.content.value;
+        if (content.length > 25000) {
+            return 'Content cannot be more than 25000 characters long.';
+        };
+    };
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -60,9 +119,13 @@ class AddJournalForm extends Component {
                             <input
                                 id="title" 
                                 type="text" 
-                                name="title" 
-                                placeholder="A Beautiful Day in Florida" 
+                                name="title"
+                                aria-label="Enter a title for your new journal"
+                                aria-required="true"
+                                placeholder="A Beautiful Day in Florida"
+                                onChange={this.updateTitle} 
                                 required />
+                            {this.state.title.touched && (<ValidationError message={this.validateTitle()}/>)}
                         </div>
                         <div className="form-section">
                             <label htmlFor="location">Where did you go?</label>
@@ -71,7 +134,11 @@ class AddJournalForm extends Component {
                                 type="text" 
                                 name="location" 
                                 placeholder="Miami, Florida" 
+                                aria-label="Enter the location of your travel"
+                                aria-required="true"
+                                onChange={this.updateLocation}
                                 required />
+                            {this.state.location.touched && (<ValidationError message={this.validateLocation()}/>)}
                         </div> 
                         <div className="form-section">
                             <label htmlFor="startDate" className="date">Select your travel dates</label>
@@ -91,8 +158,15 @@ class AddJournalForm extends Component {
                         </div>
                         <div className="form-section">
                             <label htmlFor="content">What did you do?</label>
-                            <textarea id="content" name="content" rows="15"   
-                            required></textarea>
+                            <textarea 
+                                id="content"
+                                name="content" 
+                                rows="15"
+                                aria-label="Enter content for new journal"
+                                aria-required="true"
+                                onChange={this.updateContent}   
+                                required></textarea>
+                            {this.state.content.touched && (<ValidationError message={this.validateContent()}/>)}
                         </div>
                         <div className="add-edit-buttons">
                             <button type="submit">Add New Journal</button>
