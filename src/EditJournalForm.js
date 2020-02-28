@@ -112,8 +112,10 @@ class EditJournalForm extends Component {
 
         //const { journalId } = this.props.match.params;
 
-        const { id, title, location, startDate, endDate, content  } = this.state;
-        
+        const { id, startDate, endDate  } = this.state;
+        const title = this.state.title.value;
+        const location = this.state.location.value;
+        const content = this.state.content.value;
         const journal = {
             id,
             title,
