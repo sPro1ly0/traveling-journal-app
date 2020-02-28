@@ -39,13 +39,15 @@ class JournalPage extends Component {
         );
         // console.log(journalId);
         // console.log(journal);
-        const checkSameDate = (journal.startDate === journal.endDate ? moment(journal.startDate).format("MMMM Do YYYY") : `${moment(journal.startDate).format("MMMM Do YYYY")} - ${moment(journal.endDate).format("MMMM Do YYYY")}`);
-        
+        const checkSameDate = (moment(journal.startDate).format("MMMM Do YYYY")  === moment(journal.endDate).format("MMMM Do YYYY") 
+            ? moment(journal.startDate).format("MMMM Do YYYY") 
+            : `${moment(journal.startDate).format("MMMM Do YYYY")} - ${moment(journal.endDate).format("MMMM Do YYYY")}`);
+        // console.log(checkSameDate);
         const findAuthor = users.filter(user => user.id === journal.authorId);
         const findComments = comments.filter(comment => comment.journalId === journal.id);
-        //console.log(comments);
-        console.log(findComments);
-        const author = `${findAuthor[0].firstName} ${findAuthor[0].lastName}`;
+        // console.log(comments);
+        // console.log(findComments);
+        const author = findAuthor[0].fullName;
         const addComments = findComments.map( comment => 
             <Comment 
                 key={comment.id}
@@ -79,7 +81,8 @@ class JournalPage extends Component {
                             aria-label='Type a comment.'
                             defaultValue="Enter your comment..."
                             cols="33"
-                            rows="5" >
+                            rows="5"
+                            required >
                         </textarea>
                         <button type="submit" className="add-comment-button">Add Comment</button>
                     </form>

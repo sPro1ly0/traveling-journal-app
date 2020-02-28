@@ -14,25 +14,28 @@ class SignUpForm extends Component {
         }
     };
 
-    updateFullName(fullName) {
+    updateFullName = (e) => {
+        const full_name = e.target.value;
         this.setState({
-            full_name: fullName
+            full_name
         });
     };
 
-    updateEmailUsername(email) {
+    updateEmailUsername = (e) => {
+        const email_username = e.target.value;
         this.setState({
-            email_username: email
+            email_username
         });
     };
 
-    updatePassword(password) {
+    updatePassword = (e) => {
+        const password= e.target.value;
         this.setState({
-            password: password
+            password
         });
     };
 
-    handleSubmit(event) {
+    handleSubmit = (event) => {
         event.preventDefault();
         const { full_name, email_username, password } = this.state;
         console.log( full_name, email_username, password);
@@ -50,13 +53,13 @@ class SignUpForm extends Component {
                 <form 
                     autoComplete="on"
                     className="signup-form"
-                    onSubmit={e => this.handleSubmit(e)}
+                    onSubmit={this.handleSubmit}
                 >   
                     <div role="alert">
                         {error && <p className="red-error">{error}</p>}
                     </div>
                     <div className="signup-field">
-                        <label htmlFor="full_name">Full name</label>
+                        <label htmlFor="full_name">Full Name</label>
                         <input 
                             type="text" 
                             name="full_name" 
@@ -65,7 +68,7 @@ class SignUpForm extends Component {
                             aria-required="true"
                             placeholder="John Doe" 
                             required
-                            onChange={e => this.updateFullName(e.target.value)} />
+                            onChange={this.updateFullName} />
                     </div>
                     <div className="signup-field">
                         <label htmlFor="email_username">Email</label>
@@ -77,7 +80,7 @@ class SignUpForm extends Component {
                             aria-required="true" 
                             placeholder="jondoe@email.com" 
                             required
-                            onChange={e => this.updateEmailUsername(e.target.value)} />
+                            onChange={this.updateEmailUsername} />
                     </div>
                     <div className="signup-field">
                         <label htmlFor="password">Password</label>
@@ -89,7 +92,7 @@ class SignUpForm extends Component {
                             aria-label="Create your password"
                             aria-required="true"
                             required
-                            onChange={e => this.updatePassword(e.target.value)} />
+                            onChange={this.updatePassword} />
                     </div>
                     <button type="submit">Sign Up</button>
                     <p>OR</p>

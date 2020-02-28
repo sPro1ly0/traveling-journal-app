@@ -12,19 +12,21 @@ class LoginForm extends Component {
         }
     };
 
-    updateEmailUsername(email) {
+    updateEmailUsername = (e) => {
+        const email_username = e.target.value;
         this.setState({
-            email_username: email
+            email_username
         });
     };
 
-    updatePassword(password) {
+    updatePassword = (e) => {
+        const password= e.target.value;
         this.setState({
-            password: password
+            password
         });
     };
 
-    handleSubmit(event) {
+    handleSubmit = (event) => {
         event.preventDefault();
         const { email_username, password } = this.state;
         console.log( email_username, password);
@@ -43,7 +45,7 @@ class LoginForm extends Component {
                 <form
                     autoComplete="on"
                     className="login-form"
-                    onSubmit={e => this.handleSubmit(e)}   
+                    onSubmit={this.handleSubmit}   
                 >
                     <div className="login-field">
                         <label htmlFor="email_username">Email</label>
@@ -54,7 +56,7 @@ class LoginForm extends Component {
                             aria-label="Enter your email address"
                             aria-required="true" 
                             required
-                            onChange={e => this.updateEmailUsername(e.target.value)} />
+                            onChange={this.updateEmailUsername} />
                     </div>
                     <div className="login-field">
                         <label htmlFor="password">Password</label>
@@ -66,7 +68,7 @@ class LoginForm extends Component {
                             aria-label="Enter your password"
                             aria-required="true"
                             required
-                            onChange={e => this.updatePassword(e.target.value)} />
+                            onChange={this.updatePassword} />
                     </div>
                     <button type="submit">Login</button>
                 </form>

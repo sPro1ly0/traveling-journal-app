@@ -6,16 +6,13 @@ class Comment extends Component {
         const { comment, users } = this.props;
 
         const findAuthor = users.filter(user => user.id === comment.authorId);
-            //console.log(comments);
-        const author = `${findAuthor[0].firstName} ${findAuthor[0].lastName}`;
+        const author = findAuthor[0].fullName;
 
         return (
-            <>
-                <div className="comment">
-                    <p className="comment-text">{comment.text}</p>
-                    <p className="user">{author}</p>
-                </div>
-            </>
+            <div className="comment">
+                <p className="comment-text">{comment.text}</p>
+                <p className="user">{author}</p>
+            </div>
         );
     };
     

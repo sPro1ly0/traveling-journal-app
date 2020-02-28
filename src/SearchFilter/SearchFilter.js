@@ -12,7 +12,7 @@ class SearchFilter extends Component {
         super(props);
         this.state = {
             searchPlace: "", // search by place
-            startDate: null,
+            startDate: null, //search by date range
             endDate: null
         }
     }
@@ -34,16 +34,16 @@ class SearchFilter extends Component {
 
         const { journals, comments } = this.context;
         let filteredPlaces = journals;
-        if(this.state.searchPlace) {
-            filteredPlaces = journals.filter(journal => {
-            return journal.location.toLowerCase().indexOf(this.state.searchPlace.toLowerCase()) !== -1; })
+        if (this.state.searchPlace) {
+            filteredPlaces = journals.filter(journal => 
+                journal.location.toLowerCase().indexOf(this.state.searchPlace.toLowerCase()) !== -1)
         }
-        if(this.state.startDate && this.state.endDate) {
+        if (this.state.startDate && this.state.endDate) {
             let start = moment(this.state.startDate._d);
             let end = moment(this.state.endDate._d);
-            filteredPlaces = journals.filter(journal => {
-                return moment(journal.startDate).isBetween(start, end)
-            });
+            filteredPlaces = journals.filter(journal => 
+                moment(journal.startDate).isBetween(start, end, 'dates','[]')
+            );
         }
 
         let journalPosts = filteredPlaces.map((journal) => {

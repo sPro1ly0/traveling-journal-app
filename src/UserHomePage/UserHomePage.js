@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 import JournalsContext from '../JournalsContext';
-// import SearchFilter from '../SearchFilter/SearchFilter';
 import JournalPost from '../JournalPost/JournalPost';
 import './UserHomePage.css';
 
@@ -11,6 +10,7 @@ class UserHomePage extends Component {
 
     render() {
         const { journals, comments, users } = this.context;
+        // make John Doe the demo user, userId = 1
         const demoJournals = journals.filter(journal => journal.authorId === 1);
         const numberOfJournals = demoJournals.length;
         const journalPosts = demoJournals.map(journal => 

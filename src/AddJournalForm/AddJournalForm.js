@@ -22,6 +22,7 @@ class AddJournalForm extends Component {
         e.preventDefault();
 
         const { title, location, content  } = e.target;
+
         const journal = {
             id: Math.random() * 5,
             title: title.value,
@@ -83,7 +84,9 @@ class AddJournalForm extends Component {
                                 focusedInput={this.state.focusedInput} 
                                 onFocusChange={focusedInput => this.setState({ focusedInput })} 
                                 numberOfMonths={1}
+                                minimumNights={0}
                                 isOutsideRange={() => false}
+                                required={true}
                             />
                         </div>
                         <div className="form-section">

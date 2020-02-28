@@ -1,29 +1,25 @@
 const users = [
     {   
         id: 1,
-        firstName: "John",
-        lastName: "Doe",
+        fullName: "John Doe",
         email: "example@mail.com",
         password: "password"
     },
     {
         id: 2,
-        firstName: "Jane",
-        lastName: "Lane",
+        fullName: "Jane Lane",
         email: "jl3le@mail.com",
         password: "password1"
     },
     {
         id: 3,
-        firstName: "Bob",
-        lastName: "Roe",
+        fullName: "Bob Roe",
         email: "bos9i8e@mail.com",
         password: "password2"
     },
     {
         id: 4,
-        firstName: "Luke",
-        lastName: "Sky",
+        fullName: "Luke Sky",
         email: "skywalker2@mail.com",
         password: "password4orce"
     },
@@ -35,7 +31,7 @@ const journals = [
         title: "Spanish Delight",
         location: "Madrid, Spain",
         startDate: "Wed Jun 05 2019 20:00:00 GMT-0400 (Eastern Daylight Time)",
-        endDate: "Wed Jun 05 2019 20:00:00 GMT-0400 (Eastern Daylight Time)",
+        endDate: "Thu Jun 06 2019 20:00:00 GMT-0400 (Eastern Daylight Time)",
         content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         authorId: 1
     },

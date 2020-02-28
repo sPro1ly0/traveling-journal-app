@@ -15,6 +15,7 @@ class JournalPost extends Component {
         const { journal, comments } = this.props;
         const findComments = comments.filter(comment => comment.journalId === journal.id);
         const numberOfComments = findComments.length;
+        // demo userId = 1
         const renderEditButton = journal.authorId === 1 ? <Link to={`/edit-journal/${journal.id}`}>Edit</Link> : null;
         const modifyStartDate = moment(journal.startDate).format("MMMM YYYY");
         

@@ -35,7 +35,7 @@ class EditJournalForm extends Component {
             let mnth = ("0" + (date.getMonth() + 1)).slice(-2);
             let day = ("0" + date.getDate()).slice(-2);
             return [mnth, day, date.getFullYear()].join("/");
-          }
+        }
 
         const startDateFormat = convert(journal.startDate);
         const endDateFormat = convert(journal.endDate);
@@ -57,6 +57,7 @@ class EditJournalForm extends Component {
         //const { journalId } = this.props.match.params;
 
         const { id, title, location, startDate, endDate, content  } = this.state;
+        
         const journal = {
             id,
             title,
@@ -163,7 +164,9 @@ class EditJournalForm extends Component {
                                 focusedInput={this.state.focusedInput} 
                                 onFocusChange={focusedInput => this.setState({ focusedInput })} 
                                 numberOfMonths={1}
+                                minimumNights={0}
                                 isOutsideRange={() => false}
+                                required={true}
                             />
                         </div>
                         <div className="form-section">
