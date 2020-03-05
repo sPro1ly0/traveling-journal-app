@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import JournalPost from '../JournalPost/JournalPost';
 import JournalsContext from '../JournalsContext';
+import JournalsApiService from '../services/journals-api-service';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import { DateRangePicker } from 'react-dates';
@@ -24,6 +25,10 @@ class SearchFilter extends Component {
           searchPlace: event.target.value.substr(0, 20)
         });
     }
+
+    // componentDidMount() {
+    //     JournalsApiService.getJournals()
+    // }
 
 
     render() {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AuthApiService from '../services/auth-api-service';
+import TokenService from '../services/token-service';
 import './LoginForm.css';
 
 class LoginForm extends Component {
@@ -41,12 +42,15 @@ class LoginForm extends Component {
         this.setState({ error: null });
 
         AuthApiService.postLogin({
-            email: email.value,
-            password: password.value
+            email: email,
+            password: password
         })
             .then(res => {
-                email.value = '';
-                password.value = '';
+                this.setState({ 
+                    email: '',
+                    password: ''
+                })
+                TokenService.saveAuthToken(res.authToken);
                 this.props.onLoginSuccess();
             })
             .catch(res => {

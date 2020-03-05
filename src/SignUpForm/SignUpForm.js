@@ -50,6 +50,7 @@ class SignUpForm extends Component {
                 full_name.value = '';
                 email.value = '';
                 password.value = '';
+                this.props.onRegistrationSuccess();
             })
             .catch(res => {
                 this.setState({ error: res.error })

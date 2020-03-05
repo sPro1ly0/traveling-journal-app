@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
+import PrivateRoute from './Utils/PrivateRoute';
+import PublicOnlyRoute from './Utils/PublicOnlyRoute';
+
 import NavBarTop from './NavBarTop/NavBarTop';
 import NavBarBottom from './NavBarBottom/NavBarBottom';
 
@@ -89,31 +92,31 @@ class App extends Component {
                   exact path="/"
                   component={LandingPage}
                 />
-                <Route 
+                <PublicOnlyRoute 
                   exact path="/signup"
                   component={SignUpForm}
                 />
-                <Route 
+                <PublicOnlyRoute
                   exact path="/login"
                   component={LoginForm}
                 />
-                <Route 
+                <PrivateRoute 
                   exact path="/my-journals"
                   component={UserHomePage}
                 />
-                <Route 
+                <PrivateRoute 
                   exact path="/all-journals"
                   component={AllJournals}
                 />
-                <Route 
+                <PrivateRoute 
                   exact path="/add-journal"
                   component={AddJournalForm}
                 />
-                <Route 
+                <PrivateRoute 
                   exact path="/edit-journal/:journalId"
                   component={EditJournalForm}
                 />
-                <Route 
+                <PrivateRoute
                   exact path="/journals/:journalId"
                   component={JournalPage}
                 />
