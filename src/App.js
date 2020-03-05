@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
@@ -29,108 +30,108 @@ class App extends Component {
   static contextType = JournalsContext;
 
   constructor(props) {
-    super(props);
-    this.state = {
-      journals: journals,
-      users: users,
-      comments: comments
-    }
+  	super(props);
+  	this.state = {
+  		journals: journals,
+  		users: users,
+  		comments: comments
+  	};
   }
 
   addJournal = journal => {
-    this.setState({
-      journals: [journal, ...this.state.journals]
-    })
+  	this.setState({
+  		journals: [journal, ...this.state.journals]
+  	});
   }
 
   deleteJournal= journalId => {
-    const newJournals = this.state.journals.filter(journal => 
-      journal.id !== journalId
-      )
-      this.setState({
-        journals: newJournals
-      })
+  	const newJournals = this.state.journals.filter(journal => 
+  		journal.id !== journalId
+  	);
+  	this.setState({
+  		journals: newJournals
+  	});
   }
 
   updateJournal = updatedJournal => {
-    const newJournals = this.state.journals.map(journal => 
-      (journal.id === updatedJournal.id)
-        ? updatedJournal
-        : journal
-    )
-    this.setState({
-      journals: newJournals
-    })
+  	const newJournals = this.state.journals.map(journal => 
+  		(journal.id === updatedJournal.id)
+  			? updatedJournal
+  			: journal
+  	);
+  	this.setState({
+  		journals: newJournals
+  	});
   }
 
   addComment = comment => {
-    this.setState({
-      comments: [...this.state.comments, comment]
-    })
+  	this.setState({
+  		comments: [...this.state.comments, comment]
+  	});
   }
 
   render() {
 
-    const contextValue = {
-      journals: this.state.journals,
-      users: this.state.users,
-      comments: this.state.comments,
-      addJournal: this.addJournal,
-      deleteJournal: this.deleteJournal,
-      updateJournal: this.updateJournal,
-      addComment: this.addComment
-    }
+  	const contextValue = {
+  		journals: this.state.journals,
+  		users: this.state.users,
+  		comments: this.state.comments,
+  		addJournal: this.addJournal,
+  		deleteJournal: this.deleteJournal,
+  		updateJournal: this.updateJournal,
+  		addComment: this.addComment
+  	};
 
-    return (
-      <>
-        <JournalsContext.Provider value={contextValue}>
-          <NavBarTop />
-          <main className='App'>
-            <TravelJournalError>
-              <Switch>
-                <Route 
-                  exact path="/"
-                  component={LandingPage}
-                />
-                <PublicOnlyRoute 
-                  exact path="/signup"
-                  component={SignUpForm}
-                />
-                <PublicOnlyRoute
-                  exact path="/login"
-                  component={LoginForm}
-                />
-                <PrivateRoute 
-                  exact path="/my-journals"
-                  component={UserHomePage}
-                />
-                <PrivateRoute 
-                  exact path="/all-journals"
-                  component={AllJournals}
-                />
-                <PrivateRoute 
-                  exact path="/add-journal"
-                  component={AddJournalForm}
-                />
-                <PrivateRoute 
-                  exact path="/edit-journal/:journalId"
-                  component={EditJournalForm}
-                />
-                <PrivateRoute
-                  exact path="/journals/:journalId"
-                  component={JournalPage}
-                />
-                <Route
-                  component={NotFoundPage}
-                />
-              </Switch>
-            </TravelJournalError>
-          </main>
-          <Footer />
-          <NavBarBottom />
-        </JournalsContext.Provider>      
-      </>
-    );
+  	return (
+  		<>
+  			<JournalsContext.Provider value={contextValue}>
+  				<NavBarTop />
+  				<main className='App'>
+  					<TravelJournalError>
+  						<Switch>
+  							<Route 
+  								exact path="/"
+  								component={LandingPage}
+  							/>
+  							<PublicOnlyRoute 
+  								exact path="/signup"
+  								component={SignUpForm}
+  							/>
+  							<PublicOnlyRoute
+  								exact path="/login"
+  								component={LoginForm}
+  							/>
+  							<PrivateRoute 
+  								exact path="/my-journals"
+  								component={UserHomePage}
+  							/>
+  							<PrivateRoute 
+  								exact path="/all-journals"
+  								component={AllJournals}
+  							/>
+  							<PrivateRoute 
+  								exact path="/add-journal"
+  								component={AddJournalForm}
+  							/>
+  							<PrivateRoute 
+  								exact path="/edit-journal/:journalId"
+  								component={EditJournalForm}
+  							/>
+  							<PrivateRoute
+  								exact path="/journals/:journalId"
+  								component={JournalPage}
+  							/>
+  							<Route
+  								component={NotFoundPage}
+  							/>
+  						</Switch>
+  					</TravelJournalError>
+  				</main>
+  				<Footer />
+  				<NavBarBottom />
+  			</JournalsContext.Provider>      
+  		</>
+  	);
   }
   
 }
