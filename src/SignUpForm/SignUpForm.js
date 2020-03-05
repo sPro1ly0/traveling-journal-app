@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import AuthApiService from '../services/auth-api-service';
 import './SignUpForm.css';
 
 class SignUpForm extends Component {
@@ -9,7 +10,7 @@ class SignUpForm extends Component {
         this.state = {
             error: null,
             full_name: '',
-            email_username: '',
+            email: '',
             password: ''
         }
     };
@@ -22,9 +23,9 @@ class SignUpForm extends Component {
     };
 
     updateEmailUsername = (e) => {
-        const email_username = e.target.value;
+        const email = e.target.value;
         this.setState({
-            email_username
+            email
         });
     };
 
@@ -35,16 +36,28 @@ class SignUpForm extends Component {
         });
     };
 
-    handleSubmit = (event) => {
-        event.preventDefault();
-        const { full_name, email_username, password } = this.state;
-        console.log( full_name, email_username, password);
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const { full_name, email, password } = this.state;
+        console.log( full_name, email, password);
         this.setState({ error: null });
+        AuthApiService.postUser({
+            full_name: full_name.value,
+            email: email.value,
+            password: password.value
+        })
+            .then(user => {
+                full_name.value = '';
+                email.value = '';
+                password.value = '';
+            })
+            .catch(res => {
+                this.setState({ error: res.error })
+            })
         
     }
 
     render() {
-        const { error } = this.state;
         return (
             <section className="signup">
                 <header className="signup-header">
@@ -56,7 +69,7 @@ class SignUpForm extends Component {
                     onSubmit={this.handleSubmit}
                 >   
                     <div role="alert">
-                        {error && <p className="red-error">{error}</p>}
+                        {this.state.error && <p className="red-this.state.">{this.state.error}</p>}
                     </div>
                     <div className="signup-field">
                         <label htmlFor="full_name">Full Name</label>
@@ -71,11 +84,11 @@ class SignUpForm extends Component {
                             onChange={this.updateFullName} />
                     </div>
                     <div className="signup-field">
-                        <label htmlFor="email_username">Email</label>
+                        <label htmlFor="email">Email</label>
                         <input 
                             type="text" 
-                            name="email_username" 
-                            id="email_username"
+                            name="email" 
+                            id="email"
                             aria-label="Enter your email address"
                             aria-required="true" 
                             placeholder="jondoe@email.com" 

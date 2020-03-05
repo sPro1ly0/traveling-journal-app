@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AuthApiService from '../services/auth-api-service';
 import './LoginForm.css';
 
 class LoginForm extends Component {
@@ -7,15 +8,15 @@ class LoginForm extends Component {
         super(props);
         this.state = {
             error: null,
-            email_username: '',
+            email: '',
             password: ''
         }
     };
 
     updateEmailUsername = (e) => {
-        const email_username = e.target.value;
+        const email = e.target.value;
         this.setState({
-            email_username
+            email
         });
     };
 
@@ -26,12 +27,31 @@ class LoginForm extends Component {
         });
     };
 
-    handleSubmit = (event) => {
-        event.preventDefault();
-        const { email_username, password } = this.state;
-        console.log( email_username, password);
-        this.setState({ error: null });
+    // handleSubmit = (event) => {
+    //     event.preventDefault();
+    //     const { email, password } = this.state;
+    //     console.log( email, password);
+    //     this.setState({ error: null });
         
+    // }
+
+    handleSubmitAuth = (e) => {
+        e.preventDefault();
+        const { email, password } = this.state;
+        this.setState({ error: null });
+
+        AuthApiService.postLogin({
+            email: email.value,
+            password: password.value
+        })
+            .then(res => {
+                email.value = '';
+                password.value = '';
+                this.props.onLoginSuccess();
+            })
+            .catch(res => {
+                this.setState({ error: res.error })
+            })
     }
 
 
@@ -45,14 +65,17 @@ class LoginForm extends Component {
                 <form
                     autoComplete="on"
                     className="login-form"
-                    onSubmit={this.handleSubmit}   
-                >
+                    onSubmit={this.handleSubmitAuth}   
+                >   
+                    <div role="alert">
+                        {this.state.error && <p className="red-error">{this.state.error}</p>}
+                    </div>
                     <div className="login-field">
-                        <label htmlFor="email_username">Email</label>
+                        <label htmlFor="email">Email</label>
                         <input 
                             type="text" 
-                            name="email_username" 
-                            id="email_username"
+                            name="email" 
+                            id="email"
                             aria-label="Enter your email address"
                             aria-required="true" 
                             required
