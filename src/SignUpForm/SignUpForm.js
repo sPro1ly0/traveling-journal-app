@@ -9,37 +9,18 @@ class SignUpForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: null,
-      full_name: '',
-      email: '',
-      password: ''
+      error: null
     };
   }
 
-    updateFullName = (e) => {
-      const full_name = e.target.value;
-      this.setState({
-        full_name
-      });
-    };
-
-    updateEmailUsername = (e) => {
-      const email = e.target.value;
-      this.setState({
-        email
-      });
-    };
-
-    updatePassword = (e) => {
-      const password= e.target.value;
-      this.setState({
-        password
-      });
-    };
+    handleSignUpSuccess = () => {
+      const { history } = this.props;
+      history.push('/login');
+    }
 
     handleSubmit = (e) => {
       e.preventDefault();
-      const { full_name, email, password } = this.state;
+      const { full_name, email, password } = e.target;
       console.log( full_name, email, password);
       this.setState({ error: null });
       AuthApiService.postUser({
@@ -52,7 +33,7 @@ class SignUpForm extends Component {
           full_name.value = '';
           email.value = '';
           password.value = '';
-          this.props.onRegistrationSuccess();
+          this.handleSignUpSuccess();
         })
         .catch(res => {
           this.setState({ error: res.error });
@@ -83,8 +64,7 @@ class SignUpForm extends Component {
                 aria-label="Enter your full name"
                 aria-required="true"
                 placeholder="John Doe" 
-                required
-                onChange={this.updateFullName} />
+                required />
             </div>
             <div className="signup-field">
               <label htmlFor="email">Email</label>
@@ -95,8 +75,7 @@ class SignUpForm extends Component {
                 aria-label="Enter your email address"
                 aria-required="true" 
                 placeholder="jondoe@email.com" 
-                required
-                onChange={this.updateEmailUsername} />
+                required />
             </div>
             <div className="signup-field">
               <label htmlFor="password">Password</label>
@@ -107,8 +86,7 @@ class SignUpForm extends Component {
                 id="password"
                 aria-label="Create your password"
                 aria-required="true"
-                required
-                onChange={this.updatePassword} />
+                required />
             </div>
             <button type="submit">Sign Up</button>
             <p>OR</p>

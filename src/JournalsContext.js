@@ -4,10 +4,12 @@ const JournalsContext = React.createContext({
   users: [],
   journals: [],
   comments: [],
+  loggedIn: false,
   addJournal: () => {},
   deleteJournal: () => {},
   updateJournal:() => {},
-  addComments:() => {}
-});
+  addComments:() => {},
+  setLoginStatus: () => {}
+}); 
 
 export default JournalsContext;

@@ -23,6 +23,7 @@ import TravelJournalError from './TravelJournalError';
 import NotFoundPage from './NotFoundPage/NotFoundPage';
 import JournalsContext from './JournalsContext';
 import { journals, users, comments } from './ExampleData';
+//import TokenService from './services/token-service';
 
 class App extends Component {
 
@@ -33,7 +34,8 @@ class App extends Component {
     this.state = {
       journals: journals,
       users: users,
-      comments: comments
+      comments: comments,
+      loggedIn: false
     };
   }
 
@@ -69,6 +71,12 @@ class App extends Component {
     });
   }
 
+  setLoginStatus = status => {
+    this.setState({
+      loggedIn: status
+    });
+  }
+
   render() {
 
     const contextValue = {
@@ -78,7 +86,8 @@ class App extends Component {
       addJournal: this.addJournal,
       deleteJournal: this.deleteJournal,
       updateJournal: this.updateJournal,
-      addComment: this.addComment
+      addComment: this.addComment,
+      setLoginStatus: this.setLoginStatus
     };
 
     return (

@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import AuthApiService from '../services/auth-api-service';
 import TokenService from '../services/token-service';
+import JournalsContext from '../JournalsContext';
 import './LoginForm.css';
 
 class LoginForm extends Component {
@@ -9,50 +10,33 @@ class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: null,
-      email: '',
-      password: ''
+      error: null
     };
   }
 
-    updateEmailUsername = (e) => {
-      const email = e.target.value;
-      this.setState({
-        email
-      });
-    };
+  static contextType = JournalsContext;
 
-    updatePassword = (e) => {
-      const password= e.target.value;
-      this.setState({
-        password
-      });
-    };
-
-    // handleSubmit = (event) => {
-    //     event.preventDefault();
-    //     const { email, password } = this.state;
-    //     console.log( email, password);
-    //     this.setState({ error: null });
-        
-    // }
+    handleLoginSuccess = () => {
+      const { location, history } = this.props;
+      const destination = (location.state || {}).from || '/my-journals';
+      history.push(destination);
+    }
 
     handleSubmitAuth = (e) => {
       e.preventDefault();
-      const { email, password } = this.state;
+      const { email, password } = e.target;
       this.setState({ error: null });
 
       AuthApiService.postLogin({
-        email: email,
-        password: password
+        email: email.value,
+        password: password.value
       })
         .then(res => {
-          this.setState({ 
-            email: '',
-            password: ''
-          });
+          email.value = '';
+          password.value = '';
           TokenService.saveAuthToken(res.authToken);
-          this.props.onLoginSuccess();
+          this.handleLoginSuccess();
+          this.context.setLoginStatus(true);
         })
         .catch(res => {
           this.setState({ error: res.error });
@@ -83,8 +67,7 @@ class LoginForm extends Component {
                 id="email"
                 aria-label="Enter your email address"
                 aria-required="true" 
-                required
-                onChange={this.updateEmailUsername} />
+                required />
             </div>
             <div className="login-field">
               <label htmlFor="password">Password</label>
@@ -95,8 +78,7 @@ class LoginForm extends Component {
                 id="password"
                 aria-label="Enter your password"
                 aria-required="true"
-                required
-                onChange={this.updatePassword} />
+                required />
             </div>
             <button type="submit">Login</button>
           </form>

@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 // import JournalsContext from '../JournalsContext';
 import './JournalPost.css';
 import moment from 'moment';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 
 class JournalPost extends Component {
 
@@ -42,7 +43,7 @@ class JournalPost extends Component {
 
 export default JournalPost;
 
-JournalPost.propTypes = {
-  journal: PropTypes.object,
-  comments: PropTypes.object
-};
+// JournalPost.propTypes = {
+//   journal: PropTypes.object,
+//   comments: PropTypes.object
+// };
