@@ -4,19 +4,19 @@ import TokenService from '../services/token-service';
 import PropTypes from 'prop-types';
 
 export default function PublicOnlyRoute({ component, ...props }) {
-	const Component = component;
-	return (
-		<Route
-			{...props}
-			render={componentProps => (
-				TokenService.hasAuthToken()
-					? <Redirect to={'/'} />
-					: <Component {...componentProps} />
-			)}
-		/>
-	);
+  const Component = component;
+  return (
+    <Route
+      {...props}
+      render={componentProps => (
+        TokenService.hasAuthToken()
+          ? <Redirect to={'/'} />
+          : <Component {...componentProps} />
+      )}
+    />
+  );
 }
 
 PublicOnlyRoute.propTypes = {
-	component: PropTypes.any
+  component: PropTypes.any
 };

@@ -4,19 +4,19 @@ import React, { Component } from 'react';
 
 class Comment extends Component {
 
-	render() {
-		const { comment, users } = this.props;
+  render() {
+    const { comment, users } = this.props;
 
-		const findAuthor = users.filter(user => user.id === comment.authorId);
-		const author = findAuthor[0].fullName;
+    const findAuthor = users.filter(user => user.id === comment.authorId);
+    const author = findAuthor[0].fullName;
 
-		return (
-			<div className="comment">
-				<p className="comment-text">{comment.text}</p>
-				<p className="user">{author}</p>
-			</div>
-		);
-	}
+    return (
+      <div className="comment">
+        <p className="comment-text">{comment.text}</p>
+        <p className="user">{author}</p>
+      </div>
+    );
+  }
     
 }
 

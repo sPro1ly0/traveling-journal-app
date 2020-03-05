@@ -7,34 +7,34 @@ import './UserHomePage.css';
 
 class UserHomePage extends Component {
 
-    static contextType = JournalsContext;
+  static contextType = JournalsContext;
 
-    render() {
-    	const { journals, comments, users } = this.context;
-    	// make John Doe the demo user, userId = 1
-    	const demoJournals = journals.filter(journal => journal.authorId === 1);
-    	const numberOfJournals = demoJournals.length;
-    	const journalPosts = demoJournals.map(journal => 
-    		<JournalPost 
-    			key={journal.id}
-    			journal={journal}
-    			comments={comments}
-    			users={users}
-    		/>
-    	);
+  render() {
+	  const { journals, comments, users } = this.context;
+	  // make John Doe the demo user, userId = 1
+	  const demoJournals = journals.filter(journal => journal.authorId === 1);
+	  const numberOfJournals = demoJournals.length;
+	  const journalPosts = demoJournals.map(journal => 
+	    <JournalPost 
+	      key={journal.id}
+	      journal={journal}
+	      comments={comments}
+	      users={users}
+	    />
+	  );
 
-    	return (
-    		<>
-    			<header>
-    				<h2>My Journals</h2>
-    				<p>You have {numberOfJournals} journals.</p>
-    			</header>
-    			<section className="journals">
-    				{journalPosts}
-    			</section>
-    		</>
-    	);
-    }
+	  return (
+	    <>
+	      <header>
+	        <h2>My Journals</h2>
+	        <p>You have {numberOfJournals} journals.</p>
+	      </header>
+	      <section className="journals">
+	        {journalPosts}
+	      </section>
+	    </>
+	  );
+  }
 }
 
 export default UserHomePage;
