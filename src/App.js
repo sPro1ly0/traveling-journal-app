@@ -52,8 +52,9 @@ class App extends Component {
   }
 
   addJournal = journal => {
+    console.log(journal);
     this.setState({
-      journals: [journal, ...this.state.journals]
+      allJournalsList: [...this.state.allJournalsList, journal]
     });
   }
 
@@ -89,7 +90,8 @@ class App extends Component {
     });
   }
 
-  setAllJournalsList = allJournalsList => {
+  setAllJournalsList = allJournals => {
+    const allJournalsList = allJournals.reverse();
     this.setState({
       allJournalsList
     });

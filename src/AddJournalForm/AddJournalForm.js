@@ -96,9 +96,12 @@ class AddJournalForm extends Component {
         end_date: endDate,
         content: content.value
       };
-      console.log('working!', newJournal);
+      // console.log('working!', newJournal);
       JournalsApiService.postJournal(newJournal)
-        .then(this.context.addJournal())
+        .then(res => {
+          console.log(res);
+          this.context.addJournal(res);
+        })
         .then(() => {
           title.value = '';
           location.value = '';

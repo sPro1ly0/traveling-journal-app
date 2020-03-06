@@ -30,14 +30,15 @@ const JournalsApiService = {
     return fetch(`${config.API_ENDPOINT}/journals`, {
       method: 'POST',
       headers: {
-        'authorization': `bearer ${TokenService.getAuthToken()}`
+        'authorization': `bearer ${TokenService.getAuthToken()}`,
+        'content-type': 'application/json'
       },
       body: JSON.stringify({
         title: newJournal.title,
         location: newJournal.location,
         content: newJournal.content,
-        start_date: newJournal.start_date,
-        end_date: newJournal.end_date,
+        start_date: newJournal.start_date.toJSON(),
+        end_date: newJournal.end_date.toJSON(),
       })
     })
       .then(res => 
