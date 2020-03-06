@@ -124,7 +124,7 @@ class EditJournalForm extends Component {
         .then(() => {
           console.log();
           this.resetFields(updateJournal);
-          this.context.addJournal(updateJournal);
+          this.context.updateJournal(updateJournal);
           this.props.history.push('/my-journals');
         })
         .catch(this.context.setError);

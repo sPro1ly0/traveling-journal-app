@@ -33,12 +33,12 @@ class App extends Component {
     super(props);
     this.state = {
       error: null,
+      loggedIn: TokenService.hasAuthToken() ? true : false,
+      user: [],
       journal: [],
       userJournalsList: [],
       allJournalsList: [],
-      user: [],
-      comments: [],
-      loggedIn: TokenService.hasAuthToken() ? true : false
+      comments: []
     };
   }
 
@@ -51,9 +51,21 @@ class App extends Component {
     this.setState({ error: null });
   }
 
+  setLoginStatus = status => {
+    this.setState({
+      loggedIn: status
+    });
+  }
+
   setUserName = user => {
     this.setState({
       user
+    });
+  }
+
+  setJournal = journal => {
+    this.setState({
+      journal
     });
   }
 
@@ -79,25 +91,21 @@ class App extends Component {
   }
 
   updateJournal = updatedJournal => {
-    const newJournals = this.state.journals.map(journal => 
+    const newUserJournals = this.state.userJournalsList.map(journal => 
       (journal.id === updatedJournal.id)
         ? updatedJournal
         : journal
     );
-    this.setState({
-      journals: newJournals
-    });
-  }
 
-  addComment = comment => {
-    this.setState({
-      comments: [...this.state.comments, comment]
-    });
-  }
+    const newAllJournals = this.state.allJournalsList.map(journal => 
+      (journal.id === updatedJournal.id)
+        ? updatedJournal
+        : journal
+    );
 
-  setLoginStatus = status => {
     this.setState({
-      loggedIn: status
+      userJournalsList: newUserJournals,
+      allJournalsList: newAllJournals
     });
   }
 
@@ -116,15 +124,15 @@ class App extends Component {
     });
   }
 
-  setJournal = journal => {
-    this.setState({
-      journal
-    });
-  }
-
   setComments = comments => {
     this.setState({ 
       comments 
+    });
+  }
+
+  addComment = comment => {
+    this.setState({
+      comments: [...this.state.comments, comment]
     });
   }
 
