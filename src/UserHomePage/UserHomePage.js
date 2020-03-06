@@ -23,7 +23,7 @@ class UserHomePage extends Component {
 
   render() {
     const { userJournalsList, user, error } = this.context;
-    console.log(userJournalsList);
+    // console.log(userJournalsList);
     // make John Doe the demo user, userId = 1
     const numberOfJournals = userJournalsList.length;
     const journalPosts = userJournalsList.map(journal => 

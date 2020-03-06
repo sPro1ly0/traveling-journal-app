@@ -6,6 +6,7 @@ import 'react-dates/lib/css/_datepicker.css';
 import { DateRangePicker } from 'react-dates';
 import moment from 'moment';
 import JournalsContext from './JournalsContext';
+import JournalsApiService from './services/journals-api-service';
 import ValidationError from './ValidationError';
 
 class EditJournalForm extends Component {
@@ -35,31 +36,25 @@ class EditJournalForm extends Component {
     }
 
     componentDidMount() {
+      this.context.clearError();
       const { journalId } = this.props.match.params;
+      JournalsApiService.getJournal(journalId)
+        .then(resJson => {
+          console.log(resJson);
+          this.setState({
+            id: resJson.id,
+            title: { value: resJson.title },
+            location: { value: resJson.location },
+            startDate: moment(resJson.start_date),
+            endDate: moment(resJson.end_date),
+            content: { value: resJson.content },
+          });
+        })
+        .catch(this.context.setError);
+    }
 
-      const journal = this.context.journals.find((j) => 
-        j.id === Number(journalId)
-      );
-
-      function convert(str) {
-        let date = new Date(str);
-        let mnth = ('0' + (date.getMonth() + 1)).slice(-2);
-        let day = ('0' + date.getDate()).slice(-2);
-        return [mnth, day, date.getFullYear()].join('/');
-      }
-
-      const startDateFormat = convert(journal.startDate);
-      const endDateFormat = convert(journal.endDate);
-      // console.log(startDateFormat);
-
-      this.setState({
-        id: journal.id,
-        title: { value: journal.title },
-        location: { value: journal.location },
-        startDate: moment(startDateFormat),
-        endDate: moment(endDateFormat),
-        content: { value: journal.content },
-      });
+    componentWillUnmount() {
+      this.context.clearJournal();
     }
 
     updateTitle = (e) => {
@@ -111,28 +106,28 @@ class EditJournalForm extends Component {
     handleSubmit = (e) => {
       e.preventDefault();
 
-      //const { journalId } = this.props.match.params;
-
-      const { id, startDate, endDate  } = this.state;
-      const title = this.state.title.value;
-      const location = this.state.location.value;
-      const content = this.state.content.value;
-      const journal = {
-        id,
-        title,
-        location,
-        startDate,
-        endDate,
-        content,
-        authorId: 1
+      const { id, title, location, content, startDate, endDate  } = this.state;
+      
+      const updateJournal = {
+        title: title.value,
+        location: location.value,
+        start_date: startDate,
+        end_date: endDate,
+        content: content.value
       };
+
       this.setState({
         error: null
       });
-      console.log(journal);
-      this.resetFields(journal);
-      this.context.updateJournal(journal);
-      this.props.history.push('/my-journals');
+      
+      JournalsApiService.updateJournal(id, updateJournal)
+        .then(() => {
+          console.log();
+          this.resetFields(updateJournal);
+          this.context.addJournal(updateJournal);
+          this.props.history.push('/my-journals');
+        })
+        .catch(this.context.setError);
     }
 
     resetFields = (newFields) => {
@@ -152,8 +147,11 @@ class EditJournalForm extends Component {
     handleDelete = e => {
       e.preventDefault();
       const { journalId } = this.props.match.params;
-      this.context.deleteJournal(Number(journalId));
+      JournalsApiService.deleteJournal(journalId)
+        .then(this.context.deleteJournal)
+        .catch(this.context.setError);
       this.props.history.push('/my-journals');
+      console.log(journalId);
     }
 
     render() {
@@ -177,7 +175,7 @@ class EditJournalForm extends Component {
                   type="text" 
                   name="title" 
                   placeholder="A Lovely Day in Hawaii"
-                  value={title.value}
+                  value={title.value || ''}
                   aria-label="Enter a title for your new journal"
                   aria-required="true"
                   onChange={this.updateTitle} 
@@ -191,7 +189,7 @@ class EditJournalForm extends Component {
                   type="text" 
                   name="location" 
                   placeholder="Honolulu, Hawaii"
-                  value={location.value}
+                  value={location.value || ''}
                   aria-label="Enter the location of your travel"
                   aria-required="true"
                   onChange={this.updateLocation} 
@@ -219,7 +217,7 @@ class EditJournalForm extends Component {
                 <textarea 
                   name="content" 
                   rows="15"
-                  value={content.value}
+                  value={content.value || ''}
                   aria-label="Enter content for journal"
                   aria-required="true"
                   onChange={this.updateContent} 

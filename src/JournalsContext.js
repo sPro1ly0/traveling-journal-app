@@ -21,7 +21,7 @@ const JournalsContext = React.createContext({
   setLoginStatus: () => {},
   setAllJournalsList: () => {},
   setUserJournalsList: () => {},
-  clearUserJournalsList: () => {}
+  clearData: () => {}
 }); 
 
 export default JournalsContext;

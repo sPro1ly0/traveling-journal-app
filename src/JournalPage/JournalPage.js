@@ -32,7 +32,7 @@ class JournalPage extends Component {
     }
 
     renderJournalPage() {
-      const { journal, comments } = this.context;
+      const { journal, comments, user } = this.context;
 
       let author = journal.author;
       if (author === undefined) {
@@ -54,7 +54,9 @@ class JournalPage extends Component {
             </div>
           </header>
           <JournalContent journal={journal} />
-          <JournalComments comments={comments} />
+          <JournalComments 
+            comments={comments}
+            user={user} />
           <CommentForm />
         </>
       );
@@ -94,11 +96,12 @@ function JournalContent({ journal }) {
   );
 }
 
-function JournalComments({ comments = [] }) {
+function JournalComments({ comments = [], user }) {
   const addComments = comments.map(comment => 
     <Comment 
       key={comment.id}
       comment={comment}
+      user={user}
     /> 
   );
   return (

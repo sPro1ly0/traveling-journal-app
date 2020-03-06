@@ -65,11 +65,16 @@ class App extends Component {
   }
 
   deleteJournal= journalId => {
-    const newJournals = this.state.journals.filter(journal => 
+    const newUserJournals = this.state.userJournalsList.filter(journal => 
       journal.id !== journalId
     );
+    const newAllJournals = this.state.allJournalsList.filter(journal => 
+      journal.id !== journalId
+    );
+
     this.setState({
-      journals: newJournals
+      userJournalsList: newUserJournals,
+      allJournalsList: newAllJournals
     });
   }
 
@@ -128,6 +133,21 @@ class App extends Component {
     this.setComments([]);
   }
 
+  clearData = () => {
+    this.setAllJournalsList([]);
+    this.setComments([]);
+    this.setJournal([]);
+    this.setUserName([]);
+    this.setUserJournalsList([]);
+    this.clearError();
+  }
+
+  renderNavBottom() {
+    return (
+      <NavBarBottom />
+    );
+  }
+
   render() {
 
     const contextValue = {
@@ -148,7 +168,8 @@ class App extends Component {
       setError: this.setError,
       clearError: this.clearError,
       setUserName: this.setUserName,
-      setUserJournalsList: this.setUserJournalsList
+      setUserJournalsList: this.setUserJournalsList,
+      clearData: this.clearData
     };
 
     return (
@@ -171,7 +192,7 @@ class App extends Component {
                   component={LoginForm} // good
                 />
                 <PrivateRoute 
-                  exact path="/my-journals"
+                  exact path="/my-journals" // good
                   component={UserHomePage}
                 />
                 <PrivateRoute 
@@ -183,7 +204,7 @@ class App extends Component {
                   component={AddJournalForm}
                 />
                 <PrivateRoute 
-                  exact path="/edit-journal/:journalId"
+                  exact path="/edit-journal/:journalId" // good
                   component={EditJournalForm}
                 />
                 <PrivateRoute
@@ -191,13 +212,16 @@ class App extends Component {
                   component={JournalPage}
                 />
                 <Route
-                  component={NotFoundPage}
+                  component={NotFoundPage} //good
                 />
               </Switch>
             </TravelJournalError>
           </main>
           <Footer />
-          <NavBarBottom />
+          {TokenService.hasAuthToken()
+            ? this.renderNavBottom()
+            : ''
+          }
         </JournalsContext.Provider>      
       </>
     );

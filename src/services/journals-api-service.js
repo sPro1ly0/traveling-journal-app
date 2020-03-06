@@ -71,25 +71,26 @@ const JournalsApiService = {
           : res.json()
       );
   },
-  updateJournal(journalId, title, location, content, start_date, end_date) {
+  updateJournal(journalId, updateJournal) {
     return fetch(`${config.API_ENDPOINT}/journals/${journalId}`, {
       method: 'PATCH',
       headers: {
-        'authorization': `bearer ${TokenService.getAuthToken()}`
+        'authorization': `bearer ${TokenService.getAuthToken()}`,
+        'content-type': 'application/json'
       },
       body: JSON.stringify({
-        title,
-        location,
-        content,
-        start_date,
-        end_date,
+        title: updateJournal.title,
+        location: updateJournal.location,
+        content: updateJournal.content,
+        start_date: updateJournal.start_date.toJSON(),
+        end_date: updateJournal.end_date.toJSON(),
       })
     })
-      .then(res => 
-        (!res.ok)
-          ? res.json().then(e => Promise.reject(e))
-          : res.json()
-      );
+      .then(res => {
+        if (!res.ok) {
+          res.json().then(e => Promise.reject(e));
+        }
+      });
   },
   deleteJournal(journalId) {
     return fetch(`${config.API_ENDPOINT}/journals/${journalId}`, {
@@ -98,11 +99,11 @@ const JournalsApiService = {
         'authorization': `bearer ${TokenService.getAuthToken()}`
       }
     })
-      .then(res => 
-        (!res.ok)
-          ? res.json().then(e => Promise.reject(e))
-          : res.json()
-      );
+      .then(res => {
+        if (!res.ok) {
+          res.json().then(e => Promise.reject(e));
+        }
+      });
   },
   getJournalComments(journalId) {
     return fetch(`${config.API_ENDPOINT}/journals/${journalId}/comments`, {

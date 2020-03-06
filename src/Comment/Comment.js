@@ -5,10 +5,10 @@ import React, { Component } from 'react';
 class Comment extends Component {
 
   render() {
-    const { comment } = this.props;
+    const { comment, user } = this.props;
     let author = comment.author;
     if (author === undefined) {
-      author = 'Unknown';
+      author = user.full_name;
     }
     
     return (
