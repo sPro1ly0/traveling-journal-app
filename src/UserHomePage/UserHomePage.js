@@ -4,24 +4,35 @@ import React, { Component } from 'react';
 import JournalsContext from '../JournalsContext';
 import JournalPost from '../JournalPost/JournalPost';
 import './UserHomePage.css';
+import JournalsApiService from '../services/journals-api-service';
 
 class UserHomePage extends Component {
 
   static contextType = JournalsContext;
 
+  componentDidMount() {
+    this.context.clearError();
+    JournalsApiService.getUserName()
+      .then(this.context.setUserName)
+      .catch(this.context.setError);
+    JournalsApiService.getUserJournals()
+      .then(this.context.setUserJournalsList)
+      .catch(this.context.setError);
+    console.log('working');
+  }
+
   render() {
-	  const { journals, comments, users } = this.context;
-	  // make John Doe the demo user, userId = 1
-	  const demoJournals = journals.filter(journal => journal.authorId === 1);
-	  const numberOfJournals = demoJournals.length;
-	  const journalPosts = demoJournals.map(journal => 
-	    <JournalPost 
-	      key={journal.id}
-	      journal={journal}
-	      comments={comments}
-	      users={users}
-	    />
-	  );
+    const { userJournalsList, user, error } = this.context;
+    console.log(userJournalsList);
+    // make John Doe the demo user, userId = 1
+    const numberOfJournals = userJournalsList.length;
+    const journalPosts = userJournalsList.map(journal => 
+      <JournalPost 
+        key={journal.id}
+        journal={journal}
+        user={user}
+      />
+    );
 
 	  return (
 	    <>
@@ -29,6 +40,9 @@ class UserHomePage extends Component {
 	        <h2>My Journals</h2>
 	        <p>You have {numberOfJournals} journals.</p>
 	      </header>
+        {error 
+          ? <div className="error">{this.state.error}</div>
+          : ''}
 	      <section className="journals">
 	        {journalPosts}
 	      </section>

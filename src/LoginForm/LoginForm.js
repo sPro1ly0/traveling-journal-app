@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import AuthApiService from '../services/auth-api-service';
 import TokenService from '../services/token-service';
+import JournalsApiService from '../services/journals-api-service';
 import JournalsContext from '../JournalsContext';
 import './LoginForm.css';
 
@@ -38,6 +39,16 @@ class LoginForm extends Component {
           TokenService.saveAuthToken(res.authToken);
           this.handleLoginSuccess();
           this.context.setLoginStatus(true);
+        })
+        .then(() => {
+          this.context.clearError();
+          JournalsApiService.getUserName()
+            .then(this.context.setUserName)
+            .catch(this.context.setError);
+          JournalsApiService.getUserJournals()
+            .then(this.context.setUserJournalsList)
+            .catch(this.context.setError);
+          console.log('working');
         })
         .catch(res => {
           this.setState({ error: res.error });

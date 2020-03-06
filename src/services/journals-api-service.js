@@ -2,6 +2,30 @@ import config from '../config';
 import TokenService from '../services/token-service';
 
 const JournalsApiService = {
+  getUserName() {
+    return fetch(`${config.API_ENDPOINT}/users`, {
+      headers: {
+        'authorization': `bearer ${TokenService.getAuthToken()}`
+      }
+    })
+      .then(res => 
+        (!res.ok)
+          ? res.json().then(e => Promise.reject(e))
+          : res.json()
+      );
+  },
+  getUserJournals() {
+    return fetch(`${config.API_ENDPOINT}/users/journals`, {
+      headers: {
+        'authorization': `bearer ${TokenService.getAuthToken()}`
+      }
+    })
+      .then(res => 
+        (!res.ok)
+          ? res.json().then(e => Promise.reject(e))
+          : res.json()
+      );
+  },
   getJournals() {
     return fetch(`${config.API_ENDPOINT}/journals`, {
       headers: {

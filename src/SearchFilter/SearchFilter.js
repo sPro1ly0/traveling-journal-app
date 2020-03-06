@@ -16,7 +16,8 @@ class SearchFilter extends Component {
     this.state = {
       searchPlace: '', // search by place
       startDate: null, //search by date range
-      endDate: null
+      endDate: null,
+      error: null
     };
   }
 
@@ -33,6 +34,9 @@ class SearchFilter extends Component {
       JournalsApiService.getJournals()
         .then(this.context.setAllJournalsList)
         .catch(this.context.setError);
+      JournalsApiService.getUserName()
+        .then(this.context.setUserName)
+        .catch(this.context.setError);
       console.log('working');
     }
 
@@ -41,7 +45,7 @@ class SearchFilter extends Component {
         
       const { error } = this.context;
         
-      const { allJournalsList = [] } = this.context;
+      const { allJournalsList = [], user } = this.context;
       // console.log('work?', allJournalsList);
       let filteredPlaces = this.context.allJournalsList;
       if (this.state.searchPlace) {
@@ -60,6 +64,7 @@ class SearchFilter extends Component {
         return <JournalPost 
           key={journal.id}
           journal={journal}
+          user={user}
         />;
       });
 

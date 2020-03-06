@@ -22,8 +22,8 @@ import Footer from './Footer/Footer';
 import TravelJournalError from './TravelJournalError';
 import NotFoundPage from './NotFoundPage/NotFoundPage';
 import JournalsContext from './JournalsContext';
+import TokenService from './services/token-service';
 //import { journals, users, comments } from './ExampleData';
-//import TokenService from './services/token-service';
 
 class App extends Component {
 
@@ -34,11 +34,11 @@ class App extends Component {
     this.state = {
       error: null,
       journal: [],
-      journals: [],
+      userJournalsList: [],
       allJournalsList: [],
-      users: [],
+      user: [],
       comments: [],
-      loggedIn: false
+      loggedIn: TokenService.hasAuthToken() ? true : false
     };
   }
 
@@ -49,6 +49,12 @@ class App extends Component {
 
   clearError = () => {
     this.setState({ error: null });
+  }
+
+  setUserName = user => {
+    this.setState({
+      user
+    });
   }
 
   addJournal = journal => {
@@ -90,7 +96,15 @@ class App extends Component {
     });
   }
 
+  setUserJournalsList = userJournals => {
+    const userJournalsList = userJournals.reverse();
+    this.setState({
+      userJournalsList
+    });
+  }
+
   setAllJournalsList = allJournals => {
+    // show newest journals first
     const allJournalsList = allJournals.reverse();
     this.setState({
       allJournalsList
@@ -118,9 +132,9 @@ class App extends Component {
 
     const contextValue = {
       journal: this.state.journal,
-      journals: this.state.journals,
+      userJournalsList: this.state.userJournalsList,
       allJournalsList: this.state.allJournalsList,
-      users: this.state.users,
+      user: this.state.user,
       comments: this.state.comments,
       addJournal: this.addJournal,
       deleteJournal: this.deleteJournal,
@@ -132,7 +146,9 @@ class App extends Component {
       clearJournal: this.clearJournal,
       setComments: this.setComments,
       setError: this.setError,
-      clearError: this.clearError
+      clearError: this.clearError,
+      setUserName: this.setUserName,
+      setUserJournalsList: this.setUserJournalsList
     };
 
     return (
@@ -163,7 +179,7 @@ class App extends Component {
                   component={AllJournals} // good
                 />
                 <PrivateRoute 
-                  exact path="/add-journal"
+                  exact path="/add-journal" // good
                   component={AddJournalForm}
                 />
                 <PrivateRoute 

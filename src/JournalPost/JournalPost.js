@@ -11,12 +11,20 @@ class JournalPost extends Component {
     
 
   render() {
-    const { journal } = this.props;
+    const { journal, user } = this.props;
     // eslint-disable-next-line react/prop-types
     //const findComments = comments.filter(comment => comment.journalId === journal.id);
     const numberOfComments = journal.number_of_comments;
     // demo userId = 1
-    const renderEditButton = journal.authorId === 1 ? <Link to={`/edit-journal/${journal.id}`}>Edit</Link> : null;
+
+    let testUserName;
+    if (user === undefined) {
+      testUserName = 'Unknown';
+    } else {
+      testUserName = user.full_name;
+    }
+    console.log(user);
+    const renderEditButton = journal.author === testUserName ? <Link to={`/edit-journal/${journal.id}`}>Edit</Link> : null;
     const modifyStartDate = moment(journal.start_date).format('MMMM YYYY');
         
     return (
