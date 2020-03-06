@@ -32,6 +32,7 @@ class LoginForm extends Component {
         password: password.value
       })
         .then(res => {
+          // res {authToken: aksjdfnkajsdfnks}
           email.value = '';
           password.value = '';
           TokenService.saveAuthToken(res.authToken);

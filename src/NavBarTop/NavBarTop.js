@@ -8,9 +8,9 @@ class NavBarTop extends Component {
 
   static contextType = JournalsContext;
 
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   handleLogoutLink = () => {
     TokenService.clearAuthToken();

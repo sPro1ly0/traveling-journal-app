@@ -22,7 +22,7 @@ import Footer from './Footer/Footer';
 import TravelJournalError from './TravelJournalError';
 import NotFoundPage from './NotFoundPage/NotFoundPage';
 import JournalsContext from './JournalsContext';
-import { journals, users, comments } from './ExampleData';
+//import { journals, users, comments } from './ExampleData';
 //import TokenService from './services/token-service';
 
 class App extends Component {
@@ -32,11 +32,22 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      journals: journals,
-      users: users,
-      comments: comments,
+      error: null,
+      journals: [],
+      allJournalsList: [],
+      users: [],
+      comments: [],
       loggedIn: false
     };
+  }
+
+  setError = error => {
+    console.error(error);
+    this.setState({ error });
+  }
+
+  clearError = () => {
+    this.setState({ error: null });
   }
 
   addJournal = journal => {
@@ -77,6 +88,12 @@ class App extends Component {
     });
   }
 
+  setAllJournalsList = allJournalsList => {
+    this.setState({
+      allJournalsList
+    });
+  }
+
   render() {
 
     const contextValue = {
@@ -87,7 +104,8 @@ class App extends Component {
       deleteJournal: this.deleteJournal,
       updateJournal: this.updateJournal,
       addComment: this.addComment,
-      setLoginStatus: this.setLoginStatus
+      setLoginStatus: this.setLoginStatus,
+      setAllJournalsList: this.setAllJournalsList
     };
 
     return (
