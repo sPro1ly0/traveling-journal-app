@@ -33,6 +33,7 @@ class App extends Component {
     super(props);
     this.state = {
       error: null,
+      journal: [],
       journals: [],
       allJournalsList: [],
       users: [],
@@ -94,10 +95,29 @@ class App extends Component {
     });
   }
 
+  setJournal = journal => {
+    this.setState({
+      journal
+    });
+  }
+
+  setComments = comments => {
+    this.setState({ 
+      comments 
+    });
+  }
+
+  clearJournal = () => {
+    this.setJournal([]);
+    this.setComments([]);
+  }
+
   render() {
 
     const contextValue = {
+      journal: this.state.journal,
       journals: this.state.journals,
+      allJournalsList: this.state.allJournalsList,
       users: this.state.users,
       comments: this.state.comments,
       addJournal: this.addJournal,
@@ -105,7 +125,12 @@ class App extends Component {
       updateJournal: this.updateJournal,
       addComment: this.addComment,
       setLoginStatus: this.setLoginStatus,
-      setAllJournalsList: this.setAllJournalsList
+      setAllJournalsList: this.setAllJournalsList,
+      setJournal: this.setJournal,
+      clearJournal: this.clearJournal,
+      setComments: this.setComments,
+      setError: this.setError,
+      clearError: this.clearError
     };
 
     return (
@@ -117,15 +142,15 @@ class App extends Component {
               <Switch>
                 <Route 
                   exact path="/"
-                  component={LandingPage}
+                  component={LandingPage} // good
                 />
                 <PublicOnlyRoute 
                   exact path="/signup"
-                  component={SignUpForm}
+                  component={SignUpForm} // good
                 />
                 <PublicOnlyRoute
                   exact path="/login"
-                  component={LoginForm}
+                  component={LoginForm} // good
                 />
                 <PrivateRoute 
                   exact path="/my-journals"
@@ -133,7 +158,7 @@ class App extends Component {
                 />
                 <PrivateRoute 
                   exact path="/all-journals"
-                  component={AllJournals}
+                  component={AllJournals} // good
                 />
                 <PrivateRoute 
                   exact path="/add-journal"
@@ -144,7 +169,7 @@ class App extends Component {
                   component={EditJournalForm}
                 />
                 <PrivateRoute
-                  exact path="/journals/:journalId"
+                  exact path="/journals/:journalId" // good
                   component={JournalPage}
                 />
                 <Route

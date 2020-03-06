@@ -5,15 +5,16 @@ import React, { Component } from 'react';
 class Comment extends Component {
 
   render() {
-    const { comment, users } = this.props;
+    const { comment } = this.props;
 
-    const findAuthor = users.filter(user => user.id === comment.authorId);
-    const author = findAuthor[0].fullName;
+    if (comment.author === '') {
+      comment.author = 'Unknown';
+    }
 
     return (
       <div className="comment">
         <p className="comment-text">{comment.text}</p>
-        <p className="user">{author}</p>
+        <p className="user">{comment.author}</p>
       </div>
     );
   }
@@ -21,8 +22,3 @@ class Comment extends Component {
 }
 
 export default Comment;
-
-// Comment.propTypes = {
-//     comment: ,
-//     users:
-// };

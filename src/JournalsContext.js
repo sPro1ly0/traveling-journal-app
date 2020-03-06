@@ -3,6 +3,7 @@ import React from 'react';
 const JournalsContext = React.createContext({
   error: null,
   users: [],
+  journal: [],
   journals: [],
   allJournalsList: [],
   comments: [],
@@ -12,6 +13,9 @@ const JournalsContext = React.createContext({
   addJournal: () => {},
   deleteJournal: () => {},
   updateJournal:() => {},
+  setJournal: () => {},
+  clearJournal: () => {},
+  setComments: () => {},
   addComments:() => {},
   setLoginStatus: () => {},
   setAllJournalsList: () => {}

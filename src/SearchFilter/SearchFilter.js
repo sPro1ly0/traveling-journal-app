@@ -41,8 +41,8 @@ class SearchFilter extends Component {
         
       const { error } = this.context;
         
-      const { allJournalsList } = this.context;
-      console.log('work?', allJournalsList);
+      const { allJournalsList = [] } = this.context;
+      // console.log('work?', allJournalsList);
       let filteredPlaces = this.context.allJournalsList;
       if (this.state.searchPlace) {
         filteredPlaces = allJournalsList.filter(journal => 
@@ -55,7 +55,7 @@ class SearchFilter extends Component {
           moment(journal.start_date).isBetween(start, end, 'dates','[]')
         );
       }
-      console.log(filteredPlaces);
+      //console.log(filteredPlaces);
       let journalPosts = filteredPlaces.map((journal) => {
         return <JournalPost 
           key={journal.id}

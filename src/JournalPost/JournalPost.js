@@ -17,7 +17,7 @@ class JournalPost extends Component {
     const numberOfComments = journal.number_of_comments;
     // demo userId = 1
     const renderEditButton = journal.authorId === 1 ? <Link to={`/edit-journal/${journal.id}`}>Edit</Link> : null;
-    const modifyStartDate = moment(journal.startDate).format('MMMM YYYY');
+    const modifyStartDate = moment(journal.start_date).format('MMMM YYYY');
         
     return (
       <>

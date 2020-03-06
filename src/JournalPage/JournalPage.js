@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './JournalPage.css';
 import Comment from '../Comment/Comment';
 import JournalsContext from '../JournalsContext';
+import JournalsApiService from '../services/journals-api-service';
 import moment from 'moment';
 
 
@@ -13,6 +14,21 @@ class JournalPage extends Component {
     }
 
     static contextType = JournalsContext;
+
+    componentDidMount() {
+      this.context.clearError();
+      const { journalId } = this.props.match.params;
+      JournalsApiService.getJournal(journalId)
+        .then(this.context.setJournal)
+        .catch(this.context.setError);
+      JournalsApiService.getJournalComments(journalId)
+        .then(this.context.setComments)
+        .catch(this.context.setError);
+    }
+
+    componentWillUnmount() {
+      this.context.clearJournal();
+    }
 
     handleSubmit = e => {
       e.preventDefault();
@@ -31,29 +47,20 @@ class JournalPage extends Component {
 
 
     render() {
-      const { journals, users, comments} = this.context;
+      const { journal, comments } = this.context;
 
-      const { journalId } = this.props.match.params;
+      if (journal.author === '') {
+        journal.author = 'Unknown';
+      }
 
-      const journal = journals.find((j) => 
-        j.id === Number(journalId)
-      );
-        // console.log(journalId);
-        // console.log(journal);
-      const checkSameDate = (moment(journal.startDate).format('MMMM Do YYYY')  === moment(journal.endDate).format('MMMM Do YYYY') 
-        ? moment(journal.startDate).format('MMMM Do YYYY') 
-        : `${moment(journal.startDate).format('MMMM Do YYYY')} - ${moment(journal.endDate).format('MMMM Do YYYY')}`);
-        // console.log(checkSameDate);
-      const findAuthor = users.filter(user => user.id === journal.authorId);
-      const findComments = comments.filter(comment => comment.journalId === journal.id);
-      // console.log(comments);
-      // console.log(findComments);
-      const author = findAuthor[0].fullName; // 'unknown'
-      const addComments = findComments.map( comment => 
+      const checkSameDate = (moment(journal.start_date).format('MMMM Do YYYY')  === moment(journal.end_date).format('MMMM Do YYYY') 
+        ? moment(journal.start_date).format('MMMM Do YYYY') 
+        : `${moment(journal.start_date).format('MMMM Do YYYY')} - ${moment(journal.end_date).format('MMMM Do YYYY')}`);
+     
+      const addComments = comments.map( comment => 
         <Comment 
           key={comment.id}
           comment={comment}
-          users={users}
         /> 
       );
       return (
@@ -63,7 +70,7 @@ class JournalPage extends Component {
             <div className="journal-info">
               <h2>{journal.location}</h2>
               <p>{checkSameDate}</p>
-              <p>By: {author}</p>
+              <p>By: {journal.author}</p>
             </div>
           </header>
           <section>
