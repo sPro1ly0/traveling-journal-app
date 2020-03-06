@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import './JournalPage.css';
+import CommentForm from '../CommentForm';
 import Comment from '../Comment/Comment';
 import JournalsContext from '../JournalsContext';
 import JournalsApiService from '../services/journals-api-service';
@@ -30,39 +31,18 @@ class JournalPage extends Component {
       this.context.clearJournal();
     }
 
-    handleSubmit = e => {
-      e.preventDefault();
-      const { journalId } = this.props.match.params;
-      const { comment } = e.target;
-      const newComment = {
-        id: Math.random() * 5,
-        text: comment.value,
-        journalId: Number(journalId),
-        authorId: 1
-      };
-      this.context.addComment(newComment);
-      comment.value = '';
-      console.log(newComment);
-    }
-
-
-    render() {
+    renderJournalPage() {
       const { journal, comments } = this.context;
 
-      if (journal.author === '') {
-        journal.author = 'Unknown';
+      let author = journal.author;
+      if (author === undefined) {
+        author = 'Unknown';
       }
 
       const checkSameDate = (moment(journal.start_date).format('MMMM Do YYYY')  === moment(journal.end_date).format('MMMM Do YYYY') 
         ? moment(journal.start_date).format('MMMM Do YYYY') 
         : `${moment(journal.start_date).format('MMMM Do YYYY')} - ${moment(journal.end_date).format('MMMM Do YYYY')}`);
-     
-      const addComments = comments.map( comment => 
-        <Comment 
-          key={comment.id}
-          comment={comment}
-        /> 
-      );
+
       return (
         <>
           <header className="journal-header">
@@ -70,30 +50,32 @@ class JournalPage extends Component {
             <div className="journal-info">
               <h2>{journal.location}</h2>
               <p>{checkSameDate}</p>
-              <p>By: {journal.author}</p>
+              <p>By: {author}</p>
             </div>
           </header>
-          <section>
-            <div className="journal-content">
-              <p>{journal.content}</p>
-            </div>
-          </section>
+          <JournalContent journal={journal} />
+          <JournalComments comments={comments} />
+          <CommentForm />
+        </>
+      );
+    }
+
+
+    render() {
+      const { error } = this.context;
+      let page;
+      if (error) {
+        // eslint-disable-next-line quotes
+        page = (error.message === `Journal doesn't exist`)
+          ? <p className='red-error'>Journal not found.</p>
+          : <p className='red-error'>There was an error.</p>;
+      } else {
+        page = this.renderJournalPage();
+      }
+      return (
+        <>
           <section className="comments-section">
-            <h3>Comments</h3>
-            {addComments}
-            <form id="add-comment" onSubmit={this.handleSubmit}>
-              <label htmlFor="comment">Make A Comment</label>
-              <textarea 
-                id="comment" 
-                name="comment" 
-                aria-label='Type a comment.'
-                defaultValue="Enter your comment..."
-                cols="33"
-                rows="5"
-                required >
-              </textarea>
-              <button type="submit" className="add-comment-button">Add Comment</button>
-            </form>
+            {page}
           </section>
         </>
       );
@@ -101,3 +83,29 @@ class JournalPage extends Component {
 }
 
 export default JournalPage;
+
+function JournalContent({ journal }) {
+  return (
+    <section>
+      <div className="journal-content">
+        <p>{journal.content}</p>
+      </div>
+    </section>
+  );
+}
+
+function JournalComments({ comments = [] }) {
+  const addComments = comments.map(comment => 
+    <Comment 
+      key={comment.id}
+      comment={comment}
+    /> 
+  );
+  return (
+    <section className="comments-section">
+      <h3>Comments</h3>
+      {addComments}
+    </section>
+  );
+  
+}

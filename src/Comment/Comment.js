@@ -6,15 +6,15 @@ class Comment extends Component {
 
   render() {
     const { comment } = this.props;
-
-    if (comment.author === '') {
-      comment.author = 'Unknown';
+    let author = comment.author;
+    if (author === undefined) {
+      author = 'Unknown';
     }
-
+    
     return (
       <div className="comment">
         <p className="comment-text">{comment.text}</p>
-        <p className="user">{comment.author}</p>
+        <p className="user">{author}</p>
       </div>
     );
   }

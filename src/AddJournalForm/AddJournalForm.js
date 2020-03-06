@@ -1,11 +1,13 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
+import JournalsApiService from '../services/journals-api-service';
 import './AddJournalForm.css';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import { DateRangePicker } from 'react-dates';
 import JournalsContext from '../JournalsContext';
 import ValidationError from '../ValidationError';
+import moment from 'moment';
 
 class AddJournalForm extends Component {
 
@@ -26,8 +28,8 @@ class AddJournalForm extends Component {
         value: '',
         touched: false
       },
-      startDate: null,
-      endDate: null,
+      startDate: moment(),
+      endDate: moment(),
       error: null,
     };
   }
@@ -81,19 +83,33 @@ class AddJournalForm extends Component {
     handleSubmit = (e) => {
       e.preventDefault();
 
-      const { title, location, content  } = e.target;
-
-      const journal = {
-        id: Math.random() * 5,
+      const { title, location, content  } = this.state;
+      const { startDate, endDate } = this.state;
+      
+      console.log(this.state.startDate.valueOf());
+      console.log(this.state.startDate._d);
+      
+      const newJournal = {
         title: title.value,
         location: location.value,
-        startDate: this.state.startDate._d,
-        endDate: this.state.endDate._d,
-        content: content.value,
-        authorId: 1
+        start_date: startDate,
+        end_date: endDate,
+        content: content.value
       };
-      this.context.addJournal(journal);
-      this.props.history.push('/my-journals');
+      console.log('working!', newJournal);
+      JournalsApiService.postJournal(newJournal)
+        .then(this.context.addJournal())
+        .then(() => {
+          title.value = '';
+          location.value = '';
+          content.value = '';
+          this.props.history.push('/my-journals');
+        }
+          
+        )
+        .catch(this.context.setError);
+      
+      
     }
 
     handleClickCancel = () => {

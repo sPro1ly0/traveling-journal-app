@@ -26,18 +26,18 @@ const JournalsApiService = {
           : res.json()
       );
   },
-  postJournal(title, location, content, start_date, end_date) {
+  postJournal(newJournal) {
     return fetch(`${config.API_ENDPOINT}/journals`, {
       method: 'POST',
       headers: {
         'authorization': `bearer ${TokenService.getAuthToken()}`
       },
       body: JSON.stringify({
-        title,
-        location,
-        content,
-        start_date,
-        end_date,
+        title: newJournal.title,
+        location: newJournal.location,
+        content: newJournal.content,
+        start_date: newJournal.start_date,
+        end_date: newJournal.end_date,
       })
     })
       .then(res => 
