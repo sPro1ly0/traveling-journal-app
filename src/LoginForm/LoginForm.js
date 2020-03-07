@@ -38,8 +38,6 @@ class LoginForm extends Component {
           TokenService.saveAuthToken(res.authToken);
           this.handleLoginSuccess();
           this.context.setLoginStatus(true);
-        })
-        .then(() => {
           this.context.clearError();
           JournalsApiService.getUserName()
             .then(this.context.setUserName)
@@ -50,7 +48,7 @@ class LoginForm extends Component {
           console.log('working');
         })
         .catch(res => {
-          this.setState({ error: res.error.message });
+          this.setState({ error: res.error });
         });
     }
 
