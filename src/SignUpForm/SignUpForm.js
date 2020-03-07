@@ -41,7 +41,7 @@ class SignUpForm extends Component {
           this.handleSignUpSuccess();
         })
         .catch(res => {
-          this.setState({ error: res.error });
+          this.setState({ error: res.error.message });
         });
         
     }
@@ -76,7 +76,7 @@ class SignUpForm extends Component {
           console.log('working');
         })
         .catch(res => {
-          this.setState({ error: res.error });
+          this.setState({ error: res.error.message });
         });
     }
 

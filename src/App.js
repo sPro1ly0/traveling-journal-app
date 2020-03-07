@@ -224,7 +224,7 @@ class App extends Component {
                   component={JournalPage}
                 />
                 <Route
-                  component={NotFoundPage} //good
+                  component={NotFoundPage}
                 />
               </Switch>
             </TravelJournalError>

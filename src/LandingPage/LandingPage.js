@@ -48,7 +48,8 @@ class LandingPage extends Component {
         console.log('working');
       })
       .catch(res => {
-        this.setState({ error: res.error });
+        console.log(this.state.error);
+        this.setState({ error: res.error.message });
       });
   }
 

@@ -50,7 +50,7 @@ class LoginForm extends Component {
           console.log('working');
         })
         .catch(res => {
-          this.setState({ error: res.error });
+          this.setState({ error: res.error.message });
         });
     }
 
