@@ -2,9 +2,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AuthApiService from '../services/auth-api-service';
+import TokenService from '../services/token-service';
+import JournalsApiService from '../services/journals-api-service';
+import JournalsContext from '../JournalsContext';
 import './SignUpForm.css';
 
 class SignUpForm extends Component {
+
+  static contextType = JournalsContext;
 
   constructor(props) {
     super(props);
@@ -39,6 +44,40 @@ class SignUpForm extends Component {
           this.setState({ error: res.error });
         });
         
+    }
+
+    handleLoginSuccess = () => {
+      const { location, history } = this.props;
+      const destination = (location.state || {}).from || '/my-journals';
+      history.push(destination);
+    }
+  
+    handleDemoUserAuth = (e) => {
+      e.preventDefault();
+      this.setState({ error: null });
+      // demo user's name John Doe
+      AuthApiService.postLogin({
+        email: 'example@mail.com',
+        password: 'pasS3!word'
+      })
+        .then(res => {
+          TokenService.saveAuthToken(res.authToken);
+          this.handleLoginSuccess();
+          this.context.setLoginStatus(true);
+        })
+        .then(() => {
+          this.context.clearError();
+          JournalsApiService.getUserName()
+            .then(this.context.setUserName)
+            .catch(this.context.setError);
+          JournalsApiService.getUserJournals()
+            .then(this.context.setUserJournalsList)
+            .catch(this.context.setError);
+          console.log('working');
+        })
+        .catch(res => {
+          this.setState({ error: res.error });
+        });
     }
 
     render() {
@@ -90,7 +129,10 @@ class SignUpForm extends Component {
             </div>
             <button type="submit">Sign Up</button>
             <p>OR</p>
-            <Link to="/my-journals" type='button'>Explore the Demo</Link>
+            <Link 
+              to="/my-journals"
+              onClick={this.handleDemoUserAuth}
+              type='button'>Explore the Demo</Link>
           </form>
         </section>
       );

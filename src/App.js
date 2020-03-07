@@ -110,6 +110,7 @@ class App extends Component {
   }
 
   setUserJournalsList = userJournals => {
+    // show newest journals first
     const userJournalsList = userJournals.reverse();
     this.setState({
       userJournalsList
@@ -130,7 +131,7 @@ class App extends Component {
     });
   }
 
-  addComment = comment => {
+  addComments = comment => {
     this.setState({
       comments: [...this.state.comments, comment]
     });
@@ -140,7 +141,7 @@ class App extends Component {
     this.setJournal([]);
     this.setComments([]);
   }
-
+  // clear when user logs out
   clearData = () => {
     this.setAllJournalsList([]);
     this.setComments([]);
@@ -159,23 +160,24 @@ class App extends Component {
   render() {
 
     const contextValue = {
+      error: this.state.error,
+      user: this.state.user,
       journal: this.state.journal,
       userJournalsList: this.state.userJournalsList,
       allJournalsList: this.state.allJournalsList,
-      user: this.state.user,
       comments: this.state.comments,
-      addJournal: this.addJournal,
-      deleteJournal: this.deleteJournal,
-      updateJournal: this.updateJournal,
-      addComment: this.addComment,
-      setLoginStatus: this.setLoginStatus,
-      setAllJournalsList: this.setAllJournalsList,
-      setJournal: this.setJournal,
-      clearJournal: this.clearJournal,
-      setComments: this.setComments,
       setError: this.setError,
       clearError: this.clearError,
       setUserName: this.setUserName,
+      addJournal: this.addJournal,
+      deleteJournal: this.deleteJournal,
+      updateJournal: this.updateJournal,
+      setJournal: this.setJournal,
+      clearJournal: this.clearJournal,
+      addComments: this.addComments,
+      setComments: this.setComments,
+      setLoginStatus: this.setLoginStatus,
+      setAllJournalsList: this.setAllJournalsList,
       setUserJournalsList: this.setUserJournalsList,
       clearData: this.clearData
     };
@@ -189,34 +191,34 @@ class App extends Component {
               <Switch>
                 <Route 
                   exact path="/"
-                  component={LandingPage} // good
+                  component={LandingPage}
                 />
                 <PublicOnlyRoute 
                   exact path="/signup"
-                  component={SignUpForm} // good
+                  component={SignUpForm}
                 />
                 <PublicOnlyRoute
                   exact path="/login"
-                  component={LoginForm} // good
+                  component={LoginForm}
                 />
                 <PrivateRoute 
-                  exact path="/my-journals" // good
+                  exact path="/my-journals"
                   component={UserHomePage}
                 />
                 <PrivateRoute 
                   exact path="/all-journals"
-                  component={AllJournals} // good
+                  component={AllJournals}
                 />
                 <PrivateRoute 
-                  exact path="/add-journal" // good
+                  exact path="/add-journal"
                   component={AddJournalForm}
                 />
                 <PrivateRoute 
-                  exact path="/edit-journal/:journalId" // good
+                  exact path="/edit-journal/:journalId"
                   component={EditJournalForm}
                 />
                 <PrivateRoute
-                  exact path="/journals/:journalId" // good
+                  exact path="/journals/:journalId"
                   component={JournalPage}
                 />
                 <Route

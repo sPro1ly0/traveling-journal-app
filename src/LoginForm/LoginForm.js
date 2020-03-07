@@ -8,14 +8,14 @@ import './LoginForm.css';
 
 class LoginForm extends Component {
 
+  static contextType = JournalsContext;
+
   constructor(props) {
     super(props);
     this.state = {
       error: null
     };
   }
-
-  static contextType = JournalsContext;
 
     handleLoginSuccess = () => {
       const { location, history } = this.props;
@@ -33,7 +33,6 @@ class LoginForm extends Component {
         password: password.value
       })
         .then(res => {
-          // res {authToken: aksjdfnkajsdfnks}
           email.value = '';
           password.value = '';
           TokenService.saveAuthToken(res.authToken);

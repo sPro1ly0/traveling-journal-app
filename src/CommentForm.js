@@ -15,7 +15,7 @@ class CommentForm extends Component {
       const text = comment.value;
         
       JournalsApiService.postComment(journal_id, text)
-        .then(this.context.addComment)
+        .then(this.context.addComments)
         .then(() => {
           comment.value = '';
           // console.log(this.context.comments);

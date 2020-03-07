@@ -144,11 +144,10 @@ class EditJournalForm extends Component {
     };
 
 
-    handleDelete = e => {
-      e.preventDefault();
+    handleDelete = () => {
       const { journalId } = this.props.match.params;
       JournalsApiService.deleteJournal(journalId)
-        .then(this.context.deleteJournal)
+        .then(this.context.deleteJournal(journalId))
         .catch(this.context.setError);
       this.props.history.push('/my-journals');
       console.log(journalId);

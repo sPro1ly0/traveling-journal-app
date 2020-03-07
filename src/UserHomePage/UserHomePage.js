@@ -24,7 +24,6 @@ class UserHomePage extends Component {
   render() {
     const { userJournalsList, user, error } = this.context;
     // console.log(userJournalsList);
-    // make John Doe the demo user, userId = 1
     const numberOfJournals = userJournalsList.length;
     const journalPosts = userJournalsList.map(journal => 
       <JournalPost 
@@ -41,7 +40,7 @@ class UserHomePage extends Component {
 	        <p>You have {numberOfJournals} journals.</p>
 	      </header>
         {error 
-          ? <div className="error">{this.state.error}</div>
+          ? <div className="error">{error}</div>
           : ''}
 	      <section className="journals">
 	        {journalPosts}
