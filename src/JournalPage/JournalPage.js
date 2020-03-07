@@ -31,53 +31,68 @@ class JournalPage extends Component {
       this.context.clearJournal();
     }
 
-    renderJournalPage() {
-      const { journal, comments, user } = this.context;
-
-      let author = journal.author;
-      if (author === undefined) {
-        author = 'Unknown';
-      }
-
-      const checkSameDate = (moment(journal.start_date).format('MMMM Do YYYY')  === moment(journal.end_date).format('MMMM Do YYYY') 
-        ? moment(journal.start_date).format('MMMM Do YYYY') 
-        : `${moment(journal.start_date).format('MMMM Do YYYY')} - ${moment(journal.end_date).format('MMMM Do YYYY')}`);
-
-      return (
-        <>
-          <header className="journal-header">
-            <h1>{journal.title}</h1>
-            <div className="journal-info">
-              <h2>{journal.location}</h2>
-              <p>{checkSameDate}</p>
-              <p>By: {author}</p>
-            </div>
-          </header>
-          <JournalContent journal={journal} />
-          <JournalComments 
-            comments={comments}
-            user={user} />
-          <CommentForm />
-        </>
-      );
-    }
-
-
     render() {
       const { error } = this.context;
-      let page;
-      if (error) {
-        // eslint-disable-next-line quotes
-        page = (error.message === `Journal doesn't exist`)
-          ? <p className='red-error'>Journal not found.</p>
-          : <p className='red-error'>There was an error.</p>;
-      } else {
-        page = this.renderJournalPage();
-      }
+
+      const { journal, comments, user } = this.context;
+      let title;
+      let location;
+      let author;
+      let checkSameDate;
+      let content;
+      let addComments;
+      if (journal.length > 0) {
+        // console.log(journal[0]);
+
+        author = journal[0].author;
+        // console.log(author);
+        if (author === undefined) {
+          author = 'Unknown';
+        }
+        title = journal[0].title;
+
+        location = journal[0].location;
+
+        checkSameDate = (moment(journal[0].start_date).format('MMMM Do YYYY')  === moment(journal[0].end_date).format('MMMM Do YYYY') 
+          ? moment(journal[0].start_date).format('MMMM Do YYYY') 
+          : `${moment(journal[0].start_date).format('MMMM Do YYYY')} - ${moment(journal[0].end_date).format('MMMM Do YYYY')}`);
+
+        content  = journal[0].content;
+        
+        addComments = comments.map(comment => 
+          <Comment 
+            key={comment.id}
+            comment={comment}
+            user={user}
+          /> 
+        );
+
+      } 
+
       return (
         <>
           <section className="comments-section">
-            {page}
+            <header className="journal-header">
+              <h1>{title}</h1>
+              <div className="journal-info">
+                <h2>{location}</h2>
+                <p>{checkSameDate}</p>
+                <p>By: {author}</p>
+              </div>
+            </header>
+            {error 
+              ? <p className='red-error'>{error.error}</p>
+              : ''}
+            <section>
+              <div className="journal-content">
+                <p>{content}</p>
+              </div>
+            </section>
+            <section className="comments-section">
+              <h3>Comments</h3>
+              {addComments}
+            </section>
+            <CommentForm />
           </section>
         </>
       );
@@ -85,30 +100,3 @@ class JournalPage extends Component {
 }
 
 export default JournalPage;
-
-function JournalContent({ journal }) {
-  return (
-    <section>
-      <div className="journal-content">
-        <p>{journal.content}</p>
-      </div>
-    </section>
-  );
-}
-
-function JournalComments({ comments = [], user }) {
-  const addComments = comments.map(comment => 
-    <Comment 
-      key={comment.id}
-      comment={comment}
-      user={user}
-    /> 
-  );
-  return (
-    <section className="comments-section">
-      <h3>Comments</h3>
-      {addComments}
-    </section>
-  );
-  
-}

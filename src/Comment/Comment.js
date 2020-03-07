@@ -8,7 +8,7 @@ class Comment extends Component {
     const { comment, user } = this.props;
     let author = comment.author;
     if (author === undefined) {
-      author = user.full_name;
+      author = user[0].full_name;
     }
     
     return (

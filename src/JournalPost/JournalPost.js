@@ -8,20 +8,17 @@ import moment from 'moment';
 
 class JournalPost extends Component {
 
-    
-
   render() {
     const { journal, user } = this.props;
     // eslint-disable-next-line react/prop-types
-    //const findComments = comments.filter(comment => comment.journalId === journal.id);
+    
     const numberOfComments = journal.number_of_comments;
-    // demo userId = 1
 
     let testUserName;
     if (user === undefined) {
       testUserName = 'Unknown';
     } else {
-      testUserName = user.full_name;
+      testUserName = user[0].full_name;
     }
     //console.log(user);
     const renderEditButton = journal.author === testUserName ? <Link to={`/edit-journal/${journal.id}`}>Edit</Link> : null;
@@ -50,8 +47,3 @@ class JournalPost extends Component {
 }
 
 export default JournalPost;
-
-// JournalPost.propTypes = {
-//   journal: PropTypes.object,
-//   comments: PropTypes.object
-// };

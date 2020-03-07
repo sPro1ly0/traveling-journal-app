@@ -57,15 +57,17 @@ class App extends Component {
     });
   }
 
-  setUserName = user => {
+  setUserName = userName => {
+    const name = userName;
     this.setState({
-      user
+      user: [name]
     });
   }
 
   setJournal = journal => {
+    const journalContent = journal;
     this.setState({
-      journal
+      journal: [journalContent]
     });
   }
 

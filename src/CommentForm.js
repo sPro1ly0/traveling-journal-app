@@ -11,7 +11,7 @@ class CommentForm extends Component {
       e.preventDefault();
       const { journal } = this.context;
       const { comment } = e.target;
-      const journal_id = journal.id;
+      const journal_id = journal[0].id;
       const text = comment.value;
         
       JournalsApiService.postComment(journal_id, text)
