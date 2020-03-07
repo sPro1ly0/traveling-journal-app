@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
+import PrivateRoute from './Utils/PrivateRoute';
+import PublicOnlyRoute from './Utils/PublicOnlyRoute';
+
 import NavBarTop from './NavBarTop/NavBarTop';
 import NavBarBottom from './NavBarBottom/NavBarBottom';
 
@@ -19,7 +22,8 @@ import Footer from './Footer/Footer';
 import TravelJournalError from './TravelJournalError';
 import NotFoundPage from './NotFoundPage/NotFoundPage';
 import JournalsContext from './JournalsContext';
-import { journals, users, comments } from './ExampleData';
+import TokenService from './services/token-service';
+//import { journals, users, comments } from './ExampleData';
 
 class App extends Component {
 
@@ -28,55 +32,155 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      journals: journals,
-      users: users,
-      comments: comments
-    }
+      error: null,
+      loggedIn: TokenService.hasAuthToken() ? true : false,
+      user: [],
+      journal: [],
+      userJournalsList: [],
+      allJournalsList: [],
+      comments: []
+    };
+  }
+
+  setError = error => {
+    console.error(error);
+    this.setState({ error });
+  }
+
+  clearError = () => {
+    this.setState({ error: null });
+  }
+
+  setLoginStatus = status => {
+    this.setState({
+      loggedIn: status
+    });
+  }
+
+  setUserName = user => {
+    this.setState({
+      user
+    });
+  }
+
+  setJournal = journal => {
+    this.setState({
+      journal
+    });
   }
 
   addJournal = journal => {
+    console.log(journal);
     this.setState({
-      journals: [journal, ...this.state.journals]
-    })
+      allJournalsList: [...this.state.allJournalsList, journal]
+    });
   }
 
   deleteJournal= journalId => {
-    const newJournals = this.state.journals.filter(journal => 
+    const newUserJournals = this.state.userJournalsList.filter(journal => 
       journal.id !== journalId
-      )
-      this.setState({
-        journals: newJournals
-      })
+    );
+    const newAllJournals = this.state.allJournalsList.filter(journal => 
+      journal.id !== journalId
+    );
+
+    this.setState({
+      userJournalsList: newUserJournals,
+      allJournalsList: newAllJournals
+    });
   }
 
   updateJournal = updatedJournal => {
-    const newJournals = this.state.journals.map(journal => 
+    const newUserJournals = this.state.userJournalsList.map(journal => 
       (journal.id === updatedJournal.id)
         ? updatedJournal
         : journal
-    )
+    );
+
+    const newAllJournals = this.state.allJournalsList.map(journal => 
+      (journal.id === updatedJournal.id)
+        ? updatedJournal
+        : journal
+    );
+
     this.setState({
-      journals: newJournals
-    })
+      userJournalsList: newUserJournals,
+      allJournalsList: newAllJournals
+    });
   }
 
-  addComment = comment => {
+  setUserJournalsList = userJournals => {
+    // show newest journals first
+    const userJournalsList = userJournals.reverse();
+    this.setState({
+      userJournalsList
+    });
+  }
+
+  setAllJournalsList = allJournals => {
+    // show newest journals first
+    const allJournalsList = allJournals.reverse();
+    this.setState({
+      allJournalsList
+    });
+  }
+
+  setComments = comments => {
+    this.setState({ 
+      comments 
+    });
+  }
+
+  addComments = comment => {
     this.setState({
       comments: [...this.state.comments, comment]
-    })
+    });
+  }
+
+  clearJournal = () => {
+    this.setJournal([]);
+    this.setComments([]);
+  }
+  // clear when user logs out
+  clearData = () => {
+    this.setAllJournalsList([]);
+    this.setComments([]);
+    this.setJournal([]);
+    this.setUserName([]);
+    this.setUserJournalsList([]);
+    this.clearError();
+  }
+
+  renderNavBottom() {
+    return (
+      <NavBarBottom />
+    );
   }
 
   render() {
 
     const contextValue = {
-      journals: this.state.journals,
-      users: this.state.users,
+      error: this.state.error,
+      user: this.state.user,
+      journal: this.state.journal,
+      userJournalsList: this.state.userJournalsList,
+      allJournalsList: this.state.allJournalsList,
       comments: this.state.comments,
+      setError: this.setError,
+      clearError: this.clearError,
+      setUserName: this.setUserName,
       addJournal: this.addJournal,
       deleteJournal: this.deleteJournal,
       updateJournal: this.updateJournal,
-      addComment: this.addComment
-    }
+      setJournal: this.setJournal,
+      clearJournal: this.clearJournal,
+      addComments: this.addComments,
+      setComments: this.setComments,
+      setLoginStatus: this.setLoginStatus,
+      setAllJournalsList: this.setAllJournalsList,
+      setUserJournalsList: this.setUserJournalsList,
+      clearData: this.clearData
+    };
 
     return (
       <>
@@ -89,47 +193,50 @@ class App extends Component {
                   exact path="/"
                   component={LandingPage}
                 />
-                <Route 
+                <PublicOnlyRoute 
                   exact path="/signup"
                   component={SignUpForm}
                 />
-                <Route 
+                <PublicOnlyRoute
                   exact path="/login"
                   component={LoginForm}
                 />
-                <Route 
+                <PrivateRoute 
                   exact path="/my-journals"
                   component={UserHomePage}
                 />
-                <Route 
+                <PrivateRoute 
                   exact path="/all-journals"
                   component={AllJournals}
                 />
-                <Route 
+                <PrivateRoute 
                   exact path="/add-journal"
                   component={AddJournalForm}
                 />
-                <Route 
+                <PrivateRoute 
                   exact path="/edit-journal/:journalId"
                   component={EditJournalForm}
                 />
-                <Route 
+                <PrivateRoute
                   exact path="/journals/:journalId"
                   component={JournalPage}
                 />
                 <Route
-                  component={NotFoundPage}
+                  component={NotFoundPage} //good
                 />
               </Switch>
             </TravelJournalError>
           </main>
           <Footer />
-          <NavBarBottom />
+          {TokenService.hasAuthToken()
+            ? this.renderNavBottom()
+            : ''
+          }
         </JournalsContext.Provider>      
       </>
     );
   }
-  
+
 }
 
 export default App;
