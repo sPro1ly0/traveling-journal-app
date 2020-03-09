@@ -23,7 +23,8 @@ import TravelJournalError from './TravelJournalError';
 import NotFoundPage from './NotFoundPage/NotFoundPage';
 import JournalsContext from './JournalsContext';
 import TokenService from './services/token-service';
-//import { journals, users, comments } from './ExampleData';
+import AuthApiService from './services/auth-api-service';
+import IdleService from './services/idle-service';
 
 class App extends Component {
 
@@ -38,8 +39,38 @@ class App extends Component {
       journal: [],
       userJournalsList: [],
       allJournalsList: [],
-      comments: []
+      comments: [],
+      showNavBottom: false
     };
+  }
+
+  componentDidMount() {
+    //  set the function (callback) to call when a user goes idle
+    //  logout a user when they're idle
+    IdleService.setIdleCallback(this.logoutFromIdle);
+    /* if a user is logged in */
+    if (TokenService.hasAuthToken()) {
+
+      IdleService.registerIdleTimerResets();
+      TokenService.queueCallbackBeforeExpiry(() => {
+        AuthApiService.postRefreshToken();
+      });
+    }
+  }
+
+  componentWillUnmount() {
+    //  when the app unmounts,
+    //  stop the event listeners that auto logout (clear the token from storage)
+    //  and remove the refresh endpoint request
+    IdleService.unRegisterIdleResets();
+    TokenService.clearCallbackBeforeExpiry();
+  }
+
+  logoutFromIdle = () => {
+    TokenService.clearAuthToken();
+    TokenService.clearCallbackBeforeExpiry();
+    IdleService.unRegisterIdleResets();
+    this.forceUpdate();
   }
 
   setError = error => {
@@ -54,6 +85,12 @@ class App extends Component {
   setLoginStatus = status => {
     this.setState({
       loggedIn: status
+    });
+  }
+
+  showingNavBottom = navBar => {
+    this.setState({
+      showNavBottom: navBar
     });
   }
 
@@ -153,6 +190,12 @@ class App extends Component {
     this.clearError();
   }
 
+  renderFooter() {
+    return (
+      <Footer />
+    );
+  }
+
   renderNavBottom() {
     return (
       <NavBarBottom />
@@ -168,6 +211,7 @@ class App extends Component {
       userJournalsList: this.state.userJournalsList,
       allJournalsList: this.state.allJournalsList,
       comments: this.state.comments,
+      hideNavBottom: this.state.hideNavBottom,
       setError: this.setError,
       clearError: this.clearError,
       setUserName: this.setUserName,
@@ -229,7 +273,10 @@ class App extends Component {
               </Switch>
             </TravelJournalError>
           </main>
-          <Footer />
+          {TokenService.hasAuthToken()
+            ? ''
+            : this.renderFooter()
+          }
           {TokenService.hasAuthToken()
             ? this.renderNavBottom()
             : ''

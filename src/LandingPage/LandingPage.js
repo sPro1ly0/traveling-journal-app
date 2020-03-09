@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AuthApiService from '../services/auth-api-service';
 import TokenService from '../services/token-service';
+import IdleService from '../services/idle-service';
 import JournalsApiService from '../services/journals-api-service';
 import JournalsContext from '../JournalsContext';
 import './LandingPage.css';
@@ -19,8 +20,8 @@ class LandingPage extends Component {
   }
 
   handleLoginSuccess = () => {
-    const { location, history } = this.props;
-    const destination = (location.state || {}).from || '/my-journals';
+    const { history } = this.props;
+    const destination = '/my-journals';
     history.push(destination);
   }
 
@@ -34,6 +35,10 @@ class LandingPage extends Component {
     })
       .then(res => {
         TokenService.saveAuthToken(res.authToken);
+        IdleService.registerIdleTimerResets();
+        TokenService.queueCallbackBeforeExpiry(() => {
+          AuthApiService.postRefreshToken();
+        });
         this.handleLoginSuccess();
         this.context.setLoginStatus(true);
       })
@@ -48,7 +53,7 @@ class LandingPage extends Component {
         console.log('working');
       })
       .catch(res => {
-        this.setState({ error: res.error.message });
+        this.setState({ error: res.error });
         console.log(this.state.error);
       });
   }

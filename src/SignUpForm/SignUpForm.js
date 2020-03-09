@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AuthApiService from '../services/auth-api-service';
 import TokenService from '../services/token-service';
+import IdleService from '../services/idle-service';
 import JournalsApiService from '../services/journals-api-service';
 import JournalsContext from '../JournalsContext';
 import './SignUpForm.css';
@@ -34,10 +35,15 @@ class SignUpForm extends Component {
         password: password.value
       })
       // eslint-disable-next-line no-unused-vars
-        .then(user => {
+        .then(res => {
           full_name.value = '';
           email.value = '';
           password.value = '';
+          TokenService.saveAuthToken(res.authToken);
+          IdleService.registerIdleTimerResets();
+          TokenService.queueCallbackBeforeExpiry(() => {
+            AuthApiService.postRefreshToken();
+          });
           this.handleSignUpSuccess();
         })
         .catch(res => {

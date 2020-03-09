@@ -8,6 +8,7 @@ const JournalsContext = React.createContext({
   allJournalsList: [],
   comments: [],
   loggedIn: null,
+  showNavBottom: null,
   setError: () => {},
   clearError: () => {},
   setUserName: () => {},
@@ -19,6 +20,7 @@ const JournalsContext = React.createContext({
   setComments: () => {},
   addComments:() => {},
   setLoginStatus: () => {},
+  showingNavBottom: () => {},
   setAllJournalsList: () => {},
   setUserJournalsList: () => {},
   clearData: () => {}

@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import './AllJournals.css';
 import SearchFilter from '../SearchFilter/SearchFilter';
+import JournalsContext from '../JournalsContext';
 
 class AllJournals extends Component {
+
+  static contextType = JournalsContext;
+
+  // componentDidMount() {
+  //   this.context.showingNavBottom(true);
+  // }
 
 
   render() {

@@ -11,6 +11,7 @@ class UserHomePage extends Component {
   static contextType = JournalsContext;
 
   componentDidMount() {
+    // this.context.showingNavBottom(true);
     this.context.clearError();
     JournalsApiService.getUserName()
       .then(this.context.setUserName)
