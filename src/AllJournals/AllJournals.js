@@ -7,9 +7,9 @@ class AllJournals extends Component {
 
   static contextType = JournalsContext;
 
-  // componentDidMount() {
-  //   this.context.showingNavBottom(true);
-  // }
+  componentDidMount() {
+    this.context.showingNavBottom(true);
+  }
 
 
   render() {

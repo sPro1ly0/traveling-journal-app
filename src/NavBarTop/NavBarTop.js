@@ -42,7 +42,10 @@ class NavBarTop extends Component {
   render() {
     return (
       <nav className='nav-top'>
-        <Link to="/">Traveling Journal</Link>
+        {TokenService.hasAuthToken()
+          ? <p className='appName'>Traveling Journal</p>
+          : <Link to="/" className='appName'>Traveling Journal</Link>
+        }
         {TokenService.hasAuthToken()
           ? this.renderLogoutLink()
           : this.renderLoginLinks()

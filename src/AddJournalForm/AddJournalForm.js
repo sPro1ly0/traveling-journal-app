@@ -80,6 +80,10 @@ class AddJournalForm extends Component {
       }
     }
 
+    componentDidMount() {
+      this.context.showingNavBottom(false);
+    }
+
     handleSubmit = (e) => {
       e.preventDefault();
 

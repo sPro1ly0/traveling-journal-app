@@ -37,6 +37,7 @@ class EditJournalForm extends Component {
 
     componentDidMount() {
       this.context.clearError();
+      this.context.showingNavBottom(false);
       const { journalId } = this.props.match.params;
       JournalsApiService.getJournal(journalId)
         .then(resJson => {

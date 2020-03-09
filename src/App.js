@@ -45,6 +45,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.context.showingNavBottom(true);
     //  set the function (callback) to call when a user goes idle
     //  logout a user when they're idle
     IdleService.setIdleCallback(this.logoutFromIdle);
@@ -55,6 +56,7 @@ class App extends Component {
       TokenService.queueCallbackBeforeExpiry(() => {
         AuthApiService.postRefreshToken();
       });
+      
     }
   }
 
@@ -211,7 +213,7 @@ class App extends Component {
       userJournalsList: this.state.userJournalsList,
       allJournalsList: this.state.allJournalsList,
       comments: this.state.comments,
-      hideNavBottom: this.state.hideNavBottom,
+      showingNavBottom: this.showingNavBottom,
       setError: this.setError,
       clearError: this.clearError,
       setUserName: this.setUserName,
@@ -235,7 +237,7 @@ class App extends Component {
           <main className='App'>
             <TravelJournalError>
               <Switch>
-                <Route 
+                <PublicOnlyRoute 
                   exact path="/"
                   component={LandingPage}
                 />
@@ -277,7 +279,7 @@ class App extends Component {
             ? ''
             : this.renderFooter()
           }
-          {TokenService.hasAuthToken()
+          {TokenService.hasAuthToken() && this.state.showNavBottom === true
             ? this.renderNavBottom()
             : ''
           }
