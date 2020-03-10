@@ -11,7 +11,7 @@
     font-family: 'Nunito', 'Arial', sans-serif;
     font-weight: 600;
     text-align: center;
-    min-height: 450px;
+    min-height: 600px;
     height: 100vh;
     margin-top: 40px;
 }
@@ -27,6 +27,7 @@
 }
 
 .signup-field > label {
+    font-size: 1.07em;
     text-align: left;
 }
 
@@ -52,7 +53,15 @@
     background-color: #A1E7EB;
     border: none;
     border-radius: 5px;
+    box-shadow: 0 4px 8px 0 #CACACA, 0 6px 20px 0 #CACACA;
     padding: 5px 8px;
     font-size: 1.2em;
     margin-top: 10px;
+}
+
+.signup-button:hover, 
+.signup-button:active,
+.signup-button:focus  {
+    background-color: #FDE457;
+    border-radius: 5px;
 }

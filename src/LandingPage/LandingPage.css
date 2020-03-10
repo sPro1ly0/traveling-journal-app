@@ -20,37 +20,40 @@ img {
 }
 
 .second-section {
-    background-color: #EBDD8A;
+    background-color: #A1E7EB
 }
 
 .intro-header {
     font-family: 'Bellota', cursive, 'Arial', 'sans-serif';
     font-weight: 700;
+    font-size: 1.6em;
 }
 
 .feature-sections > h3 {
     font-family: 'Bellota', cursive, 'Arial', 'sans-serif';
     font-weight: 700;
-    font-size: 1.45em;
+    font-size: 1.48em;
 }
 
 .feature-sections > p, .demo-button {
     text-decoration: none;
     color: black;
     font-family: 'Nunito', 'Arial', sans-serif;
+    font-size: 1.03em;
 }
 
 .demo-button {
     background-color: #A1E7EB;
+    box-shadow: 0 4px 8px 0 #CACACA, 0 6px 20px 0 #CACACA;
     font-weight: 400;
     border-radius: 5px;
     padding: 3px 5px;
-    font-size: 1.2em;
+    font-size: 1.25em;
 }
 
 .demo-button:hover, 
 .demo-button:active,
 .demo-button:focus  {
-    background-color: #EBDD8A;
+    background-color: #FDE457;
     border-radius: 5px;
 }

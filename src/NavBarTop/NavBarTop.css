@@ -16,7 +16,7 @@
 }
 
 .nav-top > a {
-    font-size: 1.2em;
+    font-size: 1.25em;
     text-decoration: none;
 }
 
@@ -41,6 +41,7 @@
     text-decoration: none;
     color: black;
     font-family: 'Nunito', sans-serif;
+    font-size: 1em;
     padding: 2px;
 }
 
@@ -57,6 +58,6 @@
 .nav-show-logout-link > a:hover, 
 .nav-show-logout-link > a:active,
 .nav-show-logout-link > a:focus   {
-    background-color: #EBDD8A;
+    background-color: #FDE457;
     border-radius: 5px;
 }

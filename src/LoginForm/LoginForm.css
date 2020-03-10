@@ -7,9 +7,8 @@
     margin-top: 50px;
 }
 
-.signup-header {
-    height: 125px;
-    padding-bottom: 20px;
+.login-header > p {
+    font-size: 1.04em;
 }
 
 .login-error {
@@ -32,6 +31,7 @@
 }
 
 .login-field > label {
+    font-size: 1.07em;
     text-align: left;
 }
 
@@ -45,9 +45,17 @@
 .login-button {
     font-family: 'Nunito', 'Arial', sans-serif;
     background-color: #A1E7EB;
+    box-shadow: 0 4px 8px 0 #CACACA, 0 6px 20px 0 #CACACA;
     border: none;
     border-radius: 5px;
     padding: 5px 8px;
     font-size: 1.2em;
     margin-top: 10px;
+}
+
+.login-button:hover, 
+.login-button:active,
+.login-button:focus  {
+    background-color: #FDE457;
+    border-radius: 5px;
 }
