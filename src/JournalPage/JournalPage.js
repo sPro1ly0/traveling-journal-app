@@ -64,14 +64,14 @@ class JournalPage extends Component {
             key={comment.id}
             comment={comment}
             user={user}
-          /> 
+          />
         );
 
       } 
 
       return (
         <>
-          <section className="comments-section">
+          <section className="journal-page">
             <header className="journal-header">
               <h1>{title}</h1>
               <div className="journal-info">

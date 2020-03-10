@@ -1,22 +1,38 @@
+.journal-page {
+    font-family: 'Nunito', 'Arial', sans-serif;
+    min-height: 960px;
+    margin-bottom: 60px;
+}
+
 .journal-header {
-    background-color: rgb(236, 235, 235);
-    height: 290px;
-    padding: 45px 15px;
+    background-color: #A2E7EB;
+    min-height: 290px;
+    padding: 45px 15px 20px;
     text-align: center;
+    font-weight: 600;
+}
+
+.journal-header > h1 {
+    font-size: 1.75em;
+    margin-bottom: 10px;
 }
   
 .journal-info {
-    margin-top: 30px;
+    margin-top: 10px;
     padding-bottom: 10px; 
-    height: 80px;
+    min-height: 50px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     text-align: center;
 }
 
+.journal-info > h2 {
+    font-size: 1.25em;
+}
+
 .journal-info > p {
-    margin: 0;
+    margin-bottom: 1px;
     line-height: 1.5em;
 }
   
@@ -24,35 +40,65 @@
     padding: 5px 10px;
 }
 
+.journal-content {
+    border-bottom: 1px solid #A2E7EB;
+    border-bottom-width: 10px;
+}
+
 .comment {
     display: flex;
     justify-content: space-between;
     background-color: white;
     border: 1px solid black;
+    border-radius: 5px;
     width: 100%;
     padding: 15px;
     margin-bottom: 10px;
 }
   
 .comment-text {
-    width: 60%;
+    width: 73%;
 }
   
 .user {
+    font-weight: 600;
     text-align: right;
     width: fit-content;
+    height: 23px;
+    float: right;
 }
   
 #add-comment {
     display: flex;
     flex-direction: column;
+    min-width: 300px;
+    width: 300px;
+    margin: 2px auto;
 }
   
 textarea {
+    font-family: 'Nunito', 'Arial', sans-serif;
+    border-radius: 5px;
+    font-size: 0.95em;
+    padding: 3px 5px;
     text-align: left;
 }
   
 .add-comment-button {
-    margin: 10px auto;
+    margin: 15px auto;
     width: 50%;
+    font-family: 'Nunito', 'Arial', sans-serif;
+    background-color: #A1E7EB;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 8px;
+    font-size: 1em;
+    margin-top: 10px;
+}
+
+.add-comment-button:hover, 
+.add-comment-button:active,
+.add-comment-button:focus   {
+    background-color: #EBDD8A;
+    border-radius: 5px;
 }
