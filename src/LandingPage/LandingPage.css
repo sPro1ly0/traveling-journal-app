@@ -16,11 +16,11 @@ img {
 .feature-sections {
     min-height: 200px;
     padding: 30px 50px;
-    background-color: #EBDD8A;
+    background-color: #C9FCFF;
 }
 
-section:nth-child(even) {
-    background-color: #C9FCFF;
+.second-section {
+    background-color: #EBDD8A;
 }
 
 .intro-header {

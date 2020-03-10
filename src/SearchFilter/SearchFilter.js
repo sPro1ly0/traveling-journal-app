@@ -4,6 +4,7 @@ import JournalsContext from '../JournalsContext';
 import JournalsApiService from '../services/journals-api-service';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
+import './SearchFilter.css';
 import { DateRangePicker } from 'react-dates';
 import moment from 'moment';
 
@@ -85,7 +86,7 @@ class SearchFilter extends Component {
                   onChange={this.updateSearchPlace} />
               </div> 
               <div className="search-field">
-                <label htmlFor="startDate" className="date">Search by dates</label>
+                <label htmlFor="startDate" className="date">Search by Dates</label>
                 <DateRangePicker                                
                   startDate={this.state.startDate}
                   startDateId="startDate"

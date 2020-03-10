@@ -1,7 +1,48 @@
-.journal-link {
-    text-decoration: none;
+.journal-post {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-family: 'Nunito', 'Arial', sans-serif;
+    min-width: 300px;
+    width: 80%;
+    margin-bottom: 10px;
 }
 
-.journal-post {
-    min-width: 300px;
+.journal-link,
+.comments-edit > a {
+    text-decoration: none;
+    color: black;
+}
+
+.journal-details {
+    background-color: #90CED1;
+    border-radius: 15px 15px 0 0;
+    padding: 15px;
+}
+
+.journal-post:nth-of-type(even) > .journal-details {
+    background-color: #C9FCFF;
+}
+
+.journal-post:nth-of-type(odd) > .journal-details {
+    background-color: #EBDD8A;
+}
+
+.journal-link > h2 {
+    color: black;
+    width: 100%;
+    margin: 0;
+}
+
+.comments-edit {
+    height: 45px;
+    padding: 15px;
+}
+
+.comments-edit > a:hover, 
+.comments-edit > a:active,
+.comments-edit > a:focus  {
+    background-color: #EBDD8A;
+    border-radius: 5px;
+    padding: 3px;
 }

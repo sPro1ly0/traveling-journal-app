@@ -127,12 +127,12 @@ class AddJournalForm extends Component {
       const { error } = this.state;
       return (
         <>
-          <header>
+          <header className='add-edit-headers'>
             <h1>New Journal</h1>
           </header>
           <section>
             <form 
-              className="add-entry"
+              className="add-journal"
               onSubmit={this.handleSubmit}
             >
               <div className='red-error' role='alert'>
@@ -192,7 +192,7 @@ class AddJournalForm extends Component {
                   required></textarea>
                 {this.state.content.touched && (<ValidationError message={this.validateContent()}/>)}
               </div>
-              <div className="add-edit-buttons">
+              <div className="add-buttons">
                 <button type="submit">Add New Journal</button>
                 <button type="button" onClick={this.handleClickCancel}>Cancel</button>
               </div>

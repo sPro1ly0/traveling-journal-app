@@ -28,12 +28,14 @@ class JournalPost extends Component {
       <>
                
         <div className="journal-post">
-          <Link to={`/journals/${journal.id}`} className='journal-link'>
-            <h2>{journal.title}</h2>
-          </Link>
-          <p>{journal.location}</p>
-          <p>{modifyStartDate}</p>
-                
+          <div className='journal-details'>
+            <Link to={`/journals/${journal.id}`} className='journal-link'>
+              <h2>{journal.title}</h2>
+              <p>{journal.location}</p>
+              <p className='journal-month-year'>{modifyStartDate}</p>
+            </Link>  
+          </div>
+           
           <div className="comments-edit">
             <p className="comments-count">Comments: {numberOfComments}</p>
             {renderEditButton}

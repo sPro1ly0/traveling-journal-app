@@ -1,0 +1,32 @@
+#search-form {
+    font-family: 'Nunito', 'Arial', sans-serif;
+    min-width: 256px;
+    width: 80%;
+    height: 200px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.search-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 300px;
+    margin: 10px auto;
+    line-height: 1.5em;
+    font-size: 1em;
+}
+
+.search-field > input {
+    font-size: 1em;
+    padding: 3px 5px;
+    border: 1px solid rgb(198, 204, 204);
+    border-radius: 2px;
+    min-width: 256px;
+}
+
+.search-field > label {
+    text-align: left;
+}

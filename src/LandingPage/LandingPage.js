@@ -76,7 +76,7 @@ class LandingPage extends Component {
           <p>Write about the places you&apos;ve experienced and keep track of where you&apos;ve traveled.</p>
           <img alt="place" src="https://sonshineventura.org/files/2015/02/wireframe-box-270x203.jpg" />
         </section>
-        <section className="feature-sections">
+        <section className="feature-sections second-section">
           <h3>Discover new places</h3>
           <p>Explore and read journals about all the places our users have been.</p>
           <img alt="place" src="https://sonshineventura.org/files/2015/02/wireframe-box-270x203.jpg" />

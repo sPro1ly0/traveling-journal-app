@@ -16,7 +16,7 @@ class AllJournals extends Component {
     return (
       <>
         <header>
-          <h2>Discover Journals Around the World</h2>
+          <h2 className='all-journals-header'>Discover Journals Around the World</h2>
         </header>
         <SearchFilter />
       </>

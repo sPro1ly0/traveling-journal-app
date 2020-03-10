@@ -1,5 +1,6 @@
 .nav-top {
     background-color: #A1E7EB;
+    box-shadow: 0px 1px 10px #999;
     text-align: center;
     position: fixed;
     display: flex;
@@ -23,6 +24,7 @@
     font-family: 'Bellota', cursive, 'Arial', 'sans-serif';
     font-weight: 700;
     color: black;
+    font-size: 1.2em;
 }
 
 .nav-top-links {
@@ -42,12 +44,19 @@
     padding: 2px;
 }
 
+.nav-show-logout-link {
+    justify-content: flex-end;
+}
+
 .nav-top > a:hover, 
 .nav-top > a:active,
 .nav-top > a:focus,
 .nav-top-links > a:hover, 
 .nav-top-links > a:active,
-.nav-top-links > a:focus  {
+.nav-top-links > a:focus,
+.nav-show-logout-link > a:hover, 
+.nav-show-logout-link > a:active,
+.nav-show-logout-link > a:focus   {
     background-color: #EBDD8A;
     border-radius: 5px;
 }

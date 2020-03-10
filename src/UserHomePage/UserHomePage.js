@@ -37,11 +37,11 @@ class UserHomePage extends Component {
 	  return (
 	    <>
 	      <header>
-	        <h2>My Journals</h2>
-	        <p>You have {numberOfJournals} journals.</p>
+	        <h2 className='users-header'>My Journals</h2>
+	        <p className='user-journal-number'>You have {numberOfJournals} journals.</p>
 	      </header>
         {error 
-          ? <div className="error">{error}</div>
+          ? <div className="red-error">{error}</div>
           : ''}
 	      <section className="journals">
 	        {journalPosts}

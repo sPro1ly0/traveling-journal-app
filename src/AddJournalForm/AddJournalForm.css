@@ -1,7 +1,23 @@
-.add-entry {
+.add-journal, .edit-journal {
+    font-family: 'Nunito', 'Arial', sans-serif;
+    min-height: 640px;
     height: 100vh;
     padding-left: 10px;
     padding-right: 10px;
+    margin: 0 auto 20px;
+    min-width: 310px;
+    width: 80%;
+}
+
+.add-entry {
+    text-align: center;
+    height: 50px;
+}
+
+.add-edit-headers {
+    font-family: 'Nunito', 'Arial', sans-serif;
+    font-weight: 600;
+    height: 120px;
 }
 
 .form-date {
@@ -25,9 +41,46 @@
     text-align: left;
 }
 
-.add-edit-buttons {
+.form-section > input, 
+.form-section > textarea {
+    font-size: 1em;
+    padding: 3px 5px;
+    border: 1px solid rgb(210, 215, 216);
+    border-radius: 3px;
+}
+
+.form-section > textarea {
+    font-family: 'Nunito', 'Arial', sans-serif;
+}
+
+.add-buttons, .edit-buttons {
     display: flex;
     justify-content: space-between;
-    width: 150px;
-    margin: 0 auto;
+    width: 220px;
+    margin: 10px auto 0;
+}
+
+.add-buttons > button,
+.edit-buttons > button {
+    font-family: 'Nunito', 'Arial', sans-serif;
+    background-color: #A1E7EB;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 8px;
+    font-size: 1em;
+    margin-top: 10px;
+}
+
+.edit-buttons {
+    width: 280px;
+}
+
+.add-buttons > button:hover, 
+.add-buttons > button:active,
+.add-buttons > button:focus,
+.edit-buttons > button:hover, 
+.edit-buttons > button:active,
+.edit-buttons > button:focus    {
+    background-color: #EBDD8A;
+    border-radius: 5px;
 }
