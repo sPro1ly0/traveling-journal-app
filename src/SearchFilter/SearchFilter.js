@@ -76,7 +76,7 @@ class SearchFilter extends Component {
               ? <div className="error">{this.state.error}</div>
               : ''}
             <form id="search-form">
-              <div className="search-field">
+              <div className="search-field search-location">
                 <label htmlFor="journal-location">Search Journals by Place</label>
                 <input 
                   type="text" 

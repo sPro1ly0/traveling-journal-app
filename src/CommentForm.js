@@ -28,7 +28,8 @@ class CommentForm extends Component {
       return (
         <form id="add-comment" onSubmit={this.handleSubmit}>
           <label htmlFor="comment">Make A Comment</label>
-          <textarea 
+          <textarea
+            className='comment-textarea' 
             id="comment" 
             name="comment" 
             aria-label='Type a comment.'

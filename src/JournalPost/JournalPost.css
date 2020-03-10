@@ -24,8 +24,20 @@
     background-color: #C9FCFF;
 }
 
+.journal-post:nth-of-type(even) > .journal-details:hover,
+.journal-post:nth-of-type(even) > .journal-details:focus,
+.journal-post:nth-of-type(even) > .journal-details:active {
+    background-color: #90CED1;
+}
+
 .journal-post:nth-of-type(odd) > .journal-details {
     background-color: #FDE457;
+}
+
+.journal-post:nth-of-type(odd) > .journal-details:hover,
+.journal-post:nth-of-type(odd) > .journal-details:focus,
+.journal-post:nth-of-type(odd) > .journal-details:active {
+    background-color: rgb(211, 185, 39);
 }
 
 .journal-link > h2 {

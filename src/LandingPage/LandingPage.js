@@ -6,6 +6,7 @@ import TokenService from '../services/token-service';
 import IdleService from '../services/idle-service';
 import JournalsApiService from '../services/journals-api-service';
 import JournalsContext from '../JournalsContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './LandingPage.css';
 
 class LandingPage extends Component {
@@ -72,16 +73,19 @@ class LandingPage extends Component {
             className='demo-button'>Explore the Demo!</Link>
         </section>
         <section className="feature-sections">
+          <FontAwesomeIcon icon='book-open' size='4x' />
           <h3>Tell your stories</h3>
           <p>Write about the places you&apos;ve experienced and keep track of where you&apos;ve traveled.</p>
           <img alt="place" src="https://sonshineventura.org/files/2015/02/wireframe-box-270x203.jpg" />
         </section>
         <section className="feature-sections second-section">
+          <FontAwesomeIcon icon='globe-americas' size='4x' />
           <h3>Discover new places</h3>
           <p>Explore and read journals about all the places our users have been.</p>
           <img alt="place" src="https://sonshineventura.org/files/2015/02/wireframe-box-270x203.jpg" />
         </section>
         <section className="feature-sections">
+          <FontAwesomeIcon icon='comments' size='4x' />
           <h3>Start conversations</h3>
           <p>Comment on other journals and ask for travel advice to new places to help begin your next journey.</p>
           <img alt="place" src="https://sonshineventura.org/files/2015/02/wireframe-box-270x203.jpg" />

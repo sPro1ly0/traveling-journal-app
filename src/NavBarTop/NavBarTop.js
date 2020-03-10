@@ -32,8 +32,8 @@ class NavBarTop extends Component {
   renderLoginLinks() {
     return (
       <div className='nav-show-login-links nav-top-links'>
-        <NavLink to="/signup">Sign Up</NavLink>
-        <NavLink to="/login">Login</NavLink>
+        <NavLink to="/signup" activeClassName="active-top">Sign Up</NavLink>
+        <NavLink to="/login" activeClassName="active-top">Login</NavLink>
       </div>
     );
     

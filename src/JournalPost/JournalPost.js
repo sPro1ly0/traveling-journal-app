@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-// import JournalsContext from '../JournalsContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './JournalPost.css';
 import moment from 'moment';
 //import PropTypes from 'prop-types';
@@ -21,7 +21,7 @@ class JournalPost extends Component {
       testUserName = user[0].full_name;
     }
     //console.log(user);
-    const renderEditButton = journal.author === testUserName ? <Link to={`/edit-journal/${journal.id}`}>Edit</Link> : null;
+    const renderEditButton = journal.author === testUserName ? <Link to={`/edit-journal/${journal.id}`}><FontAwesomeIcon icon='pencil-alt' size='1x' /> Edit</Link> : null;
     const modifyStartDate = moment(journal.start_date).format('MMMM YYYY');
         
     return (

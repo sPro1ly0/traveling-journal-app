@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './JournalPage.css';
 import CommentForm from '../CommentForm';
 import Comment from '../Comment/Comment';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import JournalsContext from '../JournalsContext';
 import JournalsApiService from '../services/journals-api-service';
 import moment from 'moment';
@@ -18,6 +19,7 @@ class JournalPage extends Component {
 
     componentDidMount() {
       this.context.clearError();
+      this.context.showingNavBottom(true);
       const { journalId } = this.props.match.params;
       JournalsApiService.getJournal(journalId)
         .then(this.context.setJournal)
@@ -89,7 +91,7 @@ class JournalPage extends Component {
               </div>
             </section>
             <section className="comments-section">
-              <h3>Comments</h3>
+              <h3>Comments <FontAwesomeIcon icon='comments' size='1x' /></h3>
               {addComments}
             </section>
             <CommentForm />
