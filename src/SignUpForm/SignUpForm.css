@@ -1,12 +1,23 @@
+.signup-header {
+    height: 125px;
+    padding-bottom: 20px;
+}
+
+.signup-error {
+    height: 20px;
+}
+
 .signup {
+    font-family: 'Nunito', 'Arial', sans-serif;
+    font-weight: 600;
     text-align: center;
     min-height: 450px;
-    height: 90vh;
+    height: 100vh;
     margin-top: 40px;
 }
 
 .signup-field {
-    background-color: aquamarine;
+    background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,6 +30,29 @@
     text-align: left;
 }
 
+.signup-field > input {
+    font-size: 1em;
+    padding: 3px 5px;
+    border: 1px solid #90CED1;
+    border-radius: 3px;
+}
+
+.signup-form {
+    margin: 0 auto;
+    min-width: 256px;
+    width: 80%;
+}
+
 .red-error {
     color: red;
+}
+
+.signup-button {
+    font-family: 'Nunito', 'Arial', sans-serif;
+    background-color: #A1E7EB;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 8px;
+    font-size: 1.2em;
+    margin-top: 10px;
 }

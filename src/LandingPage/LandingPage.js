@@ -64,11 +64,12 @@ class LandingPage extends Component {
       <>
         <section className="banner">
           {error &&  <p className='red-error'>{error}</p>}
-          <h2>Journal wherever you go</h2>
+          <h2 className='intro-header'>Journal your journey wherever you go</h2>
           <Link 
             to="/my-journals"
             onClick={this.handleDemoUserAuth}
-            type='button'>Explore the Demo!</Link>
+            type='button'
+            className='demo-button'>Explore the Demo!</Link>
         </section>
         <section className="feature-sections">
           <h3>Tell your stories</h3>

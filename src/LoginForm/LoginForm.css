@@ -1,12 +1,28 @@
 .login {
+    font-family: 'Nunito', 'Arial', sans-serif;
+    font-weight: 600;
     text-align: center;
     min-height: 450px;
-    height: 79vh;
-    margin-top: 80px;
+    height: 100vh;
+    margin-top: 50px;
+}
+
+.signup-header {
+    height: 125px;
+    padding-bottom: 20px;
+}
+
+.login-error {
+    height: 20px;
+}
+
+.login-form {
+    margin: 0 auto;
+    min-width: 256px;
+    width: 80%;
 }
 
 .login-field {
-    background-color: aquamarine;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -17,4 +33,21 @@
 
 .login-field > label {
     text-align: left;
+}
+
+.login-field > input {
+    font-size: 1em;
+    padding: 3px 5px;
+    border: 1px solid #90CED1;
+    border-radius: 3px;
+}
+
+.login-button {
+    font-family: 'Nunito', 'Arial', sans-serif;
+    background-color: #A1E7EB;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 8px;
+    font-size: 1.2em;
+    margin-top: 10px;
 }

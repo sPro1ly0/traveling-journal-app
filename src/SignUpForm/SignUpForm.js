@@ -97,7 +97,7 @@ class SignUpForm extends Component {
             className="signup-form"
             onSubmit={this.handleSubmit}
           >   
-            <div role="alert">
+            <div className="signup-error" role="alert">
               {this.state.error && <p className="red-this.state.">{this.state.error}</p>}
             </div>
             <div className="signup-field">
@@ -133,12 +133,17 @@ class SignUpForm extends Component {
                 aria-required="true"
                 required />
             </div>
-            <button type="submit">Sign Up</button>
+            <button 
+              type="submit"
+              className='signup-button'
+            >
+              Sign Up</button>
             <p>OR</p>
             <Link 
               to="/my-journals"
               onClick={this.handleDemoUserAuth}
-              type='button'>Explore the Demo</Link>
+              type='button'
+              className='demo-button'>Explore the Demo</Link>
           </form>
         </section>
       );

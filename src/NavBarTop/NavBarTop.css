@@ -1,5 +1,5 @@
 .nav-top {
-    background-color: gainsboro;
+    background-color: #A1E7EB;
     text-align: center;
     position: fixed;
     display: flex;
@@ -19,10 +19,35 @@
     text-decoration: none;
 }
 
+.app-name {
+    font-family: 'Bellota', cursive, 'Arial', 'sans-serif';
+    font-weight: 700;
+    color: black;
+}
+
 .nav-top-links {
     min-width: 110px;
     max-width: 140px;
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+    text-decoration: none;
+    color: black;
+}
+
+.nav-top-links > a {
+    text-decoration: none;
+    color: black;
+    font-family: 'Nunito', sans-serif;
+    padding: 2px;
+}
+
+.nav-top > a:hover, 
+.nav-top > a:active,
+.nav-top > a:focus,
+.nav-top-links > a:hover, 
+.nav-top-links > a:active,
+.nav-top-links > a:focus  {
+    background-color: #EBDD8A;
+    border-radius: 5px;
 }

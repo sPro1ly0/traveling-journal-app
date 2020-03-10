@@ -62,7 +62,7 @@ class LoginForm extends Component {
     render() {
       return (
         <section className="login">
-          <header>
+          <header className='login-header'>
             <h2>Login</h2>
             <p>Use your email and password.</p>
           </header>
@@ -71,7 +71,7 @@ class LoginForm extends Component {
             className="login-form"
             onSubmit={this.handleSubmitAuth}   
           >   
-            <div role="alert">
+            <div className='login-error' role="alert">
               {this.state.error && <p className="red-error">{this.state.error}</p>}
             </div>
             <div className="login-field">
@@ -95,7 +95,11 @@ class LoginForm extends Component {
                 aria-required="true"
                 required />
             </div>
-            <button type="submit">Login</button>
+            <button 
+              type="submit"
+              className='login-button'
+            >
+              Login</button>
           </form>
         </section>
       );

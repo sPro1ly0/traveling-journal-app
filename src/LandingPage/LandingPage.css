@@ -3,8 +3,9 @@
 }
 
 .banner {
+    background-color: white;
     margin-top: 60px;
-    height: 80vh;
+    height: 100vh;
     padding: 45px 15px;
 }
 
@@ -15,10 +16,41 @@ img {
 .feature-sections {
     min-height: 200px;
     padding: 30px 50px;
-    background-color: rgb(180, 180, 180);
+    background-color: #EBDD8A;
 }
 
 section:nth-child(even) {
-    background-color: gainsboro;
+    background-color: #C9FCFF;
 }
 
+.intro-header {
+    font-family: 'Bellota', cursive, 'Arial', 'sans-serif';
+    font-weight: 700;
+}
+
+.feature-sections > h3 {
+    font-family: 'Bellota', cursive, 'Arial', 'sans-serif';
+    font-weight: 700;
+    font-size: 1.45em;
+}
+
+.feature-sections > p, .demo-button {
+    text-decoration: none;
+    color: black;
+    font-family: 'Nunito', 'Arial', sans-serif;
+}
+
+.demo-button {
+    background-color: #A1E7EB;
+    font-weight: 400;
+    border-radius: 5px;
+    padding: 3px 5px;
+    font-size: 1.2em;
+}
+
+.demo-button:hover, 
+.demo-button:active,
+.demo-button:focus  {
+    background-color: #EBDD8A;
+    border-radius: 5px;
+}
