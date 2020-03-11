@@ -5,10 +5,11 @@ import JournalPost from './JournalPost';
 import { BrowserRouter } from 'react-router-dom';
 
 it('renders without crashing', () => {
+  const journal = [];
   const div = document.createElement('div');
   ReactDOM.render(
     <BrowserRouter>
-      <JournalPost />
+      <JournalPost journal={journal} />
     </BrowserRouter>,
     div
   );
