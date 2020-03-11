@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
-import './AddJournalForm/AddJournalForm.css';
+import '../AddJournalForm/AddJournalForm.css';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import { DateRangePicker } from 'react-dates';
 import moment from 'moment';
-import JournalsContext from './JournalsContext';
-import JournalsApiService from './services/journals-api-service';
-import ValidationError from './ValidationError';
+import JournalsContext from '../JournalsContext';
+import JournalsApiService from '../services/journals-api-service';
+import ValidationError from '../ValidationError';
 
 class EditJournalForm extends Component {
 

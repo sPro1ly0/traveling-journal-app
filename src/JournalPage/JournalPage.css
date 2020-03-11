@@ -101,13 +101,25 @@
 .add-comment-button:hover, 
 .add-comment-button:active,
 .add-comment-button:focus   {
-    background-color: #EBDD8A;
+    background-color: #FDE457;
     border-radius: 5px;
+}
+
+@media screen and (min-width: 500px) {
+   #add-comment {
+       max-width: 100%;
+   }
+
+   .add-comment-button {
+       margin-bottom: 40px;
+       width: 25%;
+   }
 }
 
 @media screen and (min-width: 765px) {
     .journal-page {
         margin: 0 70px;
+        width: 700px;
     }
 
     .journal-content {
@@ -115,10 +127,18 @@
         border-left: 5px solid #A2E7EB;
     }
 
+    .journal-content > p {
+        font-size:  1.1em;
+    }
+
     #add-comment {
         width: 100%;
-        max-width: 615px;
+        max-width: 680px;
         margin: 12px 3px 30px;
+    }
+
+    .comment {
+        max-width: 680px;
     }
 
     .add-comment-button {
@@ -129,7 +149,6 @@
 
 @media screen and (min-width: 1023px) {
     .journal-page {
-        width: 700px;
         margin: 0 auto;
     }
 

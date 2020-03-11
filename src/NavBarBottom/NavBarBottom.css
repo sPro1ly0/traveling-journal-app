@@ -55,6 +55,12 @@
     font-size: 0.9em;
 }
 
+@media screen and (min-width: 500px) {
+    .nav-bottom > a {
+        width: 122px;
+    }
+}
+
 @media screen and (min-width: 765px) {
 
     .nav-bottom {
@@ -84,7 +90,9 @@
         display: none;
     }
 
-    .nav-bottom:hover {
+    .nav-bottom:hover,
+    .nav-bottom:focus,
+    .nav-bottom:active {
         width: 150px;
     }
     

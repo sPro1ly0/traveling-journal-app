@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './JournalPage/JournalPage.css';
-import JournalsContext from '../src/JournalsContext';
-import JournalsApiService from '../src/services/journals-api-service';
+import '../JournalPage/JournalPage.css';
+import JournalsContext from '../JournalsContext';
+import JournalsApiService from '../services/journals-api-service';
 
 
 class CommentForm extends Component {

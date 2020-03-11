@@ -1,30 +1,30 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import PrivateRoute from './Utils/PrivateRoute';
-import PublicOnlyRoute from './Utils/PublicOnlyRoute';
+import PrivateRoute from '../Utils/PrivateRoute';
+import PublicOnlyRoute from '../Utils/PublicOnlyRoute';
 
-import NavBarTop from './NavBarTop/NavBarTop';
-import NavBarBottom from './NavBarBottom/NavBarBottom';
+import NavBarTop from '../NavBarTop/NavBarTop';
+import NavBarBottom from '../NavBarBottom/NavBarBottom';
 
-import LandingPage from './LandingPage/LandingPage';
-import SignUpForm from './SignUpForm/SignUpForm';
-import LoginForm from './LoginForm/LoginForm';
+import LandingPage from '../LandingPage/LandingPage';
+import SignUpForm from '../SignUpForm/SignUpForm';
+import LoginForm from '../LoginForm/LoginForm';
 
-import UserHomePage from './UserHomePage/UserHomePage';
-import AddJournalForm from './AddJournalForm/AddJournalForm';
-import EditJournalForm from './EditJournalForm';
-import AllJournals from './AllJournals/AllJournals';
-import JournalPage from './JournalPage/JournalPage';
+import UserHomePage from '../UserHomePage/UserHomePage';
+import AddJournalForm from '../AddJournalForm/AddJournalForm';
+import EditJournalForm from '../EditJournalForm/EditJournalForm';
+import AllJournals from '../AllJournals/AllJournals';
+import JournalPage from '../JournalPage/JournalPage';
 
-import Footer from './Footer/Footer';
+import Footer from '../Footer/Footer';
 
-import TravelJournalError from './TravelJournalError';
-import NotFoundPage from './NotFoundPage/NotFoundPage';
-import JournalsContext from './JournalsContext';
-import TokenService from './services/token-service';
-import AuthApiService from './services/auth-api-service';
-import IdleService from './services/idle-service';
+import TravelJournalError from '../TravelJournalError';
+import NotFoundPage from '../NotFoundPage/NotFoundPage';
+import JournalsContext from '../JournalsContext';
+import TokenService from '../services/token-service';
+import AuthApiService from '../services/auth-api-service';
+import IdleService from '../services/idle-service';
 
 class App extends Component {
 

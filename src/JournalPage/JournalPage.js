@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import './JournalPage.css';
-import CommentForm from '../CommentForm';
+import CommentForm from '../CommentForm/CommentForm';
 import Comment from '../Comment/Comment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import JournalsContext from '../JournalsContext';
