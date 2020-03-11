@@ -8,15 +8,15 @@ function NavBarBottom() {
     <nav className='nav-bottom'>
       <NavLink to="/my-journals" activeClassName="active-bottom">
         <FontAwesomeIcon icon='home' size='2x' />
-         My Journals
+        <p>My Journals</p>
       </NavLink>
       <NavLink to="/add-journal">
         <FontAwesomeIcon icon='plus-circle' size='2x' />
-        Add New Journal
+        <p>Add New Journal</p>
       </NavLink>
       <NavLink to="/all-journals" activeClassName="active-bottom">
         <FontAwesomeIcon icon='search' size='2x' />
-        Discover
+        <p>Discover</p>
       </NavLink>
     </nav>
   );
