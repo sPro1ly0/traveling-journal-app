@@ -59,3 +59,11 @@
     background-color: #FDE457;
     border-radius: 5px;
 }
+
+@media screen and (min-width: 765px) {
+
+    .login-header > p {
+        font-size: 1.2em;
+    }
+
+}

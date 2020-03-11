@@ -133,9 +133,9 @@
     .banner {
        display: flex;
        min-height: 50vh;
-       width: 1060px;
+       width: 924px;
        margin: 60px auto 0;
-       padding: 45px 100px;
+       padding: 45px 50px;
     }
 
     .banner > div {
