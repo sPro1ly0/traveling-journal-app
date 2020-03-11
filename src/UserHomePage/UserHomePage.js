@@ -25,7 +25,11 @@ class UserHomePage extends Component {
   render() {
     const { userJournalsList, user, error } = this.context;
     // console.log(userJournalsList);
-    const numberOfJournals = userJournalsList.length;
+    let numberOfJournals = userJournalsList.length;
+    let journalText = 'journals';
+    if (numberOfJournals === 1) {
+      journalText = 'journal';
+    }
     const journalPosts = userJournalsList.map(journal => 
       <JournalPost 
         key={journal.id}
@@ -38,7 +42,7 @@ class UserHomePage extends Component {
 	    <>
 	      <header>
 	        <h2 className='users-header'>My Journals</h2>
-	        <p className='user-journal-number'>You have {numberOfJournals} journals.</p>
+	        <p className='user-journal-number'>You have {numberOfJournals} {journalText}.</p>
 	      </header>
         {error 
           ? <div className="red-error">{error}</div>

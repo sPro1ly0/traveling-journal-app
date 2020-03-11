@@ -104,3 +104,25 @@
     background-color: #EBDD8A;
     border-radius: 5px;
 }
+
+@media screen and (min-width: 765px) {
+    .journal-page {
+        margin: 0 70px;
+    }
+
+    .journal-content {
+        border-right: 5px solid #A2E7EB;
+        border-left: 5px solid #A2E7EB;
+    }
+
+    #add-comment {
+        width: 100%;
+        max-width: 615px;
+        margin: 12px 3px 30px;
+    }
+
+    .add-comment-button {
+        width: 250px;
+        font-size: 1.2em;
+    }
+}

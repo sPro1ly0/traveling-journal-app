@@ -86,3 +86,24 @@
     background-color: #FDE457;
     border-radius: 5px;
 }
+
+@media screen and (min-width: 765px) {
+
+    .add-buttons {
+        width: 300px;
+    }
+
+    .edit-buttons {
+        width: 350px;
+    }
+
+    .add-buttons,
+    .edit-buttons {
+        font-size: 1.2em;
+    }
+
+    .form-section > label {
+        font-size: 1.2em;
+    }
+}
+

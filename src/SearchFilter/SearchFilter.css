@@ -37,3 +37,26 @@
     text-align: left;
     padding-bottom: 3px;
 }
+
+@media screen and (min-width: 765px) {
+    #search-form {
+        margin-top: 0;
+    }
+
+    .search-field {
+        width: 350px;
+    }
+
+    .search-field > input {
+        font-size: 1.2em;
+        width: 316px;
+    }
+
+    .search-field > label {
+        font-size: 1.1em;
+    }
+
+    .DateRangePicker {
+        width: 320px;
+    }
+}
