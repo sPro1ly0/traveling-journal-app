@@ -1,7 +1,7 @@
 {
     "version": 2,
     "alias": "sbecka8111-traveling-journal-app",
-    "name": "traveling-journal-app",
+    "name": "traveling-journal",
     "routes": [
         { "handle": "filesystem" },
         { "src": "/.*", "dest": "/index.html" }
