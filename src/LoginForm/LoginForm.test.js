@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SignUpForm from './SignUpForm';
+import LoginForm from './LoginForm';
 import { BrowserRouter } from 'react-router-dom';
 
 it('renders without crashing', () => {
@@ -9,7 +9,7 @@ it('renders without crashing', () => {
 
   ReactDOM.render(
     <BrowserRouter>
-      <SignUpForm />
+      <LoginForm />
     </BrowserRouter>, 
     div
   );
