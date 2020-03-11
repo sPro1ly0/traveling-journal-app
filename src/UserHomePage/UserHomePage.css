@@ -48,3 +48,47 @@ header {
         height: 100%;
     }
 }
+
+@media screen and (min-width: 1023px) {
+
+    .user-journal-number {
+        font-size: 1.2em;
+    }
+
+    .journals {
+        width: 900px;
+        margin-left: 90px;
+        padding: 10px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    
+    .journals {
+        width: 1150px;
+        margin-left: 60px;
+        padding: 10px;
+    }
+}
+
+@media screen and (min-width: 1399px) {
+    
+    .journals {
+        width: 1280px;
+    }
+}
+
+@media screen and (min-width: 1439px) {
+    
+    .journals {
+        width: 1280px;
+        margin-left: 80px;
+    }
+}
+
+@media screen and (min-width: 1460px) {
+    
+    .journals {
+        margin-left: 130px;
+    }
+}

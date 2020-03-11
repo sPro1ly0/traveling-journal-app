@@ -107,3 +107,29 @@
     }
 }
 
+@media screen and (min-width: 1023px) {
+    .form-section {
+        max-width: 520px;
+    }
+
+    .form-section > input,
+    .form-section > textarea {
+        width: 520px;
+        margin: 0 auto;
+        font-size: 1.1em;
+    }
+
+    .date-picker {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: baseline;
+        margin-top: 15px;
+        width: 520px;
+    }
+
+    .date {
+        width: 210px;
+    }
+}
+

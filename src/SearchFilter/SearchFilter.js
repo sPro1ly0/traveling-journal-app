@@ -86,7 +86,7 @@ class SearchFilter extends Component {
                   onChange={this.updateSearchPlace} />
               </div> 
               <div className="search-field">
-                <label htmlFor="startDate" className="date">Search by Dates</label>
+                <label htmlFor="startDate" className="date search-date">Search by Dates</label>
                 <DateRangePicker                                
                   startDate={this.state.startDate}
                   startDateId="startDate"

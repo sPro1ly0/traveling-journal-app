@@ -78,3 +78,23 @@
         margin: 15px;
     }
 }
+
+@media screen and (min-width: 1023px) {
+    .journal-post {
+        margin: 35px 60px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    
+    .journal-post {
+        margin: 35px 30px;
+    }
+}
+
+@media screen and (min-width: 1399px) {
+    
+    .journal-post {
+        margin: 35px 52px;
+    }
+}

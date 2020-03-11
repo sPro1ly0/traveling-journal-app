@@ -44,7 +44,7 @@
     }
 
     .search-field {
-        width: 350px;
+        max-width: 350px;
     }
 
     .search-field > input {
@@ -58,5 +58,71 @@
 
     .DateRangePicker {
         width: 320px;
+    }
+}
+
+@media screen and (min-width: 1023px) {
+    #search-form {
+        margin-top: 0;
+        flex-direction: row;
+        align-items: center;
+        padding: 15px 55px 15px 80px;
+        height: 100px;
+    }
+
+    .search-field > input {
+        font-size: 1.2em;
+        width: 316px;
+        height: 46px;
+    }
+
+    .search-field > label {
+        font-size: 1.1em;
+    }
+
+    .DateRangePicker {
+        width: 320px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    
+    #search-form {
+        padding: 15px 85px 15px 110px;
+        height: 100px;
+    }
+}
+
+@media screen and (min-width: 1399px) {
+    
+    #search-form {
+        padding: 15px 90px;
+
+        height: 100px;
+    }
+
+    .search-field {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-content: center;
+        align-items: baseline;
+        max-width: 550px;
+    }
+
+    .search-field > label {
+        width: 150px;
+        font-size: 1.2em;
+    }
+
+    .search-location > label {
+        width: 220px;
+    }
+}
+
+@media screen and (min-width: 1530px) {
+    
+    #search-form {
+        padding: 15px 130px;
     }
 }

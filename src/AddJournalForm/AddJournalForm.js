@@ -164,7 +164,7 @@ class AddJournalForm extends Component {
                   required />
                 {this.state.location.touched && (<ValidationError message={this.validateLocation()}/>)}
               </div> 
-              <div className="form-section">
+              <div className="form-section date-picker">
                 <label htmlFor="startDate" className="date">Select your travel dates</label>
                 <DateRangePicker                                
                   startDate={this.state.startDate}
