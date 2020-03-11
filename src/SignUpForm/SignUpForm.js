@@ -27,7 +27,6 @@ class SignUpForm extends Component {
     handleSubmit = (e) => {
       e.preventDefault();
       const { full_name, email, password } = e.target;
-      console.log( full_name, email, password);
       this.setState({ error: null });
       AuthApiService.postUser({
         full_name: full_name.value,
@@ -79,7 +78,6 @@ class SignUpForm extends Component {
           JournalsApiService.getUserJournals()
             .then(this.context.setUserJournalsList)
             .catch(this.context.setError);
-          console.log('working');
         })
         .catch(res => {
           this.setState({ error: res.error });

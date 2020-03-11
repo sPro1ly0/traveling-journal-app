@@ -19,12 +19,10 @@ class UserHomePage extends Component {
     JournalsApiService.getUserJournals()
       .then(this.context.setUserJournalsList)
       .catch(this.context.setError);
-    console.log('working');
   }
 
   render() {
     const { userJournalsList, user, error } = this.context;
-    // console.log(userJournalsList);
     let numberOfJournals = userJournalsList.length;
     let journalText = 'journals';
     if (numberOfJournals === 1) {

@@ -18,7 +18,6 @@ class CommentForm extends Component {
         .then(this.context.addComments)
         .then(() => {
           comment.value = '';
-          // console.log(this.context.comments);
         })
         .catch(this.context.setError);
         

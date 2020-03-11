@@ -51,7 +51,6 @@ class LoginForm extends Component {
           JournalsApiService.getUserJournals()
             .then(this.context.setUserJournalsList)
             .catch(this.context.setError);
-          console.log('working');
         })
         .catch(res => {
           this.setState({ error: res.error });

@@ -38,7 +38,6 @@ class SearchFilter extends Component {
       JournalsApiService.getUserName()
         .then(this.context.setUserName)
         .catch(this.context.setError);
-      console.log('working');
     }
 
 
@@ -47,7 +46,6 @@ class SearchFilter extends Component {
       const { error } = this.context;
         
       const { allJournalsList = [], user } = this.context;
-      // console.log('work?', allJournalsList);
       let filteredPlaces = this.context.allJournalsList;
       if (this.state.searchPlace) {
         filteredPlaces = allJournalsList.filter(journal => 
@@ -60,7 +58,7 @@ class SearchFilter extends Component {
           moment(journal.start_date).isBetween(start, end, 'dates','[]')
         );
       }
-      //console.log(filteredPlaces);
+
       let journalPosts = filteredPlaces.map((journal) => {
         return <JournalPost 
           key={journal.id}

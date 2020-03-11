@@ -20,7 +20,7 @@ class JournalPost extends Component {
     } else {
       testUserName = user[0].full_name;
     }
-    //console.log(user);
+    
     const renderEditButton = journal.author === testUserName ? <Link to={`/edit-journal/${journal.id}`}><FontAwesomeIcon icon='pencil-alt' size='1x' /> Edit</Link> : null;
     const modifyStartDate = moment(journal.start_date).format('MMMM YYYY');
         

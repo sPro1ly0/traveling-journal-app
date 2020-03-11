@@ -44,13 +44,13 @@ class JournalPage extends Component {
       let content;
       let addComments;
       if (journal.length > 0) {
-        // console.log(journal[0]);
 
         author = journal[0].author;
-        // console.log(author);
+
         if (author === undefined) {
           author = 'Unknown';
         }
+        
         title = journal[0].title;
 
         location = journal[0].location;

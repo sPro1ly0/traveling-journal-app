@@ -90,9 +90,6 @@ class AddJournalForm extends Component {
       const { title, location, content  } = this.state;
       const { startDate, endDate } = this.state;
       
-      console.log(this.state.startDate.valueOf());
-      console.log(this.state.startDate._d);
-      
       const newJournal = {
         title: title.value,
         location: location.value,
@@ -100,10 +97,8 @@ class AddJournalForm extends Component {
         end_date: endDate,
         content: content.value
       };
-      // console.log('working!', newJournal);
       JournalsApiService.postJournal(newJournal)
         .then(res => {
-          console.log(res);
           this.context.addJournal(res);
         })
         .then(() => {
@@ -111,11 +106,8 @@ class AddJournalForm extends Component {
           location.value = '';
           content.value = '';
           this.props.history.push('/my-journals');
-        }
-          
-        )
+        })
         .catch(this.context.setError);
-      
       
     }
 

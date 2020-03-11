@@ -111,7 +111,6 @@ class App extends Component {
   }
 
   addJournal = journal => {
-    console.log(journal);
     this.setState({
       allJournalsList: [...this.state.allJournalsList, journal]
     });

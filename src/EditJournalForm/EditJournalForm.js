@@ -41,7 +41,6 @@ class EditJournalForm extends Component {
       const { journalId } = this.props.match.params;
       JournalsApiService.getJournal(journalId)
         .then(resJson => {
-          console.log(resJson);
           this.setState({
             id: resJson.id,
             title: { value: resJson.title },
@@ -123,7 +122,6 @@ class EditJournalForm extends Component {
       
       JournalsApiService.updateJournal(id, updateJournal)
         .then(() => {
-          console.log();
           this.resetFields(updateJournal);
           this.context.updateJournal(updateJournal);
           this.props.history.push('/my-journals');
@@ -151,7 +149,6 @@ class EditJournalForm extends Component {
         .then(this.context.deleteJournal(journalId))
         .catch(this.context.setError);
       this.props.history.push('/my-journals');
-      console.log(journalId);
     }
 
     render() {
