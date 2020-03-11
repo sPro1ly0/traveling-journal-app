@@ -10,21 +10,17 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1;
+    z-index: 2;
     padding-left: 10px;
     padding-right: 10px;
 }
 
-.nav-top > a {
+.app-name {
     font-size: 1.25em;
     text-decoration: none;
-}
-
-.app-name {
     font-family: 'Bellota', cursive, 'Arial', 'sans-serif';
     font-weight: 700;
     color: black;
-    font-size: 1.2em;
 }
 
 .nav-top-links {
@@ -65,4 +61,41 @@
 .nav-show-logout-link > a:focus   {
     background-color: #FDE457;
     border-radius: 5px;
+}
+
+/**Media Queries**/
+
+@media screen and (min-width: 374px) {
+
+    .nav-top-links {
+        min-width: 130px;
+    }
+
+    .nav-top-links > a {
+        font-size: 1.1em;
+    }
+
+    .app-name {
+        font-size: 1.3em;
+    }
+}
+
+@media screen and (min-width: 765px) {
+
+    .nav-top {
+        padding: 0 30px; 
+    }
+
+    .nav-top-links {
+        min-width: 150px;
+    }
+
+    .nav-top-links > a {
+        font-size: 1.2em;
+    }
+    
+    .app-name {
+        font-size: 1.5em;
+    }
+
 }

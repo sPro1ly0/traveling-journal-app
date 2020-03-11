@@ -64,13 +64,16 @@ class LandingPage extends Component {
     return (
       <>
         <section className="banner">
-          {error &&  <p className='red-error'>{error}</p>}
-          <h2 className='intro-header'>Journal your journey wherever you go</h2>
-          <Link 
-            to="/my-journals"
-            onClick={this.handleDemoUserAuth}
-            type='button'
-            className='demo-button'>Explore the Demo!</Link>
+          <div>
+            {error &&  <p className='red-error'>{error}</p>}
+            <h2 className='intro-header'>Journal your journey wherever you go</h2>
+            <Link 
+              to="/my-journals"
+              onClick={this.handleDemoUserAuth}
+              type='button'
+              className='demo-button'>Explore the Demo!</Link>
+          </div>
+          
           <img 
             className='banner-img' 
             alt="Phone with demo user's journals page displayed on screen" 
