@@ -6,7 +6,7 @@
 
 .journal-header {
     background-color: #A2E7EB;
-    min-height: 290px;
+    min-height: 300px;
     padding: 45px 15px 20px;
     text-align: center;
     font-weight: 600;
@@ -34,6 +34,10 @@
 .journal-info > p {
     margin-bottom: 1px;
     line-height: 1.5em;
+}
+
+.author-name {
+    margin-bottom: 10px;
 }
   
 .journal-content, .comments-section {

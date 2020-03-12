@@ -44,6 +44,10 @@
     width: 80%;
 }
 
+.signup-error {
+    height: 60px;
+}
+
 .red-error {
     color: red;
 }

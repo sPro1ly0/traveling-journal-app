@@ -79,7 +79,7 @@ class JournalPage extends Component {
               <div className="journal-info">
                 <h2>{location}</h2>
                 <p>{checkSameDate}</p>
-                <p>By: {author}</p>
+                <p className="author-name">By: {author}</p>
               </div>
             </header>
             {error 

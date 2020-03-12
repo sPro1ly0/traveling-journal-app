@@ -54,17 +54,24 @@ class LandingPage extends Component {
       })
       .catch(res => {
         this.setState({ error: res.error });
-        console.log(this.state.error);
       });
   }
 
   render() {
     const { error } = this.state;
+    // if error is undefined
+    let handleError;
+    if (error === undefined) {
+      handleError = 'Something went wrong with server try again later.';
+    } else {
+      handleError = error;
+    }
+
     return (
       <>
         <section className="banner">
           <div>
-            {error &&  <p className='red-error'>{error}</p>}
+            {handleError &&  <p className='red-error'>{handleError}</p>}
             <h2 className='intro-header'>Journal your journey wherever you go</h2>
             <Link 
               to="/my-journals"

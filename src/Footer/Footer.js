@@ -9,7 +9,7 @@ function Footer() {
   return (
     <footer>
       <p>© {copyrightYear.getFullYear()} Sabrina Becker</p>
-      <p>{config.APP_VERSION}</p>
+      <p className='version-number'>{config.APP_VERSION}</p>
     </footer>
   );
 }

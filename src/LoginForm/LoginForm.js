@@ -59,6 +59,15 @@ class LoginForm extends Component {
 
 
     render() {
+      const { error } = this.state;
+      // if error is undefined
+      let handleError;
+      if (error === undefined) {
+        handleError = 'Something went wrong with server try again later.';
+      } else {
+        handleError = error;
+      }
+
       return (
         <section className="login">
           <header className='login-header'>
@@ -71,7 +80,7 @@ class LoginForm extends Component {
             onSubmit={this.handleSubmitAuth}   
           >   
             <div className='login-error' role="alert">
-              {this.state.error && <p className="red-error">{this.state.error}</p>}
+              {handleError && <p className="red-error">{handleError}</p>}
             </div>
             <div className="login-field">
               <label htmlFor="email">Email</label>

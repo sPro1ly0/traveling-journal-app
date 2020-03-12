@@ -34,15 +34,10 @@ class SignUpForm extends Component {
         password: password.value
       })
       // eslint-disable-next-line no-unused-vars
-        .then(res => {
+        .then(() => {
           full_name.value = '';
           email.value = '';
           password.value = '';
-          TokenService.saveAuthToken(res.authToken);
-          IdleService.registerIdleTimerResets();
-          TokenService.queueCallbackBeforeExpiry(() => {
-            AuthApiService.postRefreshToken();
-          });
           this.handleSignUpSuccess();
         })
         .catch(res => {
@@ -67,6 +62,10 @@ class SignUpForm extends Component {
       })
         .then(res => {
           TokenService.saveAuthToken(res.authToken);
+          IdleService.registerIdleTimerResets();
+          TokenService.queueCallbackBeforeExpiry(() => {
+            AuthApiService.postRefreshToken();
+          });
           this.handleLoginSuccess();
           this.context.setLoginStatus(true);
         })
@@ -85,6 +84,15 @@ class SignUpForm extends Component {
     }
 
     render() {
+      const { error } = this.state;
+      // if error is undefined
+      let handleError;
+      if (error === undefined) {
+        handleError = 'Something went wrong with server try again later.';
+      } else {
+        handleError = error;
+      }
+
       return (
         <section className="signup">
           <header className="signup-header">
@@ -96,7 +104,7 @@ class SignUpForm extends Component {
             onSubmit={this.handleSubmit}
           >   
             <div className="signup-error" role="alert">
-              {this.state.error && <p className="red-this.state.">{this.state.error}</p>}
+              {handleError && <p className="red-error">{handleError}</p>}
             </div>
             <div className="signup-field">
               <label htmlFor="full_name">Full Name</label>
