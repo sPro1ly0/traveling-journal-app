@@ -18,7 +18,7 @@ Link to API documentation and repo: https://github.com/sPro1ly0/traveling-journa
 
 <ul>
   <li>React.js</li>
-  <li>Moment.js</li>
+  <li><a href="https://momentjs.com/">Moment.js</a></li>
   <li><a href="https://airbnb.io/projects/react-dates/">Airbnb Datepicker</a></li>
   <li>JavaScript</li>
   <li>HTML</li>
