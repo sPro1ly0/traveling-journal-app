@@ -20,6 +20,7 @@ Link to API documentation and repo: https://github.com/sPro1ly0/traveling-journa
   <li>React.js</li>
   <li><a href="https://momentjs.com/">Moment.js</a></li>
   <li><a href="https://airbnb.io/projects/react-dates/">Airbnb Datepicker</a></li>
+  <li><a href="https://www.npmjs.com/package/@fortawesome/react-fontawesome">Font Awesome</a></li>
   <li>JavaScript</li>
   <li>HTML</li>
   <li>CSS</li>
