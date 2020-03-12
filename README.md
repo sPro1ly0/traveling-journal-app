@@ -2,6 +2,11 @@
 
 **Live app:** https://traveling-journal.now.sh/
 
+If you want to test the login form without signing up, you may use the demo account credentials:
+
+Email: example@mail.com
+Password: pasS3!word
+
 ## API Documentation
 
 Link to API documentation and repo: https://github.com/sPro1ly0/traveling-journal-api
