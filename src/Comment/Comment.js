@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
-//import PropTypes from 'prop-types';
 
 class Comment extends Component {
 
