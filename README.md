@@ -14,6 +14,7 @@ The Traveling Journal allows users to write about any places they have been and 
 
 ## Screenshots
 
+
 ## Technologies Used
 
 <ul>
