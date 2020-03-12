@@ -1,4 +1,4 @@
-# Name of app: Traveling Journal
+# Traveling Journal
 
 **Live app:** https://traveling-journal.now.sh/
 
@@ -10,9 +10,21 @@ The Traveling Journal allows users to write about any places they have been and 
 
 ## API Documentation
 
+Link to API documentation and repo: https://github.com/sPro1ly0/traveling-journal-api
 
+## Screenshots
 
+## Technologies Used
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<ul>
+  <li>React.js</li>
+  <li>Moment.js</li>
+  <li>[Airbnb Datepicker](https://airbnb.io/projects/react-dates/)</li>
+  <li>JavaScript</li>
+  <li>HTML</li>
+  <li>CSS</li>
+  <li>This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).</li>
+</ul>
+
 
 
