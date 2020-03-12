@@ -1,6 +1,4 @@
-/* eslint-disable no-mixed-spaces-and-tabs */
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
 import JournalsContext from '../JournalsContext';
 import JournalPost from '../JournalPost/JournalPost';
 import './UserHomePage.css';
@@ -36,20 +34,20 @@ class UserHomePage extends Component {
       />
     );
 
-	  return (
-	    <>
-	      <header>
-	        <h2 className='users-header'>My Journals</h2>
-	        <p className='user-journal-number'>You have {numberOfJournals} {journalText}.</p>
-	      </header>
+    return (
+      <>
+        <header>
+          <h2 className='users-header'>My Journals</h2>
+          <p className='user-journal-number'>You have {numberOfJournals} {journalText}.</p>
+        </header>
         {error 
           ? <div className="red-error">{error}</div>
           : ''}
-	      <section className="journals">
-	        {journalPosts}
-	      </section>
-	    </>
-	  );
+        <section className="journals">
+          {journalPosts}
+        </section>
+      </>
+    );
   }
 }
 

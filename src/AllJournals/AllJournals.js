@@ -11,7 +11,6 @@ class AllJournals extends Component {
     this.context.showingNavBottom(true);
   }
 
-
   render() {
     return (
       <>

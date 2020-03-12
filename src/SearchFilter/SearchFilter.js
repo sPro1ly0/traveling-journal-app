@@ -22,90 +22,89 @@ class SearchFilter extends Component {
     };
   }
 
-    
+  updateSearchPlace = (event) => {
+    this.setState({
+      searchPlace: event.target.value.substr(0, 20)
+    });
+  }
 
-    updateSearchPlace = (event) => {
-      this.setState({
-        searchPlace: event.target.value.substr(0, 20)
-      });
-    }
+  componentDidMount() {
+    this.context.clearError();
+    JournalsApiService.getJournals()
+      .then(this.context.setAllJournalsList)
+      .catch(this.context.setError);
+    JournalsApiService.getUserName()
+      .then(this.context.setUserName)
+      .catch(this.context.setError);
+  }
 
-    componentDidMount() {
-      this.context.clearError();
-      JournalsApiService.getJournals()
-        .then(this.context.setAllJournalsList)
-        .catch(this.context.setError);
-      JournalsApiService.getUserName()
-        .then(this.context.setUserName)
-        .catch(this.context.setError);
-    }
-
-
-    render() {
+  render() {
         
-      const { error } = this.context;
+    const { error } = this.context;
         
-      const { allJournalsList = [], user } = this.context;
-      let filteredPlaces = this.context.allJournalsList;
-      if (this.state.searchPlace) {
-        filteredPlaces = allJournalsList.filter(journal => 
-          journal.location.toLowerCase().indexOf(this.state.searchPlace.toLowerCase()) !== -1);
-      }
-      if (this.state.startDate && this.state.endDate) {
-        let start = moment(this.state.startDate._d);
-        let end = moment(this.state.endDate._d);
-        filteredPlaces = allJournalsList.filter(journal => 
-          moment(journal.start_date).isBetween(start, end, 'dates','[]')
-        );
-      }
-
-      let journalPosts = filteredPlaces.map((journal) => {
-        return <JournalPost 
-          key={journal.id}
-          journal={journal}
-          user={user}
-        />;
-      });
-
-      return (
-        <>
-          <section>
-            {error 
-              ? <div className="error">{this.state.error}</div>
-              : ''}
-            <form id="search-form">
-              <div className="search-field search-location">
-                <label htmlFor="journal-location">Search Journals by Place</label>
-                <input 
-                  type="text" 
-                  name="location" 
-                  placeholder="Madrid, Spain"
-                  value={this.state.searchPlace}
-                  onChange={this.updateSearchPlace} />
-              </div> 
-              <div className="search-field">
-                <label htmlFor="startDate" className="date search-date">Search by Dates</label>
-                <DateRangePicker                                
-                  startDate={this.state.startDate}
-                  startDateId="startDate"
-                  endDate={this.state.endDate}
-                  endDateId="endDate"
-                  onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })}
-                  focusedInput={this.state.focusedInput} 
-                  onFocusChange={focusedInput => this.setState({ focusedInput })} 
-                  numberOfMonths={1}
-                  isOutsideRange={() => false}
-                  showClearDates={true}
-                />
-              </div>
-            </form>
-          </section>
-          <section className="journals">
-            {journalPosts}
-          </section>
-        </>
+    const { allJournalsList = [], user } = this.context;
+    let filteredPlaces = this.context.allJournalsList;
+    // search by place
+    if (this.state.searchPlace) {
+      filteredPlaces = allJournalsList.filter(journal => 
+        journal.location.toLowerCase().indexOf(this.state.searchPlace.toLowerCase()) !== -1);
+    }
+    // search by date range
+    if (this.state.startDate && this.state.endDate) {
+      let start = moment(this.state.startDate._d);
+      let end = moment(this.state.endDate._d);
+      filteredPlaces = allJournalsList.filter(journal => 
+        moment(journal.start_date).isBetween(start, end, 'dates','[]')
       );
     }
+
+    let journalPosts = filteredPlaces.map((journal) => {
+      return <JournalPost 
+        key={journal.id}
+        journal={journal}
+        user={user}
+      />;
+    });
+
+    return (
+      <>
+        <section>
+          {error 
+            ? <div className="error">{this.state.error}</div>
+            : ''}
+          <form id="search-form">
+            <div className="search-field search-location">
+              <label htmlFor="journal-location">Search Journals by Place</label>
+              <input 
+                type="text" 
+                name="location" 
+                placeholder="Madrid, Spain"
+                value={this.state.searchPlace}
+                onChange={this.updateSearchPlace} />
+            </div> 
+            <div className="search-field">
+              <label htmlFor="startDate" className="date search-date">Search by Dates</label>
+              <DateRangePicker                                
+                startDate={this.state.startDate}
+                startDateId="startDate"
+                endDate={this.state.endDate}
+                endDateId="endDate"
+                onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })}
+                focusedInput={this.state.focusedInput} 
+                onFocusChange={focusedInput => this.setState({ focusedInput })} 
+                numberOfMonths={1}
+                isOutsideRange={() => false}
+                showClearDates={true}
+              />
+            </div>
+          </form>
+        </section>
+        <section className="journals">
+          {journalPosts}
+        </section>
+      </>
+    );
+  }
 }
 
 export default SearchFilter;

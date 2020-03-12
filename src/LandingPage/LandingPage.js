@@ -77,7 +77,9 @@ class LandingPage extends Component {
               to="/my-journals"
               onClick={this.handleDemoUserAuth}
               type='button'
-              className='demo-button'>Click Here to Try the Demo!</Link>
+              className='demo-button'>
+              Click Here to Try the Demo!
+            </Link>
           </div>
           
           <img 

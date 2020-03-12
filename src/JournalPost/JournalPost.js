@@ -4,14 +4,11 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './JournalPost.css';
 import moment from 'moment';
-//import PropTypes from 'prop-types';
 
 class JournalPost extends Component {
 
   render() {
     const { journal, user } = this.props;
-    // eslint-disable-next-line react/prop-types
-    
     const numberOfComments = journal.number_of_comments;
 
     let testUserName;
@@ -44,8 +41,7 @@ class JournalPost extends Component {
                 
       </>
     );
-  }
-    
+  } 
 }
 
 export default JournalPost;
