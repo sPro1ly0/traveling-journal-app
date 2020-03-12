@@ -23,7 +23,7 @@ Link to API documentation and repo: https://github.com/sPro1ly0/traveling-journa
   <li>JavaScript</li>
   <li>HTML</li>
   <li>CSS</li>
-  <li>This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).</li>
+  <li>This project was bootstrapped with <a href="https://github.com/facebook/create-react-app">Create React App</a>.</li>
 </ul>
 
 
