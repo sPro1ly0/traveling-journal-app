@@ -1,68 +1,31 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Traveling Journal
 
-## Available Scripts
+**Live app:** https://traveling-journal.now.sh/
 
-In the project directory, you can run:
+## Summary
 
-### `npm start`
+I like to travel but I have trouble remembering the details of what I did during my trips. I would normally try to write what I did on random pieces of paper only to lose them over time. When I go hiking or have a carry on bag on a plane, I would like to bring a note-book or journal along but I need to pack light so that I have enough room for food or other necessary items. I can take many pictures with my phone but I never go back to look at them often. I just pick a few pictures to post on Instagram with a caption of the place and forget about it. I decided to make the Traveling Journal to help me remember on what I do on my trips, and to keep everything in one place on my phone or laptop.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The Traveling Journal allows users to write about any places they have been and current trips in one place. The user home page has all the user's journal posts listed and the number of journals they have. Users can add, edit, or delete journal posts. They can click on their journal posts to see an individual journal's page. The journal pages allow a user to read a journal's content. The journal page also has a comment section below the content for all users to make comments and ask questions about the journal. The discover page allows users to read and comment on all the journal posts from all users of the app. Users can tell if a journal post is theirs by the edit button displayed on the journal post. The discover page also has a search filter to search journals by a place's name or date.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## API Documentation
 
-### `npm test`
+Link to API documentation and repo: https://github.com/sPro1ly0/traveling-journal-api
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Screenshots
 
-### `npm run build`
+## Technologies Used
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<ul>
+  <li>React.js</li>
+  <li><a href="https://momentjs.com/">Moment.js</a></li>
+  <li><a href="https://airbnb.io/projects/react-dates/">Airbnb Datepicker</a></li>
+  <li><a href="https://www.npmjs.com/package/@fortawesome/react-fontawesome">Font Awesome</a></li>
+  <li>JavaScript</li>
+  <li>HTML</li>
+  <li>CSS</li>
+  <li>This project was bootstrapped with <a href="https://github.com/facebook/create-react-app">Create React App</a>.</li>
+</ul>
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
