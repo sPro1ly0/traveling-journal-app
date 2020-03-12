@@ -9,8 +9,7 @@ const IdleService = {
     _idleCallback = idleCallback;
   },
   // user interacts with the page
-  resetIdleTimer(ev) {
-    console.info('event', ev.type);
+  resetIdleTimer() {
     // remove any timeouts when user interacts
     clearTimeout(_timeoutId);
     // queue the callback to happen 5 minutes from now
